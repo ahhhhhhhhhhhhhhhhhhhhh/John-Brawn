@@ -34,10 +34,9 @@ public class BuildingManager : MonoBehaviour {
     private void BuildTower()
     {
         Vector3 roundedPos = cursor.getRoundedPos();
-        Debug.Log(roundedPos);
-        if (grid.get((int)roundedPos.x, (int)roundedPos.y) != Grid.Tower)
+        if (grid.get((int)roundedPos.x, (int)roundedPos.y) != Tile.Tower)
         {
-            grid.set((int)roundedPos.x, (int)roundedPos.y, Grid.Tower);
+            grid.placeTower((int)roundedPos.x, (int)roundedPos.y);
             Instantiate(towerToBuild, roundedPos, new Quaternion(0, 0, 0, 0));
             buildingMode = false;
         }

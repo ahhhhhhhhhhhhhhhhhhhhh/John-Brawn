@@ -10,13 +10,15 @@ public class GridController : MonoBehaviour {
 
     public bool drawGrid;
 
-    private Grid[,] grid; //represents game map grid, consisting of towers, environment, friendly buildings, etc
+    private Tile[,] background; //map background, only visual. Does not affect tower placement
+    private Tile[,] buildingLayer; //represents game grid of towers, buildings, hazards. Affects tower placement
 
     // Use this for initialization
     void Start ()
     {
-        grid = new Grid[width, height];
-	}
+        background = new Tile[width, height];
+        buildingLayer = new Tile[width, height];
+    }
 	
 	// Update is called once per frame
 	void Update ()
@@ -38,13 +40,18 @@ public class GridController : MonoBehaviour {
         }
     }
 
-    public void set(int x, int y, Grid input)
+    public void placeTower(int x, int y)
     {
-        grid[x, y] = input;
+        buildingLayer[x, y] = Tile.Tower;
     }
 
-    public Grid get(int x, int y)
+    public Tile get(int x, int y)
     {
-        return grid[x, y];
+        return buildingLayer[x, y];
+    }
+
+    public Tile getBackground(int x, int y)
+    {
+        return background[x, y];
     }
 }
