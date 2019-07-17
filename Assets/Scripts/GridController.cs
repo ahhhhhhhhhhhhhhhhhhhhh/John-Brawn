@@ -1,11 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.IO;
 
 public class GridController : MonoBehaviour
 {
-
     public int height;
     public int width;
     public int size = 1; //size of gridsquares 
@@ -47,7 +45,6 @@ public class GridController : MonoBehaviour
                         layerList[x, y] = colorMapping.tile;
                     }
                 }
-
             }
         }
     }
@@ -68,12 +65,14 @@ public class GridController : MonoBehaviour
                 {
                     tile.transform.Rotate(new Vector3(0, 0, 90) * Random.Range(0, 5));
                 }
+                tile.transform.parent = transform;
 
                 //instantiating buildings (if any)
                 if (buildingLayer[i, j] != 0)
                 {
                     GameObject building = Instantiate(tiles[(int)buildingLayer[i, j]]);
                     building.transform.position = pos;
+                    building.transform.parent = transform;
                 }
             }
         }
