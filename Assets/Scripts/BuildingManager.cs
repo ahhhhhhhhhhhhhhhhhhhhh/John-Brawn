@@ -59,4 +59,9 @@ public class BuildingManager : MonoBehaviour {
         buildingMode = true;
         towerToBuild = fastTowerPrefab;
     }
+
+    public GameObject getTowerToBuild()
+    {
+        return towerToBuild;
+    }
 }

@@ -7,19 +7,32 @@ public class SelectCursor : MonoBehaviour {
     public Camera camera;
     public BuildingManager buildManager;
 
-    private Renderer renderer;
+    private Transform rangeCircle;
+
+    private Renderer cursorRenderer;
+    private Renderer rangeCircleRenderer;
 
     void Start()
     {
-        renderer = GetComponent<Renderer>();
+        rangeCircle = transform.GetChild(0);
+        cursorRenderer = GetComponent<Renderer>();
+        rangeCircleRenderer = rangeCircle.GetComponent<Renderer>();
+        
     }
 
     // Update is called once per frame
     void Update ()
     {
-        renderer.enabled = buildManager.buildingMode;
+        cursorRenderer.enabled = buildManager.buildingMode;
+        rangeCircleRenderer.enabled = buildManager.buildingMode;
 
-        transform.position = getRoundedPos();
+        if (cursorRenderer.enabled)
+        {
+            Tower towerToBuild = buildManager.getTowerToBuild().GetComponent<Tower>();
+            rangeCircle.transform.localScale = new Vector2(towerToBuild.range, towerToBuild.range);
+
+            transform.position = getRoundedPos();
+        }
     }
 
     public Vector3 getRoundedPos()
