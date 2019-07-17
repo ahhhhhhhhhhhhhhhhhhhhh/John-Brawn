@@ -8,6 +8,7 @@ public class Tower : MonoBehaviour {
     public float range = 5f;
     public float fireRate = 1f; //number of times tower can fire per second
     private float fireTimer = 0f;
+    public float damage = 20f;
 
     private GameObject enemies; //parent of all enemies in game
 
@@ -50,6 +51,7 @@ public class Tower : MonoBehaviour {
         GameObject bulletObject = (GameObject)Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         Bullet bullet = bulletObject.GetComponent<Bullet>();
         bullet.setTarget(target);
+        bullet.setDamage(damage);
     }
 
     //points turret towards target if within range

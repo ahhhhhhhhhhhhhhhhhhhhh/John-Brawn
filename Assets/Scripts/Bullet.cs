@@ -6,11 +6,17 @@ public class Bullet : MonoBehaviour {
 
     public float speed = 10f;
 
+    private float damage;
     private Transform target;
 
     public void setTarget(Transform target)
     {
         this.target = target;
+    }
+
+    public void setDamage(float damage)
+    {
+        this.damage = damage;
     }
 	
 	// Update is called once per frame
@@ -36,6 +42,8 @@ public class Bullet : MonoBehaviour {
 
     void hitTarget()
     {
+        Zombie zombie = target.GetComponent<Zombie>();
+        zombie.hit(damage);
         Destroy(gameObject);
     }
 }

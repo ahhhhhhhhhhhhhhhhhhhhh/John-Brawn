@@ -1,25 +1,41 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Zombie : MonoBehaviour {
 
-    public float speed = 2;
+    [Header("Zombie Attributes")]
+    public float speed = 2f;
+    public float maxHealth = 100f;
+    private float health;
 
     public bool loop; //makes zombies loop around the waypoints rather than disapearing at the final one
 
     private Transform target;
     private int waypointIndex = 0;
 
+    [Header("Unity Setup Stuff")]
+    public Image healthBar;
+
 	// Use this for initialization
 	void Start ()
     {
+        health = maxHealth;
         target = Waypoints.points[waypointIndex];
 	}
 	
 	// Update is called once per frame
 	void Update ()
     {
+        if (health <= 0)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        healthBar.transform.localScale = new Vector3(health / maxHealth, 1, 1);
+
         Vector3 targetPos = target.position;
         transform.position = Vector3.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
 
@@ -43,4 +59,9 @@ public class Zombie : MonoBehaviour {
             }
         }
 	}
+
+    public void hit(float damage)
+    {
+        health -= damage;
+    }
 }

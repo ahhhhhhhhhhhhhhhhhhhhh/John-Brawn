@@ -1385,7 +1385,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   on: 1
-  timeBetweenWaves: 1
+  timeBetweenWaves: 0.8
   enemies: {fileID: 1750427273}
   enemyPrefab: {fileID: 1813021853874394, guid: 17d96b3af7b41a04e87c2dac7f0d1260,
     type: 2}
