@@ -14,7 +14,8 @@ public class GridController : MonoBehaviour
 
     [Header("Tiles")]
     public GameObject[] tiles; //IMPORTANT: tiles must be in the same order as Tile enum (not including Tile.tower)
-    public Texture2D map;
+    public Texture2D backgroundMap;
+    public Texture2D buildingMap;
     public ColorToTile[] colorMappings;
 
     private Tile[,] background; //map background, only visual. Does not affect tower placement
@@ -26,18 +27,14 @@ public class GridController : MonoBehaviour
         background = new Tile[width, height];
         buildingLayer = new Tile[width, height];
 
-        //testing
-        /*
-        background[2, 5] = Tile.Sand;
-        background[6, 7] = Tile.Concrete;
-        background[7, 7] = Tile.Concrete;
-        background[6, 6] = Tile.Concrete;
-        background[7, 6] = Tile.Concrete;
-        buildingLayer[8, 3] = Tile.House;
-        buildingLayer[7, 3] = Tile.House;
-        */
+        addTiles(backgroundMap, background);
+        addTiles(buildingMap, buildingLayer);
 
+        drawGrid();
+    }
 
+    //goes through map pixel by pixel, matches color to Tile, and adds Tile to list
+    public void addTiles(Texture2D map, Tile[,] layerList) {
         for (int x = 0; x < map.width; x++)
         {
             for (int y = 0; y < map.height; y++)
@@ -46,20 +43,13 @@ public class GridController : MonoBehaviour
                 //InstantiateThing(x, y, color);
                 foreach (ColorToTile colorMapping in colorMappings)
                 {
-                    if (color.g == colorMapping.color.g)
-                    {
-                        background[x, y] = colorMapping.tile;
-                    }
-                    if (color.b == colorMapping.color.b)
-                    {
-                        buildingLayer[x, y] = colorMapping.tile;
+                    if (colorMapping.color == color) {
+                        layerList[x, y] = colorMapping.tile;
                     }
                 }
 
             }
         }
-
-        drawGrid();
     }
 
     public void drawGrid()
