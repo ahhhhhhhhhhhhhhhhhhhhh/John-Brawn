@@ -974,6 +974,16 @@ MonoBehaviour:
   - {fileID: 1625908451785696, guid: 64b2f786aa22c9644896d08cdd39590a, type: 2}
   - {fileID: 1679181080737762, guid: 3f3b0d43c44c4114598bb6ae9ce40d3c, type: 2}
   - {fileID: 1123900298563080, guid: f898907384cc7de43a6a95607e1c9bab, type: 2}
+  map: {fileID: 2800000, guid: b9a19e690e45a6445901921fd3c9cfe5, type: 3}
+  colorMappings:
+  - color: {r: 0, g: 0.19607843, b: 0, a: 1}
+    tile: 2
+  - color: {r: 0, g: 0.39215687, b: 0, a: 1}
+    tile: 0
+  - color: {r: 0, g: 0.5882353, b: 0, a: 1}
+    tile: 1
+  - color: {r: 0, g: 0, b: 0.39215687, a: 1}
+    tile: 3
 --- !u!4 &1572789208
 Transform:
   m_ObjectHideFlags: 0
