@@ -2,10 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum Tile {
-    Tower = -1,
-    Grass,
-    Sand,
-    Concrete,
-    House
+public class TileInfo : MonoBehaviour {
+    public bool rotatable = false; 
 }

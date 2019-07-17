@@ -38,6 +38,15 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: BackgroundTiles
+    uniqueID: 242083759
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: BuildingTiles
+    uniqueID: 2960261793
+    locked: 0
+  - name: Enemies
+    uniqueID: 3203631701
     locked: 0
