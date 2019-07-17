@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 
-public class GridController : MonoBehaviour {
+public class GridController : MonoBehaviour
+{
 
     public int height;
     public int width;
@@ -13,17 +14,20 @@ public class GridController : MonoBehaviour {
 
     [Header("Tiles")]
     public GameObject[] tiles; //IMPORTANT: tiles must be in the same order as Tile enum (not including Tile.tower)
+    public Texture2D map;
+    public ColorToTile[] colorMappings;
 
     private Tile[,] background; //map background, only visual. Does not affect tower placement
     private Tile[,] buildingLayer; //represents game grid of towers, buildings, hazards. Affects tower placement
 
     // Use this for initialization
-    void Start ()
+    void Start()
     {
         background = new Tile[width, height];
         buildingLayer = new Tile[width, height];
 
         //testing
+        /*
         background[2, 5] = Tile.Sand;
         background[6, 7] = Tile.Concrete;
         background[7, 7] = Tile.Concrete;
@@ -31,6 +35,29 @@ public class GridController : MonoBehaviour {
         background[7, 6] = Tile.Concrete;
         buildingLayer[8, 3] = Tile.House;
         buildingLayer[7, 3] = Tile.House;
+        */
+
+
+        for (int x = 0; x < map.width; x++)
+        {
+            for (int y = 0; y < map.height; y++)
+            {
+                Color color = map.GetPixel(x, y);
+                //InstantiateThing(x, y, color);
+                foreach (ColorToTile colorMapping in colorMappings)
+                {
+                    if (color.g == colorMapping.color.g)
+                    {
+                        background[x, y] = colorMapping.tile;
+                    }
+                    if (color.b == colorMapping.color.b)
+                    {
+                        buildingLayer[x, y] = colorMapping.tile;
+                    }
+                }
+
+            }
+        }
 
         drawGrid();
     }
@@ -61,16 +88,17 @@ public class GridController : MonoBehaviour {
             }
         }
     }
-	
-	// Update is called once per frame
-	void Update ()
+ 
+    // Update is called once per frame
+    void Update()
     {
-		
-	}
+
+    }
 
     private void OnDrawGizmos()
     {
-        if (drawGridLines) { 
+        if (drawGridLines)
+        {
             for (int i = 0; i < width; i++)
             {
                 for (int j = 0; j < height; j++)
