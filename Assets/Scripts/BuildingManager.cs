@@ -29,6 +29,10 @@ public class BuildingManager : MonoBehaviour {
         {
             BuildTower();
         }
+        if (buildingMode && Input.GetMouseButtonDown(1))
+        {
+            BuildingModeOff();
+        }
 	}
 
     private void BuildTower()
@@ -42,18 +46,17 @@ public class BuildingManager : MonoBehaviour {
         }
     }
 
-    public bool canBuildTower(Vector3 roundedPos) {
-
+    public bool canBuildTower(Vector3 roundedPos)
+    {
         try
         { //sometimes the mouse is out of bounds of the tilemap
             Tile tile = grid.get((int)roundedPos.x, (int)roundedPos.y);
             return (tile == 0);
         }
-        catch { //so if the mouse is out of the map you definitely can't build there
+        catch
+        { //so if the mouse is out of the map you definitely can't build there
             return false;
-        }
-        
-        
+        }  
     }
 
     public void BuildingModeOff()
