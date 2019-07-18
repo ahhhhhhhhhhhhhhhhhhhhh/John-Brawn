@@ -17,6 +17,7 @@ public class Zombie : MonoBehaviour {
 
     [Header("Unity Setup Stuff")]
     public Image healthBar;
+    public GameObject deathEffect;
 
 	// Use this for initialization
 	void Start ()
@@ -31,6 +32,7 @@ public class Zombie : MonoBehaviour {
         if (health <= 0)
         {
             Destroy(gameObject);
+            Instantiate(deathEffect, transform.position, transform.rotation);
             return;
         }
 

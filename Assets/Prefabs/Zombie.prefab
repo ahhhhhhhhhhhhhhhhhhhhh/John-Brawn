@@ -156,6 +156,8 @@ MonoBehaviour:
   maxHealth: 100
   loop: 0
   healthBar: {fileID: 114647679230640104}
+  deathEffect: {fileID: 1512636244732216, guid: 8ce4861c24b0c8443afc4fa170b8d75e,
+    type: 2}
 --- !u!212 &212842111565123812
 SpriteRenderer:
   m_ObjectHideFlags: 1
