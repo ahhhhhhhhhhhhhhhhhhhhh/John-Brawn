@@ -34,13 +34,26 @@ public class BuildingManager : MonoBehaviour {
     private void BuildTower()
     {
         Vector3 roundedPos = cursor.getRoundedPos();
-        Tile tile = grid.get((int)roundedPos.x, (int)roundedPos.y);
-        if (tile != Tile.Tower && tile != Tile.House)
+        if (canBuildTower(roundedPos))
         {
             grid.placeTower((int)roundedPos.x, (int)roundedPos.y);
             Instantiate(towerToBuild, roundedPos, new Quaternion(0, 0, 0, 0));
             buildingMode = false;
         }
+    }
+
+    public bool canBuildTower(Vector3 roundedPos) {
+
+        try
+        { //sometimes the mouse is out of bounds of the tilemap
+            Tile tile = grid.get((int)roundedPos.x, (int)roundedPos.y);
+            return (tile == 0);
+        }
+        catch { //so if the mouse is out of the map you definitely can't build there
+            return false;
+        }
+        
+        
     }
 
     public void BuildingModeOff()

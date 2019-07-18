@@ -16,8 +16,7 @@ public class SelectCursor : MonoBehaviour {
     {
         rangeCircle = transform.GetChild(0);
         cursorRenderer = GetComponent<Renderer>();
-        rangeCircleRenderer = rangeCircle.GetComponent<Renderer>();
-        
+        rangeCircleRenderer = rangeCircle.GetComponent<Renderer>();   
     }
 
     // Update is called once per frame
@@ -31,7 +30,20 @@ public class SelectCursor : MonoBehaviour {
             Tower towerToBuild = buildManager.getTowerToBuild().GetComponent<Tower>();
             rangeCircle.transform.localScale = new Vector2(towerToBuild.range, towerToBuild.range);
 
-            transform.position = getRoundedPos();
+            Vector3 roundedPos = getRoundedPos();
+            transform.position = roundedPos; //sets popup at correct location
+
+            if (buildManager.canBuildTower(roundedPos))
+            {
+                rangeCircleRenderer.material.color = Color.yellow;
+                cursorRenderer.material.color = Color.yellow;
+            }
+            else {
+                rangeCircleRenderer.material.color = Color.red;
+                cursorRenderer.material.color = Color.red;
+            }
+
+            
         }
     }
 
