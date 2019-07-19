@@ -1453,10 +1453,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   on: 1
-  timeBetweenWaves: 5
-  initialDelay: 1
-  spawnDelay: 0.05
-  wavePattern: 03000000080000001400000032000000
+  waveInfo:
+    timeBetweenWaves: 5
+    initialDelay: 3
+    spawnDelay: 0.05
+    wavePattern: 03000000080000001400000032000000
   enemies: {fileID: 1750427273}
   zombiePrefab: {fileID: 1813021853874394, guid: 17d96b3af7b41a04e87c2dac7f0d1260,
     type: 2}
