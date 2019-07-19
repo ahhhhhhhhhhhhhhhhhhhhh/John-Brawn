@@ -12,9 +12,9 @@ public class GridController : MonoBehaviour
 
     [Header("Tiles")]
     public GameObject[] tiles; //IMPORTANT: tiles must be in the same order as Tile enum (not including Tile.tower)
-    public Texture2D backgroundMap;
-    public Texture2D buildingMap;
     public ColorToTile[] colorMappings;
+    public Texture2D backgroundMap;
+    public Texture2D buildingMap; 
 
     private Tile[,] background; //map background, only visual. Does not affect tower placement
     private Tile[,] buildingLayer; //represents game grid of towers, buildings, hazards. Affects tower placement
@@ -22,13 +22,17 @@ public class GridController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        initLayers();
+        instantiateGrid();
+    }
+
+    public void initLayers()
+    {
         background = new Tile[width, height];
         buildingLayer = new Tile[width, height];
 
         addTiles(backgroundMap, background);
         addTiles(buildingMap, buildingLayer);
-
-        drawGrid();
     }
 
     //goes through map pixel by pixel, matches color to Tile, and adds Tile to list
@@ -49,7 +53,8 @@ public class GridController : MonoBehaviour
         }
     }
 
-    public void drawGrid()
+    //instantiates each tile in background and building layers
+    public void instantiateGrid()
     {
         for (int i = 0; i < width; i++)
         {
@@ -77,11 +82,14 @@ public class GridController : MonoBehaviour
             }
         }
     }
- 
-    // Update is called once per frame
-    void Update()
-    {
 
+    //deletes all tile gameobjects. Does not modify background or buildingLayer variables
+    public void deleteGrid()
+    {
+        for (int i = transform.childCount - 1; i >= 0; i--)
+        {
+            DestroyImmediate(transform.GetChild(i).gameObject);
+        }
     }
 
     private void OnDrawGizmos()
