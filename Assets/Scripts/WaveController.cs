@@ -7,10 +7,7 @@ public class WaveController : MonoBehaviour {
     public bool on = true; //way to turn wave spawning off for testing purposes
 
     [Header("Wave Properties")]
-    public float timeBetweenWaves = 3f;
-    public float initialDelay = 1f;
-    public float spawnDelay = 0.1f; //time between each spawn within a wave
-    public int[] wavePattern; //number of enemies to spawn on each wave (waveNum = index)
+    public WaveInfo waveInfo;
 
     private float timer;
     private int waveNum = 0;
@@ -25,7 +22,7 @@ public class WaveController : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
-        timer = initialDelay;
+        timer = waveInfo.initialDelay;
 
         spawnpoints = new Transform[spawnpointParent.childCount];
         for (int i = 0; i < spawnpoints.Length; i++)
@@ -37,27 +34,27 @@ public class WaveController : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        if (timer <= 0 && on && waveNum < wavePattern.Length)
+        if (timer <= 0 && on && waveNum < waveInfo.wavePattern.Length)
         {
             StartCoroutine(SpawnWave());
             waveNum++;
-            timer = timeBetweenWaves;
+            timer = waveInfo.timeBetweenWaves;
         }
 
         timer -= Time.deltaTime;
 	}
 
-    //spawns n number of enemies
+    //spawns next wave on enemies from wave pattern
     IEnumerator SpawnWave() 
     {
-        int numToSpawn = wavePattern[waveNum];
+        int numToSpawn = waveInfo.wavePattern[waveNum];
 
         for (int i = 0; i < numToSpawn / spawnpoints.Length; i++)
         {
             foreach (Transform spawnpoint in spawnpoints)
             {
                 SpawnEnemy(spawnpoint, zombiePrefab);
-                yield return new WaitForSeconds(spawnDelay);
+                yield return new WaitForSeconds(waveInfo.spawnDelay);
             }
         }
 
@@ -65,7 +62,7 @@ public class WaveController : MonoBehaviour {
         {
             int rand = Random.Range(0, spawnpoints.Length);
             SpawnEnemy(spawnpoints[rand], zombiePrefab);
-            yield return new WaitForSeconds(spawnDelay);
+            yield return new WaitForSeconds(waveInfo.spawnDelay);
         }
     }
 

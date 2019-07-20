@@ -29,7 +29,7 @@ public class BuildingManager : MonoBehaviour {
         {
             BuildTower();
         }
-        if (buildingMode && Input.GetMouseButtonDown(1))
+        if (buildingMode && (Input.GetMouseButtonDown(1) || Input.GetKeyDown(KeyCode.Escape)))
         {
             BuildingModeOff();
         }
