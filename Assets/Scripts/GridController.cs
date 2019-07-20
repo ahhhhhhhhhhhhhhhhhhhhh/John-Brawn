@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class GridController : MonoBehaviour
 {
-    public int height;
-    public int width;
-    public int size = 1; //size of gridsquares 
-
     public bool drawGridLines;
 
     [Header("Tiles")]
     public GameObject[] tiles; //IMPORTANT: tiles must be in the same order as Tile enum (not including Tile.tower)
     public ColorToTile[] colorMappings;
     public Texture2D backgroundMap;
-    public Texture2D buildingMap; 
+    public Texture2D buildingMap;
+
+    private int size = 1; //size of gridsquares 
+    private int height;
+    private int width;
 
     private Tile[,] background; //map background, only visual. Does not affect tower placement
     private Tile[,] buildingLayer; //represents game grid of towers, buildings, hazards. Affects tower placement
@@ -22,6 +22,9 @@ public class GridController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        height = backgroundMap.height;
+        width = backgroundMap.width;
+
         initLayers();
         instantiateGrid();
     }
