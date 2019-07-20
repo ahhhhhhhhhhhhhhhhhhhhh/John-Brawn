@@ -1,8 +1,11 @@
 fileFormatVersion: 2
-guid: 1d97b7ea2c3dedb4783aab85020dc08c
+guid: 0e66692b7fe247746be6a76e221b84ae
 TextureImporter:
   fileIDToRecycleName:
-    21300000: test
+    21300000: Zombie Businessman_0
+    21300002: Zombie Businessman_1
+    21300004: Zombie Businessman_2
+    21300006: Zombie Businessman_3
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -85,13 +88,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: test
+      name: Zombie Businessman_0
       rect:
         serializedVersion: 2
-        x: 5
-        y: 224
-        width: 23
-        height: 31
+        x: 4
+        y: 3
+        width: 28
+        height: 65
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -99,7 +102,67 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dee62cb9601e1304a9f10538106f34df
+      spriteID: e8ea65f8b6697ec40a040c4e88cfb2c1
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zombie Businessman_1
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 3
+        width: 28
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c8adfa4edfc7e524ea0e37ca3166fe7a
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zombie Businessman_2
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 3
+        width: 28
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58de9df268451314d9277aafc3bdaffd
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zombie Businessman_3
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 3
+        width: 28
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec24b306289cc15498bb911389c4c424
       vertices: []
       indices: 
       edges: []
@@ -107,7 +170,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 0565b69def344de40b0a9abd31fad3ed
+    spriteID: a3d6e80c34223a04c98a64ccdb3a1998
     vertices: []
     indices: 
     edges: []

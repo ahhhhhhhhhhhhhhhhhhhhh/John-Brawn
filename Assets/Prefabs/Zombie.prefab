@@ -152,12 +152,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4aa257ce670c7f044820aa68d3c35dff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
+  speed: 1.5
   maxHealth: 100
   loop: 0
   healthBar: {fileID: 114647679230640104}
   deathEffect: {fileID: 1512636244732216, guid: 8ce4861c24b0c8443afc4fa170b8d75e,
     type: 2}
+  sprites:
+  - {fileID: 21300006, guid: 0e66692b7fe247746be6a76e221b84ae, type: 3}
+  - {fileID: 21300000, guid: 0e66692b7fe247746be6a76e221b84ae, type: 3}
+  - {fileID: 21300002, guid: 0e66692b7fe247746be6a76e221b84ae, type: 3}
+  - {fileID: 21300004, guid: 0e66692b7fe247746be6a76e221b84ae, type: 3}
 --- !u!212 &212842111565123812
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -193,7 +198,7 @@ SpriteRenderer:
   m_SortingLayerID: -1091335595
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 1d97b7ea2c3dedb4783aab85020dc08c, type: 3}
+  m_Sprite: {fileID: 21300002, guid: 0e66692b7fe247746be6a76e221b84ae, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -265,6 +270,6 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0.224}
+  m_AnchoredPosition: {x: 0, y: 0.4}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}

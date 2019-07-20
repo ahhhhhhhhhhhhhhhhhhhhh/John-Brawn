@@ -18,12 +18,17 @@ public class Zombie : MonoBehaviour {
     [Header("Unity Setup Stuff")]
     public Image healthBar;
     public GameObject deathEffect;
+    public Sprite[] sprites; //up, right, down, left
+
+    private SpriteRenderer spriteRenderer;
 
 	// Use this for initialization
 	void Start ()
     {
         health = maxHealth;
         target = Waypoints.points[waypointIndex];
+
+        spriteRenderer = GetComponent<SpriteRenderer>();
 	}
 	
 	// Update is called once per frame
@@ -38,10 +43,39 @@ public class Zombie : MonoBehaviour {
 
         healthBar.transform.localScale = new Vector3(health / maxHealth, 1, 1);
 
-        Vector3 targetPos = target.position;
-        transform.position = Vector3.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
+        //makes zombie face direction it is moving
+        Vector3 diff = target.position - transform.position;
+        if (Mathf.Abs(diff.x) > Mathf.Abs(diff.y))
+        {
+            if (diff.x > 0)
+            {
+                spriteRenderer.sprite = sprites[1]; //right
+            }
+            else
+            {
+                spriteRenderer.sprite = sprites[3]; //left
+            }
+        }
+        else
+        {
+            if (diff.y > 0)
+            {
+                spriteRenderer.sprite = sprites[0]; //up
+            }
+            else
+            {
+                spriteRenderer.sprite = sprites[2]; //down
+            }
+        }
 
-        if (Vector3.Distance(transform.position, targetPos) <= 0.1)
+        transform.position = Vector3.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
+
+        checkWaypoint();
+	}
+
+    public void checkWaypoint()
+    {
+        if (Vector3.Distance(transform.position, target.position) <= 0.1)
         {
             waypointIndex++;
             if (waypointIndex >= Waypoints.points.Length)
@@ -56,11 +90,12 @@ public class Zombie : MonoBehaviour {
                     Destroy(gameObject);
                 }
             }
-            else { 
+            else
+            {
                 target = Waypoints.points[waypointIndex];
             }
         }
-	}
+    }
 
     public void hit(float damage)
     {
