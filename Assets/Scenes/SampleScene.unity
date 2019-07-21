@@ -536,11 +536,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4196897423455704, guid: 5ae29bf782524a440922330229f61df2, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 11.95
+      value: 0.61
       objectReference: {fileID: 0}
     - target: {fileID: 4196897423455704, guid: 5ae29bf782524a440922330229f61df2, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 5.87
+      value: 12.74
       objectReference: {fileID: 0}
     - target: {fileID: 4196897423455704, guid: 5ae29bf782524a440922330229f61df2, type: 2}
       propertyPath: m_LocalPosition.z
@@ -832,6 +832,7 @@ RectTransform:
   m_Children:
   - {fileID: 600290760}
   - {fileID: 1874271005}
+  - {fileID: 1775409074}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -849,11 +850,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4196897423455704, guid: 5ae29bf782524a440922330229f61df2, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 12
+      value: 1.59
       objectReference: {fileID: 0}
     - target: {fileID: 4196897423455704, guid: 5ae29bf782524a440922330229f61df2, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 7.67
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 4196897423455704, guid: 5ae29bf782524a440922330229f61df2, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1165,11 +1166,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4196897423455704, guid: 5ae29bf782524a440922330229f61df2, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 14.39
+      value: 14.32
       objectReference: {fileID: 0}
     - target: {fileID: 4196897423455704, guid: 5ae29bf782524a440922330229f61df2, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 7.67
+      value: 0.45
       objectReference: {fileID: 0}
     - target: {fileID: 4196897423455704, guid: 5ae29bf782524a440922330229f61df2, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1224,11 +1225,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4196897423455704, guid: 5ae29bf782524a440922330229f61df2, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 14.55
+      value: 14.1
       objectReference: {fileID: 0}
     - target: {fileID: 4196897423455704, guid: 5ae29bf782524a440922330229f61df2, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 5.82
+      value: 6.19
       objectReference: {fileID: 0}
     - target: {fileID: 4196897423455704, guid: 5ae29bf782524a440922330229f61df2, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1293,6 +1294,81 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1775409073
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1775409074}
+  - component: {fileID: 1775409076}
+  - component: {fileID: 1775409075}
+  m_Layer: 5
+  m_Name: Wave Countdown
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1775409074
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1775409073}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 669277747}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 570.55, y: -269}
+  m_SizeDelta: {x: 85.9, y: 77.5}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1775409075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1775409073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 50
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 5
+    m_MaxSize: 50
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 99
+--- !u!222 &1775409076
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1775409073}
+  m_CullTransparentMesh: 0
 --- !u!1 &1811088951
 GameObject:
   m_ObjectHideFlags: 0
@@ -1630,15 +1706,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   on: 1
-  waveInfo:
-    timeBetweenWaves: 5
-    initialDelay: 2
-    spawnDelay: 0.05
-    wavePattern: 03000000080000001400000032000000
+  waves:
+  - delay: 2
+    spawnDelay: 0.02
+    numZombies: 7
+  - delay: 4
+    spawnDelay: 0.02
+    numZombies: 7
+  - delay: 4
+    spawnDelay: 0.02
+    numZombies: 7
+  - delay: 4
+    spawnDelay: 0.02
+    numZombies: 7
   enemies: {fileID: 1750427273}
   zombiePrefab: {fileID: 1813021853874394, guid: 17d96b3af7b41a04e87c2dac7f0d1260,
     type: 2}
   spawnpointParent: {fileID: 2117333568}
+  waveCountdown: {fileID: 1775409075}
 --- !u!4 &2067086267
 Transform:
   m_ObjectHideFlags: 0
