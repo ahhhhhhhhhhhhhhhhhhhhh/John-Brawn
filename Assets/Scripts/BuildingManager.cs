@@ -27,7 +27,16 @@ public class BuildingManager : MonoBehaviour {
     {
 		if (buildingMode && Input.GetMouseButtonDown(0))
         {
-            BuildTower();
+            Vector3 roundedPos = cursor.getRoundedPos();
+            if (canBuildTower(roundedPos))
+            {
+                BuildTower(roundedPos);
+                if (!(Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)))
+                {
+                    BuildingModeOff();
+                }
+                
+            }
         }
         if (buildingMode && (Input.GetMouseButtonDown(1) || Input.GetKeyDown(KeyCode.Escape)))
         {
@@ -35,15 +44,10 @@ public class BuildingManager : MonoBehaviour {
         }
 	}
 
-    private void BuildTower()
+    private void BuildTower(Vector3 roundedPos)
     {
-        Vector3 roundedPos = cursor.getRoundedPos();
-        if (canBuildTower(roundedPos))
-        {
-            grid.placeTower((int)roundedPos.x, (int)roundedPos.y);
-            Instantiate(towerToBuild, roundedPos, new Quaternion(0, 0, 0, 0));
-            buildingMode = false;
-        }
+        grid.placeTower((int)roundedPos.x, (int)roundedPos.y);
+        Instantiate(towerToBuild, roundedPos, new Quaternion(0, 0, 0, 0));
     }
 
     public bool canBuildTower(Vector3 roundedPos)

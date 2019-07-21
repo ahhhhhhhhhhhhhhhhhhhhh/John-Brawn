@@ -1719,6 +1719,9 @@ MonoBehaviour:
   - delay: 4
     spawnDelay: 0.02
     numZombies: 7
+  - delay: 5
+    spawnDelay: 0.01
+    numZombies: 100
   enemies: {fileID: 1750427273}
   zombiePrefab: {fileID: 1813021853874394, guid: 17d96b3af7b41a04e87c2dac7f0d1260,
     type: 2}
