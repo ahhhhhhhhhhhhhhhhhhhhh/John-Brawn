@@ -180,7 +180,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Test Level 2
+  m_Text: Test Level (Hard)
 --- !u!222 &2596654
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -226,9 +226,9 @@ MonoBehaviour:
     - delay: 5
       spawnDelay: 0.05
       numZombies: 100
-  - name: Test Level 2
-    backgroundMap: {fileID: 2800000, guid: 30f2874f8e9ea4d4596186b80af101f9, type: 3}
-    buildingMap: {fileID: 2800000, guid: 5bdcad4af7877134e8fbf0b9d20b7e61, type: 3}
+  - name: Test Level (Hard)
+    backgroundMap: {fileID: 2800000, guid: 46448c944a5393242b19eacb30e5f6b3, type: 3}
+    buildingMap: {fileID: 2800000, guid: c64218a806d3eeb4596fc6c56dfa37e5, type: 3}
     waves:
     - delay: 2
       spawnDelay: 0.005
@@ -330,7 +330,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Test Level 2
+          m_StringArgument: Test Level (Hard)
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,

@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class GridController : MonoBehaviour
 {
-    public bool drawGridLines;
-
-    [Header("Tiles")]
+    [Header("Map Stuff")]
     public GameObject[] tiles; //IMPORTANT: tiles must be in the same order as Tile enum (not including Tile.tower)
     public ColorToTile[] colorMappings;
     public Texture2D backgroundMap;
     public Texture2D buildingMap;
+
+    [Header("Unity Setup")]
+    public Camera camera;
 
     private int size = 1; //size of gridsquares 
     private int height;
@@ -30,6 +31,8 @@ public class GridController : MonoBehaviour
     {
         height = backgroundMap.height;
         width = backgroundMap.width;
+        camera.orthographicSize = height / 2f;
+        camera.transform.position = new Vector3(height - 0.5f, height / 2f - 0.5f, -10);
 
         background = new Tile[width, height];
         buildingLayer = new Tile[width, height];
@@ -92,21 +95,6 @@ public class GridController : MonoBehaviour
         for (int i = transform.childCount - 1; i >= 0; i--)
         {
             DestroyImmediate(transform.GetChild(i).gameObject);
-        }
-    }
-
-    private void OnDrawGizmos()
-    {
-        if (drawGridLines)
-        {
-            for (int i = 0; i < width; i++)
-            {
-                for (int j = 0; j < height; j++)
-                {
-                    Vector3 pos = new Vector3(i * size, j * size, 0);
-                    Gizmos.DrawWireCube(pos, new Vector3(size, size, size));
-                }
-            }
         }
     }
 
