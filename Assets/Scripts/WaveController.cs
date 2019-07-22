@@ -48,11 +48,13 @@ public class WaveController : MonoBehaviour {
         }
 
         timer -= Time.deltaTime;
-        if (timer > 0) //timer being negative means all waves are done
+        
+        if (timer < 0 && waveNum >= waves.Length) //means all waves have finished
         {
-            waveCountdown.text = timer.ToString();
+            waveCountdown.enabled = false;
         }
-	}
+        waveCountdown.text = timer.ToString();
+    }
 
     //spawns next wave on enemies from wave pattern
     IEnumerator SpawnWave() 
