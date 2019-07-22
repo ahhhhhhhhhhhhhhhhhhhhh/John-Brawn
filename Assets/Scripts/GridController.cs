@@ -22,15 +22,15 @@ public class GridController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        height = backgroundMap.height;
-        width = backgroundMap.width;
-
         initLayers();
         instantiateGrid();
     }
 
     public void initLayers()
     {
+        height = backgroundMap.height;
+        width = backgroundMap.width;
+
         background = new Tile[width, height];
         buildingLayer = new Tile[width, height];
 

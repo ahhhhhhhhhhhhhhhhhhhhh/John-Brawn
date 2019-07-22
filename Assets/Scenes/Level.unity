@@ -169,7 +169,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 20
+    m_FontSize: 30
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2
@@ -353,7 +353,7 @@ Transform:
   m_Children:
   - {fileID: 29742179}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &286241205 stripped
 Transform:
@@ -443,7 +443,7 @@ Transform:
   - {fileID: 286241205}
   - {fileID: 441316090}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &441316090 stripped
 Transform:
@@ -615,8 +615,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -100, y: -40}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: -116.58, y: -67.52}
+  m_SizeDelta: {x: 200, y: 85}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &600290761
 MonoBehaviour:
@@ -834,7 +834,7 @@ RectTransform:
   - {fileID: 1874271005}
   - {fileID: 1775409074}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -956,7 +956,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 20
+    m_FontSize: 30
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2
@@ -1100,63 +1100,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   iconSize: 0.2
---- !u!1 &1572789206
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1572789208}
-  - component: {fileID: 1572789207}
-  m_Layer: 0
-  m_Name: Grid
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1572789207
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1572789206}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24728317baa95c649bbf63bb65a19ae9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  drawGridLines: 0
-  tiles:
-  - {fileID: 1618430393620236, guid: b57b65e61cb3e22408a7f82b45d5fda8, type: 2}
-  - {fileID: 1625908451785696, guid: 64b2f786aa22c9644896d08cdd39590a, type: 2}
-  - {fileID: 1679181080737762, guid: 3f3b0d43c44c4114598bb6ae9ce40d3c, type: 2}
-  - {fileID: 1123900298563080, guid: f898907384cc7de43a6a95607e1c9bab, type: 2}
-  colorMappings:
-  - color: {r: 0.58431375, g: 0.58431375, b: 0.58431375, a: 1}
-    tile: 2
-  - color: {r: 0.5529412, g: 0.627451, b: 0, a: 1}
-    tile: 0
-  - color: {r: 0.83921576, g: 0.79215693, b: 0.43921572, a: 1}
-    tile: 1
-  - color: {r: 0.68235296, g: 0.4156863, b: 0.26666668, a: 1}
-    tile: 3
-  backgroundMap: {fileID: 2800000, guid: 30f2874f8e9ea4d4596186b80af101f9, type: 3}
-  buildingMap: {fileID: 2800000, guid: 5bdcad4af7877134e8fbf0b9d20b7e61, type: 3}
---- !u!4 &1572789208
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1572789206}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1574220303
 Prefab:
   m_ObjectHideFlags: 0
@@ -1292,7 +1235,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1775409073
 GameObject:
@@ -1326,8 +1269,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 570.55, y: -269}
-  m_SizeDelta: {x: 85.9, y: 77.5}
+  m_AnchoredPosition: {x: 570, y: -287}
+  m_SizeDelta: {x: 107.3, y: 58.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1775409075
 MonoBehaviour:
@@ -1355,13 +1298,13 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 5
     m_MaxSize: 50
-    m_Alignment: 4
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 99
+  m_Text: 99.999
 --- !u!222 &1775409076
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1429,7 +1372,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1874271004
 GameObject:
@@ -1465,8 +1408,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -100, y: -80}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: -116.58, y: -163.7}
+  m_SizeDelta: {x: 200, y: 85}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1874271006
 MonoBehaviour:
@@ -1685,10 +1628,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2067086267}
+  - component: {fileID: 2067086270}
   - component: {fileID: 2067086266}
   - component: {fileID: 2067086268}
+  - component: {fileID: 2067086269}
   m_Layer: 0
-  m_Name: Game Control
+  m_Name: Level Control
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1707,21 +1652,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   on: 1
   waves:
-  - delay: 2
-    spawnDelay: 0.02
-    numZombies: 7
-  - delay: 4
-    spawnDelay: 0.02
-    numZombies: 7
-  - delay: 4
-    spawnDelay: 0.02
-    numZombies: 7
-  - delay: 4
-    spawnDelay: 0.02
-    numZombies: 7
-  - delay: 5
-    spawnDelay: 0.01
-    numZombies: 100
+  - delay: 100
+    spawnDelay: 0
+    numZombies: 5
   enemies: {fileID: 1750427273}
   zombiePrefab: {fileID: 1813021853874394, guid: 17d96b3af7b41a04e87c2dac7f0d1260,
     type: 2}
@@ -1757,7 +1690,48 @@ MonoBehaviour:
     type: 2}
   fastTowerPrefab: {fileID: 1327167988884042, guid: 03da9827d46be054eb7df45c38d6e76c,
     type: 2}
-  grid: {fileID: 1572789207}
+  grid: {fileID: 2067086269}
+--- !u!114 &2067086269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2067086265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24728317baa95c649bbf63bb65a19ae9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drawGridLines: 0
+  tiles:
+  - {fileID: 1618430393620236, guid: b57b65e61cb3e22408a7f82b45d5fda8, type: 2}
+  - {fileID: 1625908451785696, guid: 64b2f786aa22c9644896d08cdd39590a, type: 2}
+  - {fileID: 1679181080737762, guid: 3f3b0d43c44c4114598bb6ae9ce40d3c, type: 2}
+  - {fileID: 1123900298563080, guid: f898907384cc7de43a6a95607e1c9bab, type: 2}
+  colorMappings:
+  - color: {r: 0.58431375, g: 0.58431375, b: 0.58431375, a: 1}
+    tile: 2
+  - color: {r: 0.5529412, g: 0.627451, b: 0, a: 1}
+    tile: 0
+  - color: {r: 0.83921576, g: 0.79215693, b: 0.43921572, a: 1}
+    tile: 1
+  - color: {r: 0.68235296, g: 0.4156863, b: 0.26666668, a: 1}
+    tile: 3
+  backgroundMap: {fileID: 2800000, guid: 30f2874f8e9ea4d4596186b80af101f9, type: 3}
+  buildingMap: {fileID: 2800000, guid: 5bdcad4af7877134e8fbf0b9d20b7e61, type: 3}
+--- !u!114 &2067086270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2067086265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb9d0874302ffe14ab723e71683e0316, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waveControl: {fileID: 2067086266}
+  gridControl: {fileID: 2067086269}
 --- !u!1 &2117333567
 GameObject:
   m_ObjectHideFlags: 0
@@ -1792,5 +1766,5 @@ Transform:
   - {fileID: 1327083313}
   - {fileID: 326935769}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
