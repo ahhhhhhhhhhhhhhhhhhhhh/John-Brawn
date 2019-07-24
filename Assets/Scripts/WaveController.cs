@@ -5,10 +5,19 @@ using UnityEngine.UI;
 
 public class WaveController : MonoBehaviour {
 
+    public enum Direction
+    {
+        Up,
+        Right,
+        Down,
+        Left
+    }
+
     public bool on = true; //way to turn wave spawning off for testing purposes
 
     [Header("Wave Properties")]
     public WaveInfo[] waves;
+    public Direction direction;
 
     private float timer;
     private int waveNum = 0;
@@ -17,8 +26,7 @@ public class WaveController : MonoBehaviour {
     public Transform enemies; //parent of all enemies
     public GameObject zombiePrefab;
 
-    public Transform spawnpointParent;
-    private Transform[] spawnpoints;
+    public GridController grid;
 
     public Text waveCountdown;
 
@@ -26,12 +34,6 @@ public class WaveController : MonoBehaviour {
     void Start ()
     {
         timer = waves[0].delay;
-
-        spawnpoints = new Transform[spawnpointParent.childCount];
-        for (int i = 0; i < spawnpoints.Length; i++)
-        {
-            spawnpoints[i] = spawnpointParent.GetChild(i);
-        }
     }
 	
 	// Update is called once per frame
@@ -39,7 +41,7 @@ public class WaveController : MonoBehaviour {
     {
         if (timer <= 0 && on && waveNum < waves.Length)
         {
-            StartCoroutine(SpawnWave());
+            StartCoroutine(SpawnWave(direction));
             waveNum++;
             if (waveNum < waves.Length)
             {
@@ -57,50 +59,47 @@ public class WaveController : MonoBehaviour {
     }
 
     //spawns next wave on enemies from wave pattern
-    IEnumerator SpawnWave() 
+    IEnumerator SpawnWave(Direction dir) 
     {
         int numToSpawn = waves[waveNum].numZombies;
         float spawnDelay = waves[waveNum].spawnDelay;
 
-        for (int i = 0; i < numToSpawn / spawnpoints.Length; i++)
+        for (int i = 0; i < numToSpawn; i++)
         {
-            foreach (Transform spawnpoint in spawnpoints)
-            {
-                SpawnEnemy(spawnpoint, zombiePrefab);
-                yield return new WaitForSeconds(spawnDelay);
-            }
-        }
+            Vector3 v1 = new Vector3(); //placeholder value
+            Vector3 v2 = new Vector3(); //placeholder value
 
-        int[] rand = getShuffledArray(spawnpoints.Length);
-        for (int i = 0; i < numToSpawn % spawnpoints.Length; i++)
-        {
-            SpawnEnemy(spawnpoints[rand[i]], zombiePrefab);
+            if (dir == Direction.Up)
+            {
+                v1 = new Vector3(-0.5f, grid.getHeight() - 0.5f);
+                v2 = new Vector3(grid.getWidth() - 0.5f, grid.getHeight() - 0.5f);
+            }
+            else if (dir == Direction.Right)
+            {
+                v1 = new Vector3(grid.getWidth() - 0.5f, -0.5f);
+                v2 = new Vector3(grid.getWidth() - 0.5f, grid.getHeight() - 0.5f);
+            }
+            else if (dir == Direction.Down)
+            {
+                v1 = new Vector3(-0.5f, -0.5f);
+                v2 = new Vector3(grid.getWidth() - 0.5f, -0.5f);
+            }
+            else if (dir == Direction.Left)
+            {
+                v1 = new Vector3(-0.5f, -0.5f);
+                v2 = new Vector3(-0.5f, grid.getHeight() - 0.5f);
+            }
+
+            Vector3 spawnpoint = Vector3.Lerp(v1, v2, Random.Range(1f, 0f));
+            SpawnEnemy(spawnpoint, zombiePrefab);
+
             yield return new WaitForSeconds(spawnDelay);
         }
     }
 
-    void SpawnEnemy(Transform spawnpoint, GameObject enemyType)
+    void SpawnEnemy(Vector3 spawnpoint, GameObject enemyType)
     {
-        GameObject enemy = Instantiate(enemyType, spawnpoint.position, spawnpoint.rotation);
+        GameObject enemy = Instantiate(enemyType, spawnpoint, new Quaternion(0, 0, 0, 0));
         enemy.transform.parent = enemies;
-    }
-
-    //returns shuffled array of length n
-    private int[] getShuffledArray(int n)
-    {
-        System.Random rand = new System.Random();
-        int[] arr = new int[n];
-        for (int i = 0; i < arr.Length; i++)
-        {
-            arr[i] = i;
-        }
-        for (int i = 0; i < arr.Length; i++)
-        {
-            int index = rand.Next(n);
-            int temp = arr[i];
-            arr[i] = arr[index];
-            arr[index] = temp;
-        }
-        return arr;
     }
 }
