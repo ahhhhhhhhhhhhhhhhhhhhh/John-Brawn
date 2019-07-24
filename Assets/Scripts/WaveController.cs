@@ -17,7 +17,7 @@ public class WaveController : MonoBehaviour {
 
     [Header("Wave Properties")]
     public WaveInfo[] waves;
-    public Direction direction;
+    public Direction[] spawningDirections;
 
     private float timer;
     private int waveNum = 0;
@@ -41,7 +41,7 @@ public class WaveController : MonoBehaviour {
     {
         if (timer <= 0 && on && waveNum < waves.Length)
         {
-            StartCoroutine(SpawnWave(direction));
+            StartCoroutine(SpawnWave());
             waveNum++;
             if (waveNum < waves.Length)
             {
@@ -59,46 +59,48 @@ public class WaveController : MonoBehaviour {
     }
 
     //spawns next wave on enemies from wave pattern
-    IEnumerator SpawnWave(Direction dir) 
+    IEnumerator SpawnWave() 
     {
         int numToSpawn = waves[waveNum].numZombies;
         float spawnDelay = waves[waveNum].spawnDelay;
 
         for (int i = 0; i < numToSpawn; i++)
         {
-            Vector3 v1 = new Vector3(); //placeholder value
-            Vector3 v2 = new Vector3(); //placeholder value
-
-            if (dir == Direction.Up)
-            {
-                v1 = new Vector3(-0.5f, grid.getHeight() - 0.5f);
-                v2 = new Vector3(grid.getWidth() - 0.5f, grid.getHeight() - 0.5f);
-            }
-            else if (dir == Direction.Right)
-            {
-                v1 = new Vector3(grid.getWidth() - 0.5f, -0.5f);
-                v2 = new Vector3(grid.getWidth() - 0.5f, grid.getHeight() - 0.5f);
-            }
-            else if (dir == Direction.Down)
-            {
-                v1 = new Vector3(-0.5f, -0.5f);
-                v2 = new Vector3(grid.getWidth() - 0.5f, -0.5f);
-            }
-            else if (dir == Direction.Left)
-            {
-                v1 = new Vector3(-0.5f, -0.5f);
-                v2 = new Vector3(-0.5f, grid.getHeight() - 0.5f);
-            }
-
-            Vector3 spawnpoint = Vector3.Lerp(v1, v2, Random.Range(1f, 0f));
-            SpawnEnemy(spawnpoint, zombiePrefab);
+            Direction direction = spawningDirections[Random.Range(0, spawningDirections.Length)];
+            SpawnEnemy(direction, zombiePrefab);
 
             yield return new WaitForSeconds(spawnDelay);
         }
     }
 
-    void SpawnEnemy(Vector3 spawnpoint, GameObject enemyType)
+    void SpawnEnemy(Direction direction, GameObject enemyType)
     {
+        Vector3 v1 = new Vector3(); //placeholder value
+        Vector3 v2 = new Vector3(); //placeholder value
+
+        if (direction == Direction.Up)
+        {
+            v1 = new Vector3(-0.5f, grid.getHeight() - 0.5f);
+            v2 = new Vector3(grid.getWidth() - 0.5f, grid.getHeight() - 0.5f);
+        }
+        else if (direction == Direction.Right)
+        {
+            v1 = new Vector3(grid.getWidth() - 0.5f, -0.5f);
+            v2 = new Vector3(grid.getWidth() - 0.5f, grid.getHeight() - 0.5f);
+        }
+        else if (direction == Direction.Down)
+        {
+            v1 = new Vector3(-0.5f, -0.5f);
+            v2 = new Vector3(grid.getWidth() - 0.5f, -0.5f);
+        }
+        else if (direction == Direction.Left)
+        {
+            v1 = new Vector3(-0.5f, -0.5f);
+            v2 = new Vector3(-0.5f, grid.getHeight() - 0.5f);
+        }
+
+        Vector3 spawnpoint = Vector3.Lerp(v1, v2, Random.Range(1f, 0f));
+
         GameObject enemy = Instantiate(enemyType, spawnpoint, new Quaternion(0, 0, 0, 0));
         enemy.transform.parent = enemies;
     }
