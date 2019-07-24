@@ -5,10 +5,19 @@ using UnityEngine.UI;
 
 public class WaveController : MonoBehaviour {
 
+    public enum Direction
+    {
+        Up,
+        Right,
+        Down,
+        Left
+    }
+
     public bool on = true; //way to turn wave spawning off for testing purposes
 
     [Header("Wave Properties")]
     public WaveInfo[] waves;
+    public Direction[] spawningDirections;
 
     private float timer;
     private int waveNum = 0;
@@ -17,8 +26,7 @@ public class WaveController : MonoBehaviour {
     public Transform enemies; //parent of all enemies
     public GameObject zombiePrefab;
 
-    public Transform spawnpointParent;
-    private Transform[] spawnpoints;
+    public GridController grid;
 
     public Text waveCountdown;
 
@@ -26,12 +34,6 @@ public class WaveController : MonoBehaviour {
     void Start ()
     {
         timer = waves[0].delay;
-
-        spawnpoints = new Transform[spawnpointParent.childCount];
-        for (int i = 0; i < spawnpoints.Length; i++)
-        {
-            spawnpoints[i] = spawnpointParent.GetChild(i);
-        }
     }
 	
 	// Update is called once per frame
@@ -62,45 +64,44 @@ public class WaveController : MonoBehaviour {
         int numToSpawn = waves[waveNum].numZombies;
         float spawnDelay = waves[waveNum].spawnDelay;
 
-        for (int i = 0; i < numToSpawn / spawnpoints.Length; i++)
+        for (int i = 0; i < numToSpawn; i++)
         {
-            foreach (Transform spawnpoint in spawnpoints)
-            {
-                SpawnEnemy(spawnpoint, zombiePrefab);
-                yield return new WaitForSeconds(spawnDelay);
-            }
-        }
+            Direction direction = spawningDirections[Random.Range(0, spawningDirections.Length)];
+            SpawnEnemy(direction, zombiePrefab);
 
-        int[] rand = getShuffledArray(spawnpoints.Length);
-        for (int i = 0; i < numToSpawn % spawnpoints.Length; i++)
-        {
-            SpawnEnemy(spawnpoints[rand[i]], zombiePrefab);
             yield return new WaitForSeconds(spawnDelay);
         }
     }
 
-    void SpawnEnemy(Transform spawnpoint, GameObject enemyType)
+    void SpawnEnemy(Direction direction, GameObject enemyType)
     {
-        GameObject enemy = Instantiate(enemyType, spawnpoint.position, spawnpoint.rotation);
-        enemy.transform.parent = enemies;
-    }
+        Vector3 v1 = new Vector3(); //placeholder value
+        Vector3 v2 = new Vector3(); //placeholder value
 
-    //returns shuffled array of length n
-    private int[] getShuffledArray(int n)
-    {
-        System.Random rand = new System.Random();
-        int[] arr = new int[n];
-        for (int i = 0; i < arr.Length; i++)
+        if (direction == Direction.Up)
         {
-            arr[i] = i;
+            v1 = new Vector3(-1f, grid.getHeight());
+            v2 = new Vector3(grid.getWidth(), grid.getHeight());
         }
-        for (int i = 0; i < arr.Length; i++)
+        else if (direction == Direction.Right)
         {
-            int index = rand.Next(n);
-            int temp = arr[i];
-            arr[i] = arr[index];
-            arr[index] = temp;
+            v1 = new Vector3(grid.getWidth(), -1f);
+            v2 = new Vector3(grid.getWidth(), grid.getHeight());
         }
-        return arr;
+        else if (direction == Direction.Down)
+        {
+            v1 = new Vector3(-1f, -1f);
+            v2 = new Vector3(grid.getWidth(), -1f);
+        }
+        else if (direction == Direction.Left)
+        {
+            v1 = new Vector3(-1f, -1f);
+            v2 = new Vector3(-1f, grid.getHeight());
+        }
+
+        Vector3 spawnpoint = Vector3.Lerp(v1, v2, Random.Range(1f, 0f));
+
+        GameObject enemy = Instantiate(enemyType, spawnpoint, new Quaternion(0, 0, 0, 0));
+        enemy.transform.parent = enemies;
     }
 }

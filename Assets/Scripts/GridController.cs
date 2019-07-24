@@ -112,4 +112,14 @@ public class GridController : MonoBehaviour
     {
         return background[x, y];
     }
+
+    public int getHeight()
+    {
+        return height;
+    }
+
+    public int getWidth()
+    {
+        return width;
+    }
 }

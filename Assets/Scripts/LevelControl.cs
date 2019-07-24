@@ -11,6 +11,7 @@ public class LevelControl : MonoBehaviour {
     public void loadLevel(LevelInfo level)
     {
         waveControl.waves = level.waves;
+        waveControl.spawningDirections = level.spawningDirections;
 
         gridControl.deleteGrid();
         gridControl.backgroundMap = level.backgroundMap;
