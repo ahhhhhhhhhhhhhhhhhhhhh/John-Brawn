@@ -80,23 +80,23 @@ public class WaveController : MonoBehaviour {
 
         if (direction == Direction.Up)
         {
-            v1 = new Vector3(-0.5f, grid.getHeight() - 0.5f);
-            v2 = new Vector3(grid.getWidth() - 0.5f, grid.getHeight() - 0.5f);
+            v1 = new Vector3(-1f, grid.getHeight());
+            v2 = new Vector3(grid.getWidth(), grid.getHeight());
         }
         else if (direction == Direction.Right)
         {
-            v1 = new Vector3(grid.getWidth() - 0.5f, -0.5f);
-            v2 = new Vector3(grid.getWidth() - 0.5f, grid.getHeight() - 0.5f);
+            v1 = new Vector3(grid.getWidth(), -1f);
+            v2 = new Vector3(grid.getWidth(), grid.getHeight());
         }
         else if (direction == Direction.Down)
         {
-            v1 = new Vector3(-0.5f, -0.5f);
-            v2 = new Vector3(grid.getWidth() - 0.5f, -0.5f);
+            v1 = new Vector3(-1f, -1f);
+            v2 = new Vector3(grid.getWidth(), -1f);
         }
         else if (direction == Direction.Left)
         {
-            v1 = new Vector3(-0.5f, -0.5f);
-            v2 = new Vector3(-0.5f, grid.getHeight() - 0.5f);
+            v1 = new Vector3(-1f, -1f);
+            v2 = new Vector3(-1f, grid.getHeight());
         }
 
         Vector3 spawnpoint = Vector3.Lerp(v1, v2, Random.Range(1f, 0f));

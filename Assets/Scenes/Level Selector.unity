@@ -226,6 +226,7 @@ MonoBehaviour:
     - delay: 5
       spawnDelay: 0.05
       numZombies: 100
+    spawningDirections: 00000000
   - name: Test Level 2
     backgroundMap: {fileID: 2800000, guid: 46448c944a5393242b19eacb30e5f6b3, type: 3}
     buildingMap: {fileID: 2800000, guid: c64218a806d3eeb4596fc6c56dfa37e5, type: 3}
@@ -233,6 +234,7 @@ MonoBehaviour:
     - delay: 2
       spawnDelay: 0.005
       numZombies: 200
+    spawningDirections: 0300000001000000
 --- !u!4 &228098594
 Transform:
   m_ObjectHideFlags: 0
