@@ -142,7 +142,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   range: 3.5
   fireRate: 5
-  damage: 15
+  damage: 20
   turret: {fileID: 4947820373507334}
   firePoint: {fileID: 4351151702033426}
   bulletPrefab: {fileID: 1347351286853186, guid: ba69ee56be5bda14b8edc32fc0d0c36e,

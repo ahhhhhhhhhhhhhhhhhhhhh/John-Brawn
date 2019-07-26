@@ -10,9 +10,6 @@ public class GridController : MonoBehaviour
     public Texture2D backgroundMap;
     public Texture2D buildingMap;
 
-    //[Header("Unity Setup")]
-    public Camera camera;
-
     private int size = 1; //size of gridsquares 
     private int height;
     private int width;
@@ -20,21 +17,25 @@ public class GridController : MonoBehaviour
     private Tile[,] background; //map background, only visual. Does not affect tower placement
     private Tile[,] buildingLayer; //represents game grid of towers, buildings, hazards. Affects tower placement
 
+    private new Camera camera;
+
     // Use this for initialization
     void Start()
     {
         initLayers();
         instantiateGrid();
+
+        camera = GameObject.FindObjectOfType<Camera>();
+        //sets max size the camera controller will let the camera be
+        camera.GetComponent<CameraController>().setMaxSize(height / 2f);
+        camera.orthographicSize = height / 2f;
+        camera.transform.position = new Vector3(height - 0.5f, height / 2f - 0.5f, -10);
     }
 
     public void initLayers()
     {
         height = backgroundMap.height;
         width = backgroundMap.width;
-        camera.orthographicSize = height / 2f;
-        //sets max size the camera controller will let the camera be
-        camera.GetComponent <CameraController>().setMaxSize(height / 2f);
-        camera.transform.position = new Vector3(height - 0.5f, height / 2f - 0.5f, -10);
 
         background = new Tile[width, height];
         buildingLayer = new Tile[width, height];

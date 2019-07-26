@@ -4,18 +4,15 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour {
 
-    private Camera camera;
-    private float minsize;
-    private float maxsize;
+    private new Camera camera;
 
-    //public float maxsize;
-    //public float minsize;
+    private float maxSize; //max size is set automatically by gridcontroller
+    public float minSize;
+    public float movementSpeed;
 
 	// Use this for initialization
 	void Start () {
-
         camera = GetComponent<Camera>();
-
 	}
 	
 	// Update is called once per frame
@@ -25,29 +22,29 @@ public class CameraController : MonoBehaviour {
         float cameraSize = camera.orthographicSize;
         cameraSize -= Input.mouseScrollDelta.y;
 
-        if (cameraSize > maxsize) {
-            cameraSize = maxsize;
-        }
-        if (cameraSize < minsize) {
-            cameraSize = minsize;
-        }
+        cameraSize = Mathf.Min(maxSize, cameraSize);
+        cameraSize = Mathf.Max(minSize, cameraSize);
 
         camera.orthographicSize = cameraSize;
 
-        //camera location adjustment
-        Vector3 cameraPosition = camera.transform.position;
+        //camera movement
+        Vector3 movementVector = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
+        movementVector = movementVector * movementSpeed * Time.deltaTime * (cameraSize / 2f);
 
-        cameraPosition.x += 5f * Time.deltaTime * Input.GetAxis("Horizontal");
-        cameraPosition.y += 5f * Time.deltaTime * Input.GetAxis("Vertical");
+        if (camera.transform.position.y + movementVector.y < cameraSize - 0.5f)
+        {
+            movementVector.y = 0;
+        }
+        if (camera.transform.position.y + movementVector.y > (maxSize * 2 - 0.5f) - cameraSize)
+        {
+            movementVector.y = 0;
+        }
 
-        camera.transform.position = cameraPosition;
-
+        camera.transform.position = camera.transform.position + movementVector;
     }
 
     //adjusts boundaries for the camera's size, set by the gridcontroller
     public void setMaxSize(float size) {
-        maxsize = size;
-        minsize = size / 5;
+        maxSize = size;
     }
-
 }
