@@ -6870,7 +6870,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minSize: 1
-  movementSpeed: 5
+  movementSpeed: 10
   scrollSpeed: 0.5
   grid: {fileID: 2067086269}
 --- !u!20 &519420031

@@ -32,17 +32,33 @@ public class CameraController : MonoBehaviour {
 
         camera.orthographicSize = cameraSize;
 
-        //camera movement
+        //calculating camera position bounds 
+        float cameraWidth = cameraSize * camera.aspect;
+        float minX = cameraWidth - 0.5f;
+        float maxX = (grid.getWidth() - 0.5f) - cameraWidth;
+        float minY = cameraSize - 0.5f;
+        float maxY = (grid.getHeight() - 0.5f) - cameraSize;
+        
+        //keeps camera within bounds if size changed
+        Vector3 adjustedPosition = camera.transform.position;
+        adjustedPosition.y = Mathf.Max(minY, adjustedPosition.y);
+        adjustedPosition.y = Mathf.Min(maxY, adjustedPosition.y);
+        adjustedPosition.x = Mathf.Max(minX, adjustedPosition.x);
+        adjustedPosition.x = Mathf.Min(maxX, adjustedPosition.x);
+
+        camera.transform.position = adjustedPosition;
+
+        //calculating camera movement
         Vector3 movementVector = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
         movementVector = movementVector * movementSpeed * Time.deltaTime * (cameraSize / 5f);
         Vector3 futurePosition = camera.transform.position + movementVector;
 
-        if (futurePosition.y < cameraSize - 0.5f || futurePosition.y > (grid.getHeight() - 0.5f) - cameraSize)
+        //prevents camera from leaving bounds
+        if (futurePosition.y < minY || futurePosition.y > maxY)
         {
             futurePosition.y = camera.transform.position.y;
         }
-        float cameraWidth = cameraSize * camera.aspect;
-        if (futurePosition.x < cameraWidth - 0.5f || futurePosition.x > (grid.getWidth() - 0.5f) - cameraWidth)
+        if (futurePosition.x < minX || futurePosition.x > maxX)
         {
             futurePosition.x = camera.transform.position.x;
         }
