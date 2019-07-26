@@ -10,7 +10,7 @@ public class GridController : MonoBehaviour
     public Texture2D backgroundMap;
     public Texture2D buildingMap;
 
-    [Header("Unity Setup")]
+    //[Header("Unity Setup")]
     public Camera camera;
 
     private int size = 1; //size of gridsquares 
@@ -32,6 +32,8 @@ public class GridController : MonoBehaviour
         height = backgroundMap.height;
         width = backgroundMap.width;
         camera.orthographicSize = height / 2f;
+        //sets max size the camera controller will let the camera be
+        camera.GetComponent <CameraController>().setMaxSize(height / 2f);
         camera.transform.position = new Vector3(height - 0.5f, height / 2f - 0.5f, -10);
 
         background = new Tile[width, height];
