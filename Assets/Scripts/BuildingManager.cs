@@ -1,14 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BuildingManager : MonoBehaviour {
 
     [HideInInspector]
     public bool buildingMode;
     private GameObject towerToBuild;
-
-    public SelectCursor cursor;
+    private GameObject selectedTower;
 
     [Header("Tower Types")]
     public GameObject basicTowerPrefab;
@@ -16,9 +16,11 @@ public class BuildingManager : MonoBehaviour {
 
     [Header("Unity Setup Stuff")]
     public GridController grid;
+    public SelectCursor cursor;
+    public GameObject towerInfoPanel;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 		
 	}
 	
@@ -38,9 +40,15 @@ public class BuildingManager : MonoBehaviour {
                 
             }
         }
+
         if (buildingMode && (Input.GetMouseButtonDown(1) || Input.GetKeyDown(KeyCode.Escape)))
         {
             BuildingModeOff();
+        }
+
+        if (selectedTower != null)
+        {
+            towerInfoPanel.SetActive(true);
         }
 	}
 
@@ -83,5 +91,13 @@ public class BuildingManager : MonoBehaviour {
     public GameObject getTowerToBuild()
     {
         return towerToBuild;
+    }
+
+    public void selectTower(GameObject tower)
+    {
+        if (!buildingMode)
+        {
+            selectedTower = tower;
+        }
     }
 }

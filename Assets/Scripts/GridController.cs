@@ -11,7 +11,7 @@ public class GridController : MonoBehaviour
     public Texture2D buildingMap;
 
     [Header("Unity Setup")]
-    public Camera camera;
+    public new Camera camera;
 
     private int size = 1; //size of gridsquares 
     private int height;

@@ -17,10 +17,13 @@ public class Tower : MonoBehaviour {
     public Transform firePoint; //where bullets spawn
     public GameObject bulletPrefab;
 
+    private BuildingManager buildManager;
+
 	// Use this for initialization
 	void Start ()
     {
         enemies = GameObject.Find("Enemies");
+        buildManager = GameObject.Find("Level Control").GetComponent<BuildingManager>();
 	}
 	
 	// Update is called once per frame
@@ -81,5 +84,10 @@ public class Tower : MonoBehaviour {
             }
         }
         return nearest;
+    }
+
+    private void OnMouseDown()
+    {
+        buildManager.selectTower(gameObject);
     }
 }
