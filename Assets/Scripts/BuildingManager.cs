@@ -21,7 +21,7 @@ public class BuildingManager : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-		
+        closeInfoPanel();
 	}
 	
 	// Update is called once per frame
@@ -37,18 +37,12 @@ public class BuildingManager : MonoBehaviour {
                 {
                     BuildingModeOff();
                 }
-                
             }
         }
 
         if (buildingMode && (Input.GetMouseButtonDown(1) || Input.GetKeyDown(KeyCode.Escape)))
         {
             BuildingModeOff();
-        }
-
-        if (selectedTower != null)
-        {
-            towerInfoPanel.SetActive(true);
         }
 	}
 
@@ -98,6 +92,12 @@ public class BuildingManager : MonoBehaviour {
         if (!buildingMode)
         {
             selectedTower = tower;
+            towerInfoPanel.SetActive(true);
         }
+    }
+
+    public void closeInfoPanel()
+    {
+        towerInfoPanel.SetActive(false);
     }
 }
