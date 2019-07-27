@@ -13,8 +13,15 @@ public class PopupCityInspector : MonoBehaviour {
 	void Start () {
         level_selector = GameObject.Find("Level Selector").GetComponent<LevelSelector>();
         renderProperties();
-        GameObject startButton = transform.Find("Play Button").gameObject;
-        startButton.GetComponent<Button>().onClick.AddListener(new UnityEngine.Events.UnityAction(start_game));
+        Button startButton = transform.Find("Play Button").gameObject.GetComponent<Button>();
+        if (city.state == 1)
+        {
+            startButton.onClick.AddListener(new UnityEngine.Events.UnityAction(start_game));
+        } else
+        {
+            startButton.interactable = false;
+
+        }
 
         GameObject quitButton = transform.Find("Quit Button").gameObject;
         quitButton.GetComponent<Button>().onClick.AddListener(new UnityEngine.Events.UnityAction(quit));
