@@ -1,14 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BuildingManager : MonoBehaviour {
 
     [HideInInspector]
     public bool buildingMode;
     private GameObject towerToBuild;
-
-    public SelectCursor cursor;
+    private GameObject selectedTower;
 
     [Header("Tower Types")]
     public GameObject basicTowerPrefab;
@@ -16,15 +16,22 @@ public class BuildingManager : MonoBehaviour {
 
     [Header("Unity Setup Stuff")]
     public GridController grid;
+    public SelectCursor cursor;
+    public GameObject towerInfoPanel;
 
-	// Use this for initialization
-	void Start () {
-		
+    // Use this for initialization
+    void Start () {
+        closeInfoPanel();
 	}
 	
 	// Update is called once per frame
 	void Update ()
     {
+        if (buildingMode)
+        {
+            closeInfoPanel();
+        }
+
 		if (buildingMode && Input.GetMouseButtonDown(0))
         {
             Vector3 roundedPos = cursor.getRoundedPos();
@@ -35,9 +42,9 @@ public class BuildingManager : MonoBehaviour {
                 {
                     BuildingModeOff();
                 }
-                
             }
         }
+
         if (buildingMode && (Input.GetMouseButtonDown(1) || Input.GetKeyDown(KeyCode.Escape)))
         {
             BuildingModeOff();
@@ -68,20 +75,41 @@ public class BuildingManager : MonoBehaviour {
         buildingMode = false;
     }
 
-    public void setBasicTower()
+    public void setTowerToBuild(GameObject tower)
     {
         buildingMode = true;
-        towerToBuild = basicTowerPrefab;
-    }
-
-    public void setFastTower()
-    {
-        buildingMode = true;
-        towerToBuild = fastTowerPrefab;
+        towerToBuild = tower;
     }
 
     public GameObject getTowerToBuild()
     {
         return towerToBuild;
+    }
+
+    public void selectTower(GameObject tower)
+    {
+        if (!buildingMode)
+        {
+            selectedTower = tower;
+            towerInfoPanel.GetComponent<TowerInfoPanel>().loadTowerInfo(selectedTower.GetComponent<Tower>());
+            towerInfoPanel.SetActive(true);
+        }
+    }
+
+    public GameObject getSelectedTower()
+    {
+        return selectedTower;
+    }
+
+    public void closeInfoPanel()
+    {
+        towerInfoPanel.SetActive(false);
+        selectedTower = null;
+    }
+
+    public void upgradeSelectedTower()
+    {
+        selectedTower.GetComponent<Tower>().upgrade();
+        towerInfoPanel.GetComponent<TowerInfoPanel>().loadTowerInfo(selectedTower.GetComponent<Tower>());
     }
 }

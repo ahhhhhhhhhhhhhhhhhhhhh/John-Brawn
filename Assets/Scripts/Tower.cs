@@ -5,10 +5,10 @@ using UnityEngine;
 public class Tower : MonoBehaviour {
 
     [Header("Tower Properties")]
-    public float range = 5f;
-    public float fireRate = 1f; //number of times tower can fire per second
+    public string type;
+    public TowerInfo[] properties; //each set of properties in array coresponds to upgrade level
+    private int level = 0;
     private float fireTimer = 0f;
-    public float damage = 20f;
 
     private GameObject enemies; //parent of all enemies in game
 
@@ -17,10 +17,13 @@ public class Tower : MonoBehaviour {
     public Transform firePoint; //where bullets spawn
     public GameObject bulletPrefab;
 
+    private BuildingManager buildManager;
+
 	// Use this for initialization
 	void Start ()
     {
         enemies = GameObject.Find("Enemies");
+        buildManager = GameObject.Find("Level Control").GetComponent<BuildingManager>();
 	}
 	
 	// Update is called once per frame
@@ -34,7 +37,7 @@ public class Tower : MonoBehaviour {
             if (fireTimer <= 0)
             {
                 shootAt(target);
-                fireTimer = 1 / fireRate;
+                fireTimer = 1 / properties[level].fireRate;
             }
         }
 
@@ -43,7 +46,7 @@ public class Tower : MonoBehaviour {
 
     void OnDrawGizmosSelected()
     {
-        Gizmos.DrawWireSphere(transform.position, range);
+        Gizmos.DrawWireSphere(transform.position, properties[level].range);
     }
 
     void shootAt(Transform target)
@@ -51,7 +54,7 @@ public class Tower : MonoBehaviour {
         GameObject bulletObject = (GameObject)Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         Bullet bullet = bulletObject.GetComponent<Bullet>();
         bullet.setTarget(target);
-        bullet.setDamage(damage);
+        bullet.setDamage(properties[level].damage);
     }
 
     //points turret towards target if within range
@@ -74,12 +77,37 @@ public class Tower : MonoBehaviour {
             Vector3 diff = enemy.position - transform.position;
             float dist = Mathf.Sqrt(diff.x * diff.x + diff.y * diff.y);
 
-            if (dist <= range && dist < min)
+            if (dist <= properties[level].range && dist < min)
             {
                 min = dist;
                 nearest = enemy;
             }
         }
         return nearest;
+    }
+
+    public void upgrade()
+    {
+        if (level < properties.Length - 1)
+        {
+            level++;
+        }
+    }
+
+    //returns properties tower at current upgrade level
+    public TowerInfo getProperties()
+    {
+        return properties[level];
+    }
+
+    public int getLevel()
+    {
+        return level;
+    }
+
+    //if a tower is clicked, it sends a reference of itself to the build manager
+    private void OnMouseDown()
+    {
+        buildManager.selectTower(gameObject);
     }
 }
