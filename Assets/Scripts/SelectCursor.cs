@@ -22,13 +22,13 @@ public class SelectCursor : MonoBehaviour {
     // Update is called once per frame
     void Update ()
     {
-        cursorRenderer.enabled = buildManager.buildingMode;
-        rangeCircleRenderer.enabled = buildManager.buildingMode;
-
-        if (cursorRenderer.enabled)
+        if (buildManager.buildingMode)
         {
-            Tower towerToBuild = buildManager.getTowerToBuild().GetComponent<Tower>();
-            rangeCircle.transform.localScale = new Vector2(towerToBuild.range, towerToBuild.range);
+            cursorRenderer.enabled = true;
+            rangeCircleRenderer.enabled = true;
+
+            float range = buildManager.getTowerToBuild().GetComponent<Tower>().getProperties().range;
+            rangeCircle.transform.localScale = new Vector2(range, range);
 
             Vector3 roundedPos = getRoundedPos();
             transform.position = roundedPos; //sets popup at correct location
@@ -38,12 +38,28 @@ public class SelectCursor : MonoBehaviour {
                 rangeCircleRenderer.material.color = Color.yellow;
                 cursorRenderer.material.color = Color.yellow;
             }
-            else {
+            else
+            {
                 rangeCircleRenderer.material.color = Color.red;
                 cursorRenderer.material.color = Color.red;
             }
+        }
+        else
+        {
+            cursorRenderer.enabled = false;
+            if (buildManager.getSelectedTower() != null)
+            {
+                rangeCircleRenderer.enabled = true;
 
-            
+                float range = buildManager.getSelectedTower().GetComponent<Tower>().getProperties().range;
+                rangeCircle.transform.localScale = new Vector2(range, range);
+
+                transform.position = buildManager.getSelectedTower().transform.position;
+            }
+            else
+            {
+                rangeCircleRenderer.enabled = false;
+            }
         }
     }
 

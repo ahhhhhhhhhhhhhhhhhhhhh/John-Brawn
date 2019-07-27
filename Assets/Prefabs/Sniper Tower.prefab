@@ -9,16 +9,16 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1327167988884042}
+  m_RootGameObject: {fileID: 1873437882996174}
   m_IsPrefabAsset: 1
---- !u!1 &1220441462847906
+--- !u!1 &1384063591048038
 GameObject:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4351151702033426}
+  - component: {fileID: 4695126666772384}
   m_Layer: 0
   m_Name: FirePoint
   m_TagString: Untagged
@@ -26,32 +26,15 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1327167988884042
+--- !u!1 &1632678400160582
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4152060264342410}
-  - component: {fileID: 114111904358960192}
-  - component: {fileID: 61180208414527348}
-  m_Layer: 0
-  m_Name: Fast Tower
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!1 &1530902652188112
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4411372712028708}
-  - component: {fileID: 212823132552646500}
+  - component: {fileID: 4307841004041586}
+  - component: {fileID: 212025213114444430}
   m_Layer: 0
   m_Name: Base
   m_TagString: Untagged
@@ -59,15 +42,32 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1936344598842164
+--- !u!1 &1873437882996174
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4947820373507334}
-  - component: {fileID: 212961170782997694}
+  - component: {fileID: 4490333685182468}
+  - component: {fileID: 114821440638439758}
+  - component: {fileID: 61932932219238540}
+  m_Layer: 0
+  m_Name: Sniper Tower
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1936057262214982
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4676992758455842}
+  - component: {fileID: 212965273147856440}
   m_Layer: 0
   m_Name: Turret
   m_TagString: Untagged
@@ -75,67 +75,67 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4152060264342410
+--- !u!4 &4307841004041586
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1327167988884042}
+  m_GameObject: {fileID: 1632678400160582}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3.2, y: 3.2, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4490333685182468}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4490333685182468
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1873437882996174}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.22, y: 0.22, z: 0}
   m_Children:
-  - {fileID: 4947820373507334}
-  - {fileID: 4411372712028708}
+  - {fileID: 4676992758455842}
+  - {fileID: 4307841004041586}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4351151702033426
+--- !u!4 &4676992758455842
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1220441462847906}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.1, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4947820373507334}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4411372712028708
-Transform:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1530902652188112}
+  m_GameObject: {fileID: 1936057262214982}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4152060264342410}
-  m_RootOrder: 1
+  m_Children:
+  - {fileID: 4695126666772384}
+  m_Father: {fileID: 4490333685182468}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4947820373507334
+--- !u!4 &4695126666772384
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1936344598842164}
+  m_GameObject: {fileID: 1384063591048038}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.07, z: 0}
+  m_LocalPosition: {x: 0, y: 1.84, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 4351151702033426}
-  m_Father: {fileID: 4152060264342410}
+  m_Children: []
+  m_Father: {fileID: 4676992758455842}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &61180208414527348
+--- !u!61 &61932932219238540
 BoxCollider2D:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1327167988884042}
+  m_GameObject: {fileID: 1873437882996174}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -155,35 +155,35 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 4, y: 4}
   m_EdgeRadius: 0
---- !u!114 &114111904358960192
+--- !u!114 &114821440638439758
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1327167988884042}
+  m_GameObject: {fileID: 1873437882996174}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fab7494a7d1ca744fb1a42fa13604559, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
-  type: Fast Tower
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: Sniper Tower
   properties:
-  - range: 3.5
-    damage: 20
-    fireRate: 5
-  - range: 3.5
-    damage: 25
-    fireRate: 10
-  turret: {fileID: 4947820373507334}
-  firePoint: {fileID: 4351151702033426}
+  - range: 10
+    damage: 200
+    fireRate: 0.5
+  - range: 12
+    damage: 300
+    fireRate: 0.75
+  turret: {fileID: 4676992758455842}
+  firePoint: {fileID: 4695126666772384}
   bulletPrefab: {fileID: 1347351286853186, guid: ba69ee56be5bda14b8edc32fc0d0c36e,
     type: 2}
---- !u!212 &212823132552646500
+--- !u!212 &212025213114444430
 SpriteRenderer:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1530902652188112}
+  m_GameObject: {fileID: 1632678400160582}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -213,7 +213,7 @@ SpriteRenderer:
   m_SortingLayerID: -1334705503
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5e7aa3a345056a74a88ba2efee293009, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 48a2ff538608d2a4e9d18d6364e1da3f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -224,12 +224,12 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!212 &212961170782997694
+--- !u!212 &212965273147856440
 SpriteRenderer:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1936344598842164}
+  m_GameObject: {fileID: 1936057262214982}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -258,8 +258,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1334705503
   m_SortingLayer: 1
-  m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 70c5b7247f5f61f458233698309b8540, type: 3}
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: 76c7d489b1a07ab4a93fc96c37e3f3b2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
