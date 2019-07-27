@@ -8,7 +8,7 @@ public class BuildingManager : MonoBehaviour {
     [HideInInspector]
     public bool buildingMode;
     private GameObject towerToBuild;
-    private Tower selectedTower;
+    private GameObject selectedTower;
 
     [Header("Tower Types")]
     public GameObject basicTowerPrefab;
@@ -27,6 +27,11 @@ public class BuildingManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
+        if (buildingMode)
+        {
+            closeInfoPanel();
+        }
+
 		if (buildingMode && Input.GetMouseButtonDown(0))
         {
             Vector3 roundedPos = cursor.getRoundedPos();
@@ -81,18 +86,24 @@ public class BuildingManager : MonoBehaviour {
         return towerToBuild;
     }
 
-    public void selectTower(Tower tower)
+    public void selectTower(GameObject tower)
     {
         if (!buildingMode)
         {
             selectedTower = tower;
-            towerInfoPanel.GetComponent<TowerInfoPanel>().loadTowerInfo(selectedTower.properties);
+            towerInfoPanel.GetComponent<TowerInfoPanel>().loadTowerInfo(selectedTower.GetComponent<Tower>().properties);
             towerInfoPanel.SetActive(true);
         }
+    }
+
+    public GameObject getSelectedTower()
+    {
+        return selectedTower;
     }
 
     public void closeInfoPanel()
     {
         towerInfoPanel.SetActive(false);
+        selectedTower = null;
     }
 }

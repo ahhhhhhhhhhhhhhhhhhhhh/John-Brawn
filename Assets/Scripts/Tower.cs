@@ -86,6 +86,6 @@ public class Tower : MonoBehaviour {
 
     private void OnMouseDown()
     {
-        buildManager.selectTower(this);
+        buildManager.selectTower(gameObject);
     }
 }
