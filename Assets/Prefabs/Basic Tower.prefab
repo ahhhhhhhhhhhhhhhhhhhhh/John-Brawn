@@ -166,11 +166,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fab7494a7d1ca744fb1a42fa13604559, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: Basic Tower
   properties:
-    type: Basic Tower
-    range: 3.5
+  - range: 3.5
     damage: 50
     fireRate: 1
+  - range: 4
+    damage: 65
+    fireRate: 1.5
+  - range: 4.5
+    damage: 80
+    fireRate: 2
   turret: {fileID: 4266778646331296}
   firePoint: {fileID: 4522159533258922}
   bulletPrefab: {fileID: 1347351286853186, guid: ba69ee56be5bda14b8edc32fc0d0c36e,

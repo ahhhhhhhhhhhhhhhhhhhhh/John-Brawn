@@ -27,7 +27,7 @@ public class SelectCursor : MonoBehaviour {
             cursorRenderer.enabled = true;
             rangeCircleRenderer.enabled = true;
 
-            float range = buildManager.getTowerToBuild().GetComponent<Tower>().properties.range;
+            float range = buildManager.getTowerToBuild().GetComponent<Tower>().getProperties().range;
             rangeCircle.transform.localScale = new Vector2(range, range);
 
             Vector3 roundedPos = getRoundedPos();
@@ -51,7 +51,7 @@ public class SelectCursor : MonoBehaviour {
             {
                 rangeCircleRenderer.enabled = true;
 
-                float range = buildManager.getSelectedTower().GetComponent<Tower>().properties.range;
+                float range = buildManager.getSelectedTower().GetComponent<Tower>().getProperties().range;
                 rangeCircle.transform.localScale = new Vector2(range, range);
 
                 transform.position = buildManager.getSelectedTower().transform.position;

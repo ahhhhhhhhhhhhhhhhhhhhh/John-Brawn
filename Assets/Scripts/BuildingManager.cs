@@ -91,7 +91,7 @@ public class BuildingManager : MonoBehaviour {
         if (!buildingMode)
         {
             selectedTower = tower;
-            towerInfoPanel.GetComponent<TowerInfoPanel>().loadTowerInfo(selectedTower.GetComponent<Tower>().properties);
+            towerInfoPanel.GetComponent<TowerInfoPanel>().loadTowerInfo(selectedTower.GetComponent<Tower>());
             towerInfoPanel.SetActive(true);
         }
     }
@@ -105,5 +105,11 @@ public class BuildingManager : MonoBehaviour {
     {
         towerInfoPanel.SetActive(false);
         selectedTower = null;
+    }
+
+    public void upgradeSelectedTower()
+    {
+        selectedTower.GetComponent<Tower>().upgrade();
+        towerInfoPanel.GetComponent<TowerInfoPanel>().loadTowerInfo(selectedTower.GetComponent<Tower>());
     }
 }

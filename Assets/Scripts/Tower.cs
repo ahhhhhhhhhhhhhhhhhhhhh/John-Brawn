@@ -5,7 +5,9 @@ using UnityEngine;
 public class Tower : MonoBehaviour {
 
     [Header("Tower Properties")]
-    public TowerInfo properties;
+    public string type;
+    public TowerInfo[] properties; //each set of properties in array coresponds to upgrade level
+    private int level = 0;
     private float fireTimer = 0f;
 
     private GameObject enemies; //parent of all enemies in game
@@ -35,7 +37,7 @@ public class Tower : MonoBehaviour {
             if (fireTimer <= 0)
             {
                 shootAt(target);
-                fireTimer = 1 / properties.fireRate;
+                fireTimer = 1 / properties[level].fireRate;
             }
         }
 
@@ -44,7 +46,7 @@ public class Tower : MonoBehaviour {
 
     void OnDrawGizmosSelected()
     {
-        Gizmos.DrawWireSphere(transform.position, properties.range);
+        Gizmos.DrawWireSphere(transform.position, properties[level].range);
     }
 
     void shootAt(Transform target)
@@ -52,7 +54,7 @@ public class Tower : MonoBehaviour {
         GameObject bulletObject = (GameObject)Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         Bullet bullet = bulletObject.GetComponent<Bullet>();
         bullet.setTarget(target);
-        bullet.setDamage(properties.damage);
+        bullet.setDamage(properties[level].damage);
     }
 
     //points turret towards target if within range
@@ -75,7 +77,7 @@ public class Tower : MonoBehaviour {
             Vector3 diff = enemy.position - transform.position;
             float dist = Mathf.Sqrt(diff.x * diff.x + diff.y * diff.y);
 
-            if (dist <= properties.range && dist < min)
+            if (dist <= properties[level].range && dist < min)
             {
                 min = dist;
                 nearest = enemy;
@@ -84,6 +86,26 @@ public class Tower : MonoBehaviour {
         return nearest;
     }
 
+    public void upgrade()
+    {
+        if (level < properties.Length - 1)
+        {
+            level++;
+        }
+    }
+
+    //returns properties tower at current upgrade level
+    public TowerInfo getProperties()
+    {
+        return properties[level];
+    }
+
+    public int getLevel()
+    {
+        return level;
+    }
+
+    //if a tower is clicked, it sends a reference of itself to the build manager
     private void OnMouseDown()
     {
         buildManager.selectTower(gameObject);

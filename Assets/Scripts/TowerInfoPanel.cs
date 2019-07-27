@@ -7,6 +7,7 @@ public class TowerInfoPanel : MonoBehaviour {
 
     [Header("Unity Setup")]
     public Text typeText;
+    public Text levelText;
     public Text damageText;
     public Text fireRateText;
     public Text rangeText;
@@ -21,9 +22,11 @@ public class TowerInfoPanel : MonoBehaviour {
 		
 	}
 
-    public void loadTowerInfo(TowerInfo info)
+    public void loadTowerInfo(Tower tower)
     {
-        typeText.text = info.type;
+        TowerInfo info = tower.getProperties();
+        typeText.text = tower.type;
+        levelText.text = "Level " + (tower.getLevel() + 1);
         damageText.text = "Damage: " + info.damage;
         fireRateText.text = "Fire Rate: " + info.fireRate + "/sec";
         rangeText.text = "Range: " + info.range.ToString();

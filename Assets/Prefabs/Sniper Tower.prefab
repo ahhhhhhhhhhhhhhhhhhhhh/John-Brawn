@@ -166,11 +166,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fab7494a7d1ca744fb1a42fa13604559, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: Sniper Tower
   properties:
-    type: Sniper Tower
-    range: 10
+  - range: 10
     damage: 200
     fireRate: 0.5
+  - range: 12
+    damage: 300
+    fireRate: 0.75
   turret: {fileID: 4676992758455842}
   firePoint: {fileID: 4695126666772384}
   bulletPrefab: {fileID: 1347351286853186, guid: ba69ee56be5bda14b8edc32fc0d0c36e,
