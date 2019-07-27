@@ -30,13 +30,12 @@ public class LevelSelectorCity : MonoBehaviour {
 
     public void display_properties()
     {
-        if (state == 1)
-        {
-            GameObject popup = Instantiate(PopupPrefab);
-            popup.transform.position = transform.position;
-            popup.GetComponent<PopupCityInspector>().city = this;
-            GameObject canvas = GetComponentInParent<Canvas>().gameObject;
-            popup.transform.SetParent(canvas.transform);
-        }
+        
+        GameObject popup = Instantiate(PopupPrefab);
+        popup.transform.position = transform.position;
+        popup.GetComponent<PopupCityInspector>().city = this;
+        GameObject canvas = GetComponentInParent<Canvas>().gameObject;
+        popup.transform.SetParent(canvas.transform);
+        
     }
 }
