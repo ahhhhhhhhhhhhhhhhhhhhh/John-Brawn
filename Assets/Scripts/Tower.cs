@@ -5,10 +5,8 @@ using UnityEngine;
 public class Tower : MonoBehaviour {
 
     [Header("Tower Properties")]
-    public float range = 5f;
-    public float fireRate = 1f; //number of times tower can fire per second
+    public TowerInfo properties;
     private float fireTimer = 0f;
-    public float damage = 20f;
 
     private GameObject enemies; //parent of all enemies in game
 
@@ -37,7 +35,7 @@ public class Tower : MonoBehaviour {
             if (fireTimer <= 0)
             {
                 shootAt(target);
-                fireTimer = 1 / fireRate;
+                fireTimer = 1 / properties.fireRate;
             }
         }
 
@@ -46,7 +44,7 @@ public class Tower : MonoBehaviour {
 
     void OnDrawGizmosSelected()
     {
-        Gizmos.DrawWireSphere(transform.position, range);
+        Gizmos.DrawWireSphere(transform.position, properties.range);
     }
 
     void shootAt(Transform target)
@@ -54,7 +52,7 @@ public class Tower : MonoBehaviour {
         GameObject bulletObject = (GameObject)Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         Bullet bullet = bulletObject.GetComponent<Bullet>();
         bullet.setTarget(target);
-        bullet.setDamage(damage);
+        bullet.setDamage(properties.damage);
     }
 
     //points turret towards target if within range
@@ -77,7 +75,7 @@ public class Tower : MonoBehaviour {
             Vector3 diff = enemy.position - transform.position;
             float dist = Mathf.Sqrt(diff.x * diff.x + diff.y * diff.y);
 
-            if (dist <= range && dist < min)
+            if (dist <= properties.range && dist < min)
             {
                 min = dist;
                 nearest = enemy;
@@ -88,6 +86,6 @@ public class Tower : MonoBehaviour {
 
     private void OnMouseDown()
     {
-        buildManager.selectTower(gameObject);
+        buildManager.selectTower(this);
     }
 }

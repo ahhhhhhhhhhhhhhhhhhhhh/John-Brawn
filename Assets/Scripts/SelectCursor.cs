@@ -28,7 +28,7 @@ public class SelectCursor : MonoBehaviour {
         if (cursorRenderer.enabled)
         {
             Tower towerToBuild = buildManager.getTowerToBuild().GetComponent<Tower>();
-            rangeCircle.transform.localScale = new Vector2(towerToBuild.range, towerToBuild.range);
+            rangeCircle.transform.localScale = new Vector2(towerToBuild.properties.range, towerToBuild.properties.range);
 
             Vector3 roundedPos = getRoundedPos();
             transform.position = roundedPos; //sets popup at correct location

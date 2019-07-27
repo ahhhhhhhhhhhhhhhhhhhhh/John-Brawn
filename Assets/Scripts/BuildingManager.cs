@@ -8,7 +8,7 @@ public class BuildingManager : MonoBehaviour {
     [HideInInspector]
     public bool buildingMode;
     private GameObject towerToBuild;
-    private GameObject selectedTower;
+    private Tower selectedTower;
 
     [Header("Tower Types")]
     public GameObject basicTowerPrefab;
@@ -70,16 +70,10 @@ public class BuildingManager : MonoBehaviour {
         buildingMode = false;
     }
 
-    public void setBasicTower()
+    public void setTowerToBuild(GameObject tower)
     {
         buildingMode = true;
-        towerToBuild = basicTowerPrefab;
-    }
-
-    public void setFastTower()
-    {
-        buildingMode = true;
-        towerToBuild = fastTowerPrefab;
+        towerToBuild = tower;
     }
 
     public GameObject getTowerToBuild()
@@ -87,11 +81,12 @@ public class BuildingManager : MonoBehaviour {
         return towerToBuild;
     }
 
-    public void selectTower(GameObject tower)
+    public void selectTower(Tower tower)
     {
         if (!buildingMode)
         {
             selectedTower = tower;
+            towerInfoPanel.GetComponent<TowerInfoPanel>().loadTowerInfo(selectedTower.properties);
             towerInfoPanel.SetActive(true);
         }
     }
