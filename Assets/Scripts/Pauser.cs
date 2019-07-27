@@ -31,7 +31,7 @@ public class Pauser : MonoBehaviour {
         }
 
         //setting paused has to be pulled out so that the previous section can work its stuff
-        if (panel.gameObject.active)
+        if (panel.gameObject.activeSelf)
         {
             paused = true;
         }

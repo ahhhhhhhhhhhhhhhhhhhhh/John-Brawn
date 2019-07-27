@@ -10550,6 +10550,7 @@ MonoBehaviour:
   damageText: {fileID: 61175485}
   fireRateText: {fileID: 1494255357}
   rangeText: {fileID: 1971032885}
+  upgradeButton: {fileID: 444257237}
 --- !u!1 &618540103
 GameObject:
   m_ObjectHideFlags: 0

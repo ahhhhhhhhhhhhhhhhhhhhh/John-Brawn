@@ -11,6 +11,7 @@ public class TowerInfoPanel : MonoBehaviour {
     public Text damageText;
     public Text fireRateText;
     public Text rangeText;
+    public GameObject upgradeButton;
 
 	// Use this for initialization
 	void Start () {
@@ -30,5 +31,16 @@ public class TowerInfoPanel : MonoBehaviour {
         damageText.text = "Damage: " + info.damage;
         fireRateText.text = "Fire Rate: " + info.fireRate + "/sec";
         rangeText.text = "Range: " + info.range.ToString();
+
+        if (tower.getLevel() >= tower.properties.Length - 1) //means tower is max level
+        {
+            upgradeButton.GetComponent<Image>().enabled = false;
+            upgradeButton.transform.GetChild(0).GetComponent<Text>().text = "Max Level";
+        }
+        else
+        {
+            upgradeButton.GetComponent<Image>().enabled = true;
+            upgradeButton.transform.GetChild(0).GetComponent<Text>().text = "Upgrade";
+        }
     }
 }
