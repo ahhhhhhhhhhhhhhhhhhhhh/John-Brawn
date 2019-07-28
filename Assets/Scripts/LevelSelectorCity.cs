@@ -5,37 +5,43 @@ using UnityEngine.UI;
 
 public class LevelSelectorCity : MonoBehaviour {
 
-    public string city_name;
-    public int price;
+    public enum State {
+        Locked,
+        Open,
+        Completed
+    }
+
+    [Header("City Properties")]
+    public string cityName;
+    public int reward;
     public int reputation;
-    public int state;
-    public int num_waves;
+    public State state;
+    public LevelInfo levelInfo;
 
+    [Header("Unity Setup")]
     public Sprite[] images;
-
     public GameObject PopupPrefab;
 
 	// Use this for initialization
-	void Start () {
-        name = city_name;
+	void Start ()
+    {
+        name = cityName;
         setState(state);
         GetComponent<Button>().onClick.AddListener(new UnityEngine.Events.UnityAction(display_properties));
 	}
 	
-    public void setState(int new_state)
+    public void setState(State new_state)
     {
         state = new_state;
-        GetComponent<Image>().sprite = images[state];
+        GetComponent<Image>().sprite = images[(int)state];
     }
 
     public void display_properties()
     {
-        
         GameObject popup = Instantiate(PopupPrefab);
         popup.transform.position = transform.position;
         popup.GetComponent<PopupCityInspector>().city = this;
         GameObject canvas = GetComponentInParent<Canvas>().gameObject;
         popup.transform.SetParent(canvas.transform);
-        
     }
 }

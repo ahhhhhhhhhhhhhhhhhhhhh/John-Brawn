@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class LevelSelector : MonoBehaviour {
 
-    public LevelInfo[] levels;
     private LevelInfo levelToLoad;
 
     void OnEnable()
@@ -14,15 +13,9 @@ public class LevelSelector : MonoBehaviour {
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
-    public void loadLevel(string name)
+    public void loadLevel(LevelInfo levelInfo)
     {
-        foreach (LevelInfo level in levels)
-        {
-            if (level.name == name)
-            {
-                levelToLoad = level;
-            }
-        }
+        levelToLoad = levelInfo;
         SceneManager.LoadScene("Level");
     }
 
