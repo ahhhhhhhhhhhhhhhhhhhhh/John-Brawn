@@ -1,43 +1,46 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Pauser : MonoBehaviour {
 
     public GameObject panel;
 
-    private bool paused;
-
 	// Use this for initialization
-	void Start () {
-
+	void Start ()
+    {
         panel.gameObject.SetActive(false);
-        paused = false;
-		
 	}
 	
 	// Update is called once per frame
-	void Update () {
-
-        if (!paused && (Input.GetKeyDown("p") || Input.GetKeyDown("escape"))) {
-            Time.timeScale = 0;
-            panel.gameObject.SetActive(true);
-        }
-
-        if (paused && (Input.GetKeyDown("p") || Input.GetKeyDown("escape")))
+	void Update ()
+    {
+        if (!panel.gameObject.activeSelf && (Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.Escape)))
         {
-            Time.timeScale = 1;
-            panel.gameObject.SetActive(false);
+            Pause();
         }
-
-        //setting paused has to be pulled out so that the previous section can work its stuff
-        if (panel.gameObject.activeSelf)
+        else if (panel.gameObject.activeSelf && (Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.Escape)))
         {
-            paused = true;
+            Resume();
         }
-        else {
-            paused = false;
-        }
+    }
 
+    public void Pause()
+    {
+        Time.timeScale = 0;
+        panel.gameObject.SetActive(true);
+    }
+
+    public void Resume()
+    {
+        Time.timeScale = 1;
+        panel.gameObject.SetActive(false);
+    }
+
+    public void loadLevelSelect()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene("Level Selector");
     }
 }
