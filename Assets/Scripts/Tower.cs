@@ -105,6 +105,10 @@ public class Tower : MonoBehaviour {
         return level;
     }
 
+    public Vector2 getLocation() {
+        return transform.position;
+    }
+
     public void sell()
     {
         Destroy(gameObject);

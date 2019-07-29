@@ -30,6 +30,10 @@ public class GridController : MonoBehaviour
         camera.GetComponent<CameraController>().setMaxSize(height / 2f);
         camera.orthographicSize = height / 2f;
         camera.transform.position = new Vector3(height - 0.5f, height / 2f - 0.5f, -10);
+
+        //sets the world space canvas to the size of the map
+        GameObject.Find("GameLayerCanvas").transform.position = new Vector3(height - 0.5f, height / 2f - 0.5f, -10);
+
     }
 
     public void initLayers()

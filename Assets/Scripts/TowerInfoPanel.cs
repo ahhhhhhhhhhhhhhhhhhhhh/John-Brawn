@@ -27,6 +27,9 @@ public class TowerInfoPanel : MonoBehaviour {
     {
         TowerInfo info = tower.getProperties();
         typeText.text = tower.type;
+
+        this.transform.position = tower.getLocation();
+
         levelText.text = "Level " + (tower.getLevel() + 1);
         damageText.text = "Damage: " + info.damage;
         fireRateText.text = "Fire Rate: " + info.fireRate + "/sec";
