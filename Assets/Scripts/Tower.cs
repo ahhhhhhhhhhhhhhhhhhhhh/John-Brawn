@@ -105,6 +105,11 @@ public class Tower : MonoBehaviour {
         return level;
     }
 
+    public void sell()
+    {
+        Destroy(gameObject);
+    }
+
     //if a tower is clicked, it sends a reference of itself to the build manager
     private void OnMouseDown()
     {

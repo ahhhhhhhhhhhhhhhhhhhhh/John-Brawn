@@ -112,4 +112,11 @@ public class BuildingManager : MonoBehaviour {
         selectedTower.GetComponent<Tower>().upgrade();
         towerInfoPanel.GetComponent<TowerInfoPanel>().loadTowerInfo(selectedTower.GetComponent<Tower>());
     }
+
+    public void sellSelectedTower()
+    {
+        grid.removeTower((int)selectedTower.transform.position.x, (int)selectedTower.transform.position.y);
+        selectedTower.GetComponent<Tower>().sell();
+        closeInfoPanel();
+    }
 }

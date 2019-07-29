@@ -106,6 +106,14 @@ public class GridController : MonoBehaviour
         buildingLayer[x, y] = Tile.Tower;
     }
 
+    public void removeTower(int x, int y)
+    {
+        if (buildingLayer[x, y] == Tile.Tower)
+        {
+            buildingLayer[x, y] = (Tile)0;
+        }
+    }
+
     public Tile get(int x, int y)
     {
         return buildingLayer[x, y];
