@@ -17,6 +17,11 @@ public class Tower : MonoBehaviour {
     public Transform firePoint; //where bullets spawn
     public GameObject bulletPrefab;
 
+    public Sprite[] turretSprites;
+    public Sprite[] baseSprites;
+    private SpriteRenderer turretRenderer;
+    private SpriteRenderer baseRederer;
+
     private BuildingManager buildManager;
 
 	// Use this for initialization
@@ -24,7 +29,9 @@ public class Tower : MonoBehaviour {
     {
         enemies = GameObject.Find("Enemies");
         buildManager = GameObject.Find("Level Control").GetComponent<BuildingManager>();
-	}
+        turretRenderer = transform.Find("Turret").GetComponent<SpriteRenderer>();
+        baseRederer = transform.Find("Base").GetComponent<SpriteRenderer>();
+    }
 	
 	// Update is called once per frame
 	void Update ()
@@ -91,6 +98,16 @@ public class Tower : MonoBehaviour {
         if (level < properties.Length - 1)
         {
             level++;
+            replaceSprites(turretRenderer, turretSprites);
+            replaceSprites(baseRederer, baseSprites);
+        }
+    }
+
+    private void replaceSprites(SpriteRenderer renderer, Sprite[] images)
+    {
+        if (level < images.Length && images[level] != null) //if there isn't an upgrade-specific image, just keeps old one
+        {
+            renderer.sprite = images[level];
         }
     }
 

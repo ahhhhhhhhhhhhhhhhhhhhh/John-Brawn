@@ -174,10 +174,18 @@ MonoBehaviour:
   - range: 3.5
     damage: 25
     fireRate: 10
+  - range: 3.5
+    damage: 30
+    fireRate: 15
   turret: {fileID: 4947820373507334}
   firePoint: {fileID: 4351151702033426}
   bulletPrefab: {fileID: 1347351286853186, guid: ba69ee56be5bda14b8edc32fc0d0c36e,
     type: 2}
+  turretSprites:
+  - {fileID: 21300000, guid: 70c5b7247f5f61f458233698309b8540, type: 3}
+  - {fileID: 21300000, guid: d76321439d7157049a83d52d5383347e, type: 3}
+  - {fileID: 21300000, guid: 9b270402a296ccf4abb2e05b6c259847, type: 3}
+  baseSprites: []
 --- !u!212 &212823132552646500
 SpriteRenderer:
   m_ObjectHideFlags: 1
