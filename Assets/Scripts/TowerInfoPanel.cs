@@ -13,15 +13,31 @@ public class TowerInfoPanel : MonoBehaviour {
     public Text rangeText;
     public GameObject upgradeButton;
 
+    public BuildingManager buildManager;
+
 	// Use this for initialization
 	void Start () {
-		
+          
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
+        HideIfClickedOutside(gameObject);
 	}
+
+    //https://answers.unity.com/questions/947856/how-to-detect-click-outside-ui-panel.html
+    //thanks anisabboud
+    private void HideIfClickedOutside(GameObject panel)
+    {
+        if (Input.GetMouseButton(0) && panel.activeSelf &&
+            !RectTransformUtility.RectangleContainsScreenPoint(
+                panel.GetComponent<RectTransform>(),
+                Input.mousePosition,
+                Camera.main))
+        {
+            buildManager.closeInfoPanel();
+        }
+    }
 
     public void loadTowerInfo(Tower tower)
     {
