@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Tower : MonoBehaviour {
 
@@ -134,6 +135,9 @@ public class Tower : MonoBehaviour {
     //if a tower is clicked, it sends a reference of itself to the build manager
     private void OnMouseDown()
     {
-        buildManager.selectTower(gameObject);
+        if (!EventSystem.current.IsPointerOverGameObject()) //makes sure mouse isn't over a UI element
+        {
+            buildManager.selectTower(gameObject);
+        }
     }
 }
