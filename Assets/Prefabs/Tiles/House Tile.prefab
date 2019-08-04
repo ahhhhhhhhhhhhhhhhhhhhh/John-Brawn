@@ -53,6 +53,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotatable: 0
+  sprites:
+  - {fileID: 21300000, guid: 31fb4a30dca07d0468e1e627a3bc8669, type: 3}
+  fence: 0
 --- !u!212 &212194740487428300
 SpriteRenderer:
   m_ObjectHideFlags: 1

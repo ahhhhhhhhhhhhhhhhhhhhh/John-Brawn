@@ -7,5 +7,6 @@ public enum Tile {
     Grass,
     Sand,
     Concrete,
-    House
+    House,
+    Wall
 }

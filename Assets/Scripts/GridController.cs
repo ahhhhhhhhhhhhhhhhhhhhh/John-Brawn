@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class GridController : MonoBehaviour
 {
     [Header("Map Stuff")]
@@ -85,6 +86,7 @@ public class GridController : MonoBehaviour
                 if (buildingLayer[i, j] != 0)
                 {
                     GameObject building = Instantiate(tiles[(int)buildingLayer[i, j]]);
+                    building.GetComponent<TileInfo>().pos = new Vector2Int(i, j);
                     building.transform.position = pos;
                     building.transform.parent = transform;
                 }
