@@ -35,6 +35,11 @@ public class Path {
         nodes.Insert(0, node);
     }
 
+    public bool contains(Node node)
+    {
+        return nodes.Contains(node);
+    }
+
     public override string ToString()
     {
         string str = "";

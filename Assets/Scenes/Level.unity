@@ -36903,7 +36903,7 @@ MonoBehaviour:
     numZombies: 10
   - delay: 10
     spawnDelay: 0.01
-    numZombies: 25
+    numZombies: 100
   spawningDirections: 00000000
   endpoint: {fileID: 80233190}
   enemies: {fileID: 1750427273}

@@ -16,7 +16,7 @@ public class Zombie : MonoBehaviour {
     public float repathFrequency; //how often zombie repaths
     private float repathTimer;
 
-    public Vector2Int endpoint;
+    private Vector2Int endpoint;
 
     [Header("Debugging")]
     public bool drawPath;
@@ -54,20 +54,18 @@ public class Zombie : MonoBehaviour {
 
         healthBar.transform.localScale = new Vector3(health / maxHealth, 1, 1);
 
-        if (path == null)
+        if (path == null) //usually means towers are blocking path
         {
-            path = pathfinder.getPath(transform, endpoint);
-            pathIndex = 0;
+            repath();
         }
-
-        Transform target = ((Node)path.nodes[pathIndex]).gameObject.transform;
 
         if (repathTimer <= 0)
         {
-            path = pathfinder.getPath(target, endpoint);
-            pathIndex = 0;
+            repath();
             repathTimer = repathFrequency;
         }
+
+        Transform target = ((Node)path.nodes[pathIndex]).gameObject.transform;
 
         //makes zombie face direction it is moving
         Vector3 diff = target.position - transform.position;
@@ -122,6 +120,12 @@ public class Zombie : MonoBehaviour {
         this.endpoint = new Vector2Int(Mathf.RoundToInt(endpoint.position.x), Mathf.RoundToInt(endpoint.position.y));
     }
 
+    public void repath()
+    {
+        path = pathfinder.getPath(transform, endpoint);
+        pathIndex = 0;
+    }
+
     public void hit(float damage)
     {
         health -= damage;
@@ -132,7 +136,6 @@ public class Zombie : MonoBehaviour {
         if (drawPath && path != null)
         {
             Gizmos.color = Color.green;
-            Gizmos.DrawLine(transform.position, ((Node)path.nodes[0]).gameObject.transform.position);
             for (int i = 0; i < path.nodes.Count - 1; i++)
             {
                 Node current = (Node)path.nodes[i];

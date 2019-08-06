@@ -44,11 +44,11 @@ public class Pathfinder : MonoBehaviour {
         Node target = nodes[destination.x, destination.y];
         target.prevNode = null;
 
-        Node start = findNearestNode(mover);
-        start.cost = 0;
-        open.Add(start);
+        Node startNode = findNearestNode(mover);
+        startNode.cost = 0;
+        open.Add(startNode);
 
-        if (start == target)
+        if (startNode == target)
         {
             return new Path(target);
         }
@@ -63,7 +63,7 @@ public class Pathfinder : MonoBehaviour {
             }
 
             open.Remove(current);
-            addClosed(current);
+            closed.Add(current);
 
             //loop through all adjacent nodes
             for (int x = -1; x <= 1; x++)
@@ -81,9 +81,9 @@ public class Pathfinder : MonoBehaviour {
                     if (testX >= 0 && testX < grid.getWidth() && testY >= 0 && testY < grid.getHeight() && grid.get(testX, testY) == (Tile)0)
                     {
                         Node adjNode = nodes[testX, testY];
-                        adjNode.heuristic = calcHeuristic(adjNode, destination);
+                        adjNode.heuristic = calcHeuristic(adjNode.gameObject.transform, destination);
 
-                        float nextStepCost = current.cost + 1;
+                        float nextStepCost = current.cost + getCost(testX - x, testY - y, testX, testY);
 
                         //if we previously searched this node but have now found a faster path we update it
                         if (nextStepCost < adjNode.cost) 
@@ -103,7 +103,7 @@ public class Pathfinder : MonoBehaviour {
                             adjNode.cost = nextStepCost;
                             adjNode.prevNode = current;
                             maxDepth = Mathf.Max(maxDepth, adjNode.depth);
-                            open.Add(adjNode);
+                            addOpen(adjNode);
                         }
                     }
                 }
@@ -115,28 +115,50 @@ public class Pathfinder : MonoBehaviour {
         }
 
         Path path = new Path();
-        while (target != start)
+        while (target != startNode)
         {
             path.preppendNode(target);
             target = target.prevNode;
         }
-        path.preppendNode(start);
+
+        float startHeuristic = calcHeuristic(mover, destination);
+        if (startNode.heuristic < startHeuristic)
+        {
+            path.preppendNode(startNode);
+        }
 
         return path;
     }
 
-    private float calcHeuristic(Node node, Vector2Int destination)
+    private float calcHeuristic(Transform node, Vector2Int destination)
     {
-        float dx = destination.x - node.gameObject.transform.position.x;
-        float dy = destination.y - node.gameObject.transform.position.y;
+        float dx = destination.x - node.position.x;
+        float dy = destination.y - node.position.y;
         return Mathf.Sqrt(dx * dx + dy * dy);
     }
 
-    //we want closed to always be sorted, so just add using this method to make sure it is always sorted
-    private void addClosed(Node node)
+    private float getCost(int startX, int startY, int endX, int endY)
     {
-        closed.Add(node);
-        closed.Sort();
+        float taxiDist = Mathf.Abs(startX - endX) + Mathf.Abs(startY - endY);
+        if (taxiDist == 1)
+        {
+            return 1f;
+        }
+        if (taxiDist == 2) //diagonal movement is a bit more expensive so enemies don't move diagonally when they should go straight
+        {
+            return 1.4f;
+        }
+        else //shouldn't ever get to this point, costs should only be for adjacent squares
+        {
+            return 9999999999;
+        }
+    }
+
+    //we want open to always be sorted, so just add using this method to make sure it is always sorted
+    private void addOpen(Node node)
+    {
+        open.Add(node);
+        open.Sort();
     }
 
     private Node findNearestNode(Transform loc)
