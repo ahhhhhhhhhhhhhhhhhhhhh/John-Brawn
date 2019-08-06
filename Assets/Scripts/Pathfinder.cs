@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class Pathfinder : MonoBehaviour {
 
-    public bool drawNodes;
-
     public int maxSearchDepth; //max number of steps the algorithm will search for a path
+
+    [Header("Debug")]
+    public bool drawNodes;
 
     [Header("Unity Setup")]
     public GridController grid;
