@@ -19,6 +19,8 @@ public class WaveController : MonoBehaviour {
     public WaveInfo[] waves;
     public Direction[] spawningDirections;
 
+    public Transform endpoint;
+
     private float timer;
     private int waveNum = 0;
 
@@ -78,30 +80,32 @@ public class WaveController : MonoBehaviour {
         Vector3 v1 = new Vector3(); //placeholder value
         Vector3 v2 = new Vector3(); //placeholder value
 
+        float buffer = 0.5f; //distance from edge of grid that zombies spawn
         if (direction == Direction.Up)
         {
-            v1 = new Vector3(-1f, grid.getHeight());
-            v2 = new Vector3(grid.getWidth(), grid.getHeight());
+            v1 = new Vector3(-1 * buffer, grid.getHeight() - 0.5f + buffer);
+            v2 = new Vector3(grid.getWidth() - 0.5f + buffer, grid.getHeight() - 0.5f + buffer);
         }
         else if (direction == Direction.Right)
         {
-            v1 = new Vector3(grid.getWidth(), -1f);
-            v2 = new Vector3(grid.getWidth(), grid.getHeight());
+            v1 = new Vector3(grid.getWidth() - 0.5f + buffer, -1 * buffer);
+            v2 = new Vector3(grid.getWidth() - 0.5f + buffer, grid.getHeight() - 0.5f + buffer);
         }
         else if (direction == Direction.Down)
         {
-            v1 = new Vector3(-1f, -1f);
-            v2 = new Vector3(grid.getWidth(), -1f);
+            v1 = new Vector3(-1 * buffer, -1 * buffer);
+            v2 = new Vector3(grid.getWidth() - 0.5f + buffer, -1 * buffer);
         }
         else if (direction == Direction.Left)
         {
-            v1 = new Vector3(-1f, -1f);
-            v2 = new Vector3(-1f, grid.getHeight());
+            v1 = new Vector3(-1 * buffer, -1 * buffer);
+            v2 = new Vector3(-1 * buffer, grid.getHeight() - 0.5f + buffer);
         }
 
         Vector3 spawnpoint = Vector3.Lerp(v1, v2, Random.Range(1f, 0f));
 
         GameObject enemy = Instantiate(enemyType, spawnpoint, new Quaternion(0, 0, 0, 0));
         enemy.transform.parent = enemies;
+        enemy.GetComponent<Zombie>().setEndpoint(endpoint);
     }
 }

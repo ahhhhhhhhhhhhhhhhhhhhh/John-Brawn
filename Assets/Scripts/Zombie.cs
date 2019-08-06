@@ -10,10 +10,16 @@ public class Zombie : MonoBehaviour {
     public float maxHealth = 100f;
     private float health;
 
-    public bool loop; //makes zombies loop around the waypoints rather than disapearing at the final one
+    private Pathfinder pathfinder;
+    private Path path;
+    private int pathIndex;
+    public float repathFrequency; //how often zombie repaths
+    private float repathTimer;
 
-    private Transform target;
-    private int waypointIndex = 0;
+    public Vector2Int endpoint;
+
+    [Header("Debugging")]
+    public bool drawPath;
 
     [Header("Unity Setup Stuff")]
     public Image healthBar;
@@ -26,9 +32,14 @@ public class Zombie : MonoBehaviour {
 	void Start ()
     {
         health = maxHealth;
-        target = Waypoints.points[waypointIndex];
 
         spriteRenderer = GetComponent<SpriteRenderer>();
+
+        pathfinder = GameObject.Find("Pathfinder").GetComponent<Pathfinder>();
+        repathTimer = repathFrequency;
+
+        path = pathfinder.getPath(transform, endpoint);
+        pathIndex = 0;
 	}
 	
 	// Update is called once per frame
@@ -42,6 +53,21 @@ public class Zombie : MonoBehaviour {
         }
 
         healthBar.transform.localScale = new Vector3(health / maxHealth, 1, 1);
+
+        if (path == null)
+        {
+            path = pathfinder.getPath(transform, endpoint);
+            pathIndex = 0;
+        }
+
+        Transform target = ((Node)path.nodes[pathIndex]).gameObject.transform;
+
+        if (repathTimer <= 0)
+        {
+            path = pathfinder.getPath(target, endpoint);
+            pathIndex = 0;
+            repathTimer = repathFrequency;
+        }
 
         //makes zombie face direction it is moving
         Vector3 diff = target.position - transform.position;
@@ -65,40 +91,54 @@ public class Zombie : MonoBehaviour {
             else
             {
                 spriteRenderer.sprite = sprites[2]; //down
+                
+            }
+        }
+
+        if (Vector3.Distance(target.position, transform.position) < 0.1)
+        {
+            if (pathIndex < path.nodes.Count - 1)
+            {
+                pathIndex++;
+            }
+            else
+            {
+                Destroy(gameObject);
             }
         }
 
         transform.position = Vector3.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
 
-        checkWaypoint();
+        repathTimer -= Time.deltaTime;
 	}
 
-    public void checkWaypoint()
+    public void setEndpoint(Vector2Int endpoint)
     {
-        if (Vector3.Distance(transform.position, target.position) <= 0.1)
-        {
-            waypointIndex++;
-            if (waypointIndex >= Waypoints.points.Length)
-            {
-                if (loop)
-                {
-                    waypointIndex = 0;
-                    target = Waypoints.points[waypointIndex];
-                }
-                else
-                {
-                    Destroy(gameObject);
-                }
-            }
-            else
-            {
-                target = Waypoints.points[waypointIndex];
-            }
-        }
+        this.endpoint = endpoint;
+    }
+
+    public void setEndpoint(Transform endpoint)
+    {
+        this.endpoint = new Vector2Int(Mathf.RoundToInt(endpoint.position.x), Mathf.RoundToInt(endpoint.position.y));
     }
 
     public void hit(float damage)
     {
         health -= damage;
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (drawPath && path != null)
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawLine(transform.position, ((Node)path.nodes[0]).gameObject.transform.position);
+            for (int i = 0; i < path.nodes.Count - 1; i++)
+            {
+                Node current = (Node)path.nodes[i];
+                Node next = (Node)path.nodes[i + 1];
+                Gizmos.DrawLine(current.gameObject.transform.position, next.gameObject.transform.position);
+            }
+        }
     }
 }
