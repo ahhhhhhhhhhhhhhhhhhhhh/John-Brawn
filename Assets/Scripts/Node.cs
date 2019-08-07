@@ -14,6 +14,15 @@ public class Node : MonoBehaviour, System.IComparable<System.Object>
     public int depth;
     [HideInInspector]
     public float cost;
+    
+    public int x { get; private set; }
+    public int y { get; private set; }
+
+    private void Start()
+    {
+        x = (int)transform.position.x;
+        y = (int)transform.position.y;
+    }
 
     private void OnDrawGizmos()
     {

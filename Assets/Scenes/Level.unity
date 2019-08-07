@@ -15360,48 +15360,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &873869276
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 873869277}
-  - component: {fileID: 873869278}
-  m_Layer: 0
-  m_Name: Pathfinding Tester
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &873869277
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 873869276}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 20, y: 9, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 9
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &873869278
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 873869276}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 587930874fa7a914bab40376a1d1efac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  iconsize: 0.2
-  drawPath: 1
 --- !u!1 &875398551
 GameObject:
   m_ObjectHideFlags: 0
@@ -36935,7 +36893,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc3f1340126f8244780722d6f10a6f93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  on: 0
+  on: 1
   waves:
   - delay: 5
     spawnDelay: 0
@@ -36946,7 +36904,7 @@ MonoBehaviour:
   - delay: 10
     spawnDelay: 0.01
     numZombies: 100
-  spawningDirections: 00000000
+  spawningDirections: 01000000
   endpoint: {fileID: 80233190}
   enemies: {fileID: 1750427273}
   zombiePrefab: {fileID: 1813021853874394, guid: 17d96b3af7b41a04e87c2dac7f0d1260,
@@ -37386,6 +37344,7 @@ MonoBehaviour:
   grid: {fileID: 2067086269}
   cursor: {fileID: 174619123}
   towerInfoPanel: {fileID: 611581781}
+  pathfinder: {fileID: 1532757163}
 --- !u!114 &2067086269
 MonoBehaviour:
   m_ObjectHideFlags: 0

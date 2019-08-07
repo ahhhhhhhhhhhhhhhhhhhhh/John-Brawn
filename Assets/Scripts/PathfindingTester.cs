@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//just a simple object to visualize path calculation
 public class PathfindingTester : MonoBehaviour {
 
     public float iconsize;

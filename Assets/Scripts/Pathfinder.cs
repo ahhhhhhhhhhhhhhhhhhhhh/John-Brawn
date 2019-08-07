@@ -19,6 +19,8 @@ public class Pathfinder : MonoBehaviour {
 
     private Node[,] nodes;
 
+    private Path[,] pathCache;
+
 	// Use this for initialization
 	void Start ()
     {
@@ -35,7 +37,14 @@ public class Pathfinder : MonoBehaviour {
                 nodes[x, y] = node;
             }
         }
+
+        pathCache = new Path[grid.getWidth(), grid.getHeight()];
 	}
+
+    public void clearCache()
+    {
+        System.Array.Clear(pathCache, 0, pathCache.Length);
+    }
 	
 	public Path getPath(Transform mover, Vector2Int destination)
     {
@@ -49,9 +58,16 @@ public class Pathfinder : MonoBehaviour {
         startNode.cost = 0;
         open.Add(startNode);
 
+        //simple optimization
         if (startNode == target)
         {
             return new Path(target);
+        }
+
+        //if there has already been a path made from this node, it just returns it
+        if (pathCache[startNode.x, startNode.y] != null)
+        {
+            return pathCache[startNode.x, startNode.y];
         }
 
         int maxDepth = 0;
@@ -76,8 +92,8 @@ public class Pathfinder : MonoBehaviour {
                         continue; //skips rest of code but continues loop
                     }
 
-                    int testX = (int)current.gameObject.transform.position.x + x;
-                    int testY = (int)current.gameObject.transform.position.y + y;
+                    int testX = current.x + x;
+                    int testY = current.y + y;
 
                     if (testX >= 0 && testX < grid.getWidth() && testY >= 0 && testY < grid.getHeight() && grid.get(testX, testY) == (Tile)0)
                     {
@@ -127,6 +143,8 @@ public class Pathfinder : MonoBehaviour {
         {
             path.preppendNode(startNode);
         }
+
+        pathCache[startNode.x, startNode.y] = path;
 
         return path;
     }
