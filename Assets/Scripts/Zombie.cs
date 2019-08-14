@@ -10,10 +10,8 @@ public class Zombie : MonoBehaviour {
     public float maxHealth = 100f;
     private float health;
 
-    public bool loop; //makes zombies loop around the waypoints rather than disapearing at the final one
-
+    private Pathfinder pathfinder;
     private Transform target;
-    private int waypointIndex = 0;
 
     [Header("Unity Setup Stuff")]
     public Image healthBar;
@@ -26,9 +24,11 @@ public class Zombie : MonoBehaviour {
 	void Start ()
     {
         health = maxHealth;
-        target = Waypoints.points[waypointIndex];
 
         spriteRenderer = GetComponent<SpriteRenderer>();
+
+        pathfinder = GameObject.Find("Pathfinder").GetComponent<Pathfinder>();
+        repath();
 	}
 	
 	// Update is called once per frame
@@ -43,7 +43,41 @@ public class Zombie : MonoBehaviour {
 
         healthBar.transform.localScale = new Vector3(health / maxHealth, 1, 1);
 
-        //makes zombie face direction it is moving
+        faceTarget();
+
+        if (Vector3.Distance(target.position, transform.position) < 0.1)
+        {
+            if (checkEndpoint())
+            {
+                Destroy(gameObject);
+                return;
+            }
+            repath();
+        }
+
+        transform.position = Vector3.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
+	}
+
+    public void hit(float damage)
+    {
+        health -= damage;
+    }
+
+    public void repath()
+    {
+        target = pathfinder.getNextNode(transform);
+    }
+
+    //checks if zombie has reached endpoint
+    private bool checkEndpoint()
+    {
+        Vector2Int pos = new Vector2Int(Mathf.RoundToInt(transform.position.x), Mathf.RoundToInt(transform.position.y));
+        return pos == pathfinder.endpoint;
+    }
+
+    //changes zombie sprite so it faces target
+    private void faceTarget()
+    {
         Vector3 diff = target.position - transform.position;
         if (Mathf.Abs(diff.x) > Mathf.Abs(diff.y))
         {
@@ -65,40 +99,8 @@ public class Zombie : MonoBehaviour {
             else
             {
                 spriteRenderer.sprite = sprites[2]; //down
+
             }
         }
-
-        transform.position = Vector3.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
-
-        checkWaypoint();
-	}
-
-    public void checkWaypoint()
-    {
-        if (Vector3.Distance(transform.position, target.position) <= 0.1)
-        {
-            waypointIndex++;
-            if (waypointIndex >= Waypoints.points.Length)
-            {
-                if (loop)
-                {
-                    waypointIndex = 0;
-                    target = Waypoints.points[waypointIndex];
-                }
-                else
-                {
-                    Destroy(gameObject);
-                }
-            }
-            else
-            {
-                target = Waypoints.points[waypointIndex];
-            }
-        }
-    }
-
-    public void hit(float damage)
-    {
-        health -= damage;
     }
 }

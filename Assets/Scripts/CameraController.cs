@@ -67,7 +67,8 @@ public class CameraController : MonoBehaviour {
     }
 
     //adjusts boundaries for the camera's size, set by the gridcontroller
-    public void setMaxSize(float size) {
+    public void setMaxSize(float size)
+    {
         maxSize = size;
     }
 }

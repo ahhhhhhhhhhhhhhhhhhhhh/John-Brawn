@@ -18,9 +18,11 @@ public class BuildingManager : MonoBehaviour {
     public GridController grid;
     public SelectCursor cursor;
     public GameObject towerInfoPanel;
+    public Pathfinder pathfinder;
 
     // Use this for initialization
-    void Start () {
+    void Start ()
+    {
         closeInfoPanel();
 	}
 	
@@ -55,6 +57,8 @@ public class BuildingManager : MonoBehaviour {
     {
         grid.placeTower((int)roundedPos.x, (int)roundedPos.y);
         Instantiate(towerToBuild, roundedPos, new Quaternion(0, 0, 0, 0));
+
+        updatePaths();
     }
 
     public bool canBuildTower(Vector3 roundedPos)
@@ -119,5 +123,15 @@ public class BuildingManager : MonoBehaviour {
         grid.removeTower((int)selectedTower.transform.position.x, (int)selectedTower.transform.position.y);
         selectedTower.GetComponent<Tower>().sell();
         closeInfoPanel();
+
+        updatePaths();
+    }
+
+    private void updatePaths()
+    {
+        System.Diagnostics.Stopwatch watch = new System.Diagnostics.Stopwatch();
+        watch.Start();
+        pathfinder.OnGridChange();
+        Debug.Log("Total repath calculation: " + (watch.ElapsedMilliseconds) + " ms");
     }
 }
