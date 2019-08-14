@@ -26235,10 +26235,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa6ba656c42d7c04a837a6d1243d48c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSearchDepth: 100
-  drawNodes: 0
+  drawNodes: 1
+  nodeIconSize: 0.25
   grid: {fileID: 2067086269}
   nodePrefab: {fileID: 1987621367821898, guid: 5ae29bf782524a440922330229f61df2, type: 2}
+  endpoint: {x: 0, y: 0}
 --- !u!4 &1532757164
 Transform:
   m_ObjectHideFlags: 0
@@ -37372,6 +37373,7 @@ MonoBehaviour:
     tile: 3
   backgroundMap: {fileID: 2800000, guid: 30f2874f8e9ea4d4596186b80af101f9, type: 3}
   buildingMap: {fileID: 2800000, guid: 5bdcad4af7877134e8fbf0b9d20b7e61, type: 3}
+  endpoint: {fileID: 80233190}
 --- !u!114 &2067086270
 MonoBehaviour:
   m_ObjectHideFlags: 0

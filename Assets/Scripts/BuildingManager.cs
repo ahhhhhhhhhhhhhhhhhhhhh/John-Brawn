@@ -18,15 +18,12 @@ public class BuildingManager : MonoBehaviour {
     public GridController grid;
     public SelectCursor cursor;
     public GameObject towerInfoPanel;
-    private Transform enemies;
     public Pathfinder pathfinder;
 
     // Use this for initialization
     void Start ()
     {
         closeInfoPanel();
-
-        enemies = GameObject.Find("Enemies").transform;
 	}
 	
 	// Update is called once per frame
@@ -61,7 +58,7 @@ public class BuildingManager : MonoBehaviour {
         grid.placeTower((int)roundedPos.x, (int)roundedPos.y);
         Instantiate(towerToBuild, roundedPos, new Quaternion(0, 0, 0, 0));
 
-        repathAllZombies();
+        updatePaths();
     }
 
     public bool canBuildTower(Vector3 roundedPos)
@@ -127,19 +124,14 @@ public class BuildingManager : MonoBehaviour {
         selectedTower.GetComponent<Tower>().sell();
         closeInfoPanel();
 
-        repathAllZombies();
+        updatePaths();
     }
 
-    private void repathAllZombies()
+    private void updatePaths()
     {
         System.Diagnostics.Stopwatch watch = new System.Diagnostics.Stopwatch();
         watch.Start();
-        pathfinder.clearCache(); //cache needs to be cleared because map has changed
-        for (int i = 0; i < enemies.childCount; i++)
-        {
-            Zombie zombie = enemies.GetChild(i).GetComponent<Zombie>();
-            zombie.repath();
-        }
+        pathfinder.OnGridChange();
         Debug.Log("Total repath calculation: " + (watch.ElapsedMilliseconds) + " ms");
     }
 }

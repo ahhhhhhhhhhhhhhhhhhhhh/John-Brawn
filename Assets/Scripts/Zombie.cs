@@ -11,15 +11,7 @@ public class Zombie : MonoBehaviour {
     private float health;
 
     private Pathfinder pathfinder;
-    private Path path;
-    private int pathIndex;
-    public float repathFrequency; //how often zombie repaths
-    private float repathTimer;
-
-    private Vector2Int endpoint;
-
-    [Header("Debugging")]
-    public bool drawPath;
+    private Transform target;
 
     [Header("Unity Setup Stuff")]
     public Image healthBar;
@@ -36,10 +28,7 @@ public class Zombie : MonoBehaviour {
         spriteRenderer = GetComponent<SpriteRenderer>();
 
         pathfinder = GameObject.Find("Pathfinder").GetComponent<Pathfinder>();
-        repathTimer = repathFrequency;
-
-        path = pathfinder.getPath(transform, endpoint);
-        pathIndex = 0;
+        repath();
 	}
 	
 	// Update is called once per frame
@@ -54,20 +43,41 @@ public class Zombie : MonoBehaviour {
 
         healthBar.transform.localScale = new Vector3(health / maxHealth, 1, 1);
 
-        if (path == null) //usually means towers are blocking path
+        faceTarget();
+
+        if (Vector3.Distance(target.position, transform.position) < 0.1)
         {
+            if (checkEndpoint())
+            {
+                Destroy(gameObject);
+                return;
+            }
             repath();
         }
 
-        if (repathTimer <= 0)
-        {
-            repath();
-            repathTimer = repathFrequency;
-        }
+        transform.position = Vector3.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
+	}
 
-        Transform target = ((Node)path.nodes[pathIndex]).gameObject.transform;
+    public void hit(float damage)
+    {
+        health -= damage;
+    }
 
-        //makes zombie face direction it is moving
+    public void repath()
+    {
+        target = pathfinder.getNextNode(transform);
+    }
+
+    //checks if zombie has reached endpoint
+    private bool checkEndpoint()
+    {
+        Vector2Int pos = new Vector2Int(Mathf.RoundToInt(transform.position.x), Mathf.RoundToInt(transform.position.y));
+        return pos == pathfinder.endpoint;
+    }
+
+    //changes zombie sprite so it faces target
+    private void faceTarget()
+    {
         Vector3 diff = target.position - transform.position;
         if (Mathf.Abs(diff.x) > Mathf.Abs(diff.y))
         {
@@ -89,58 +99,7 @@ public class Zombie : MonoBehaviour {
             else
             {
                 spriteRenderer.sprite = sprites[2]; //down
-                
-            }
-        }
 
-        if (Vector3.Distance(target.position, transform.position) < 0.1)
-        {
-            if (pathIndex < path.nodes.Count - 1)
-            {
-                pathIndex++;
-            }
-            else
-            {
-                Destroy(gameObject);
-            }
-        }
-
-        transform.position = Vector3.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
-
-        repathTimer -= Time.deltaTime;
-	}
-
-    public void setEndpoint(Vector2Int endpoint)
-    {
-        this.endpoint = endpoint;
-    }
-
-    public void setEndpoint(Transform endpoint)
-    {
-        this.endpoint = new Vector2Int(Mathf.RoundToInt(endpoint.position.x), Mathf.RoundToInt(endpoint.position.y));
-    }
-
-    public void repath()
-    {
-        path = pathfinder.getPath(transform, endpoint);
-        pathIndex = 0;
-    }
-
-    public void hit(float damage)
-    {
-        health -= damage;
-    }
-
-    private void OnDrawGizmos()
-    {
-        if (drawPath && path != null)
-        {
-            Gizmos.color = Color.green;
-            for (int i = 0; i < path.nodes.Count - 1; i++)
-            {
-                Node current = (Node)path.nodes[i];
-                Node next = (Node)path.nodes[i + 1];
-                Gizmos.DrawLine(current.gameObject.transform.position, next.gameObject.transform.position);
             }
         }
     }

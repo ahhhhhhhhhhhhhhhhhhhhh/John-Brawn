@@ -4,29 +4,26 @@ using UnityEngine;
 
 public class Pathfinder : MonoBehaviour {
 
-    public int maxSearchDepth; //max number of steps the algorithm will search for a path
-
     [Header("Debug")]
     public bool drawNodes;
+    public float nodeIconSize;
 
     [Header("Unity Setup")]
     public GridController grid;
 
     public GameObject nodePrefab;
 
-    private ArrayList open;
-    private ArrayList closed;
+    [HideInInspector]
+    public Vector2Int endpoint;
 
     private Node[,] nodes;
+    private bool firstSearchComplete;
 
-    private Path[,] pathCache;
+    private Transform enemies; //parent of all enemies
 
 	// Use this for initialization
 	void Start ()
-    {
-        open = new ArrayList();
-        closed = new ArrayList();
-
+    { 
         nodes = new Node[grid.getWidth(), grid.getHeight()];
         for (int x = 0; x < nodes.GetLength(0); x++)
         {
@@ -38,115 +35,111 @@ public class Pathfinder : MonoBehaviour {
             }
         }
 
-        pathCache = new Path[grid.getWidth(), grid.getHeight()];
-	}
+        firstSearchComplete = false;
 
-    public void clearCache()
-    {
-        System.Array.Clear(pathCache, 0, pathCache.Length);
+        enemies = GameObject.Find("Enemies").transform;
     }
-	
-	public Path getPath(Transform mover, Vector2Int destination)
+
+    //does a bredth first search through nodes to find all paths to endpoint
+    public void Search()
     {
-        open.Clear();
-        closed.Clear();
+        Node endNode = nodes[endpoint.x, endpoint.y];
+        endNode.cost = 0;
 
-        Node target = nodes[destination.x, destination.y];
-        target.prevNode = null;
+        List<Node> frontier = new List<Node>();
+        frontier.Add(endNode);
 
-        Node startNode = findNearestNode(mover);
-        startNode.cost = 0;
-        open.Add(startNode);
+        List<Node> visited = new List<Node>();
+        visited.Add(endNode);
 
-        //simple optimization
-        if (startNode == target)
+        while (frontier.Count > 0)
         {
-            return new Path(target);
-        }
+            Node current = frontier[0];
+            frontier.RemoveAt(0);
 
-        //if there has already been a path made from this node, it just returns it
-        if (pathCache[startNode.x, startNode.y] != null)
-        {
-            return pathCache[startNode.x, startNode.y];
-        }
-
-        int maxDepth = 0;
-        while (maxDepth < maxSearchDepth && open.Count > 0)
-        {
-            Node current = (Node)open[0];
-            if (current == nodes[destination.x, destination.y]) //means we have reached target
+            foreach (Node next in getNeighbors(current))
             {
-                break;
-            }
+                float nextStepCost = current.cost + getCost(current.x, current.y, next.x, next.y);
 
-            open.Remove(current);
-            closed.Add(current);
-
-            //loop through all adjacent nodes
-            for (int x = -1; x <= 1; x++)
-            {
-                for (int y = -1; y <= 1; y++)
+                if (!visited.Contains(next))
                 {
-                    if (x == 0 && y == 0)
+                    frontier.Add(next);
+                    visited.Add(next);
+
+                    next.heuristic = calcHeuristic(next.gameObject.transform, endpoint);
+                    next.cost = nextStepCost;
+                    next.prevNode = current;
+                }
+                else
+                {
+                    if (nextStepCost < next.cost)
                     {
-                        continue; //skips rest of code but continues loop
-                    }
-
-                    int testX = current.x + x;
-                    int testY = current.y + y;
-
-                    if (testX >= 0 && testX < grid.getWidth() && testY >= 0 && testY < grid.getHeight() && grid.get(testX, testY) == (Tile)0)
-                    {
-                        Node adjNode = nodes[testX, testY];
-                        adjNode.heuristic = calcHeuristic(adjNode.gameObject.transform, destination);
-
-                        float nextStepCost = current.cost + getCost(testX - x, testY - y, testX, testY);
-
-                        //if we previously searched this node but have now found a faster path we update it
-                        if (nextStepCost < adjNode.cost) 
-                        {
-                            if (open.Contains(adjNode))
-                            {
-                                open.Remove(adjNode);
-                            }
-                            if (closed.Contains(adjNode))
-                            {
-                                closed.Remove(adjNode);
-                            }
-                        }
-
-                        if (!open.Contains(adjNode) && !closed.Contains(adjNode))
-                        {
-                            adjNode.cost = nextStepCost;
-                            adjNode.prevNode = current;
-                            maxDepth = Mathf.Max(maxDepth, adjNode.depth);
-                            addOpen(adjNode);
-                        }
+                        next.cost = nextStepCost;
+                        next.prevNode = current;
                     }
                 }
             }
         }
 
-        if (target.prevNode == null) { //no path as found
-            return null;
-        }
+        firstSearchComplete = true;
+    }
 
-        Path path = new Path();
-        while (target != startNode)
+    //should be called everytime the grid is changed (ie a tower being placed or destroyed
+    public void OnGridChange()
+    {
+        for (int x = 0; x < nodes.GetLength(0); x++)
         {
-            path.preppendNode(target);
-            target = target.prevNode;
+            for (int y = 0; y < nodes.GetLength(1); y++)
+            {
+                nodes[x, y].prevNode = null;
+            }
         }
-
-        float startHeuristic = calcHeuristic(mover, destination);
-        if (startNode.heuristic < startHeuristic)
+        Search();
+        for (int i = 0; i < enemies.childCount; i++)
         {
-            path.preppendNode(startNode);
+            enemies.GetChild(i).gameObject.GetComponent<Zombie>().repath();
+        }
+    }
+
+    //returns the next step in the path from the given position
+    public Transform getNextNode(Transform pos)
+    {
+        if (!firstSearchComplete)
+        {
+            Search();
+        }
+        Node current = findNearestNode(pos);
+        return current.prevNode.gameObject.transform;
+    }
+
+    private List<Node> getNeighbors(Node node)
+    {
+        List<Node> neighbors = new List<Node>();
+
+        for (int x = -1; x <= 1; x++)
+        {
+            for (int y = -1; y <= 1; y++)
+            {
+                if (x == 0 && y == 0)
+                {
+                    continue; //skips rest of code but continues loop
+                }
+
+                int testX = node.x + x;
+                int testY = node.y + y;
+
+                try //may be negative or off the grid
+                {
+                    if (grid.get(testX, testY) == (Tile)0)
+                    {
+                        neighbors.Add(nodes[testX, testY]);
+                    }
+                }
+                catch { }
+            }
         }
 
-        pathCache[startNode.x, startNode.y] = path;
-
-        return path;
+        return neighbors;
     }
 
     private float calcHeuristic(Transform node, Vector2Int destination)
@@ -159,25 +152,22 @@ public class Pathfinder : MonoBehaviour {
     private float getCost(int startX, int startY, int endX, int endY)
     {
         float taxiDist = Mathf.Abs(startX - endX) + Mathf.Abs(startY - endY);
-        if (taxiDist == 1)
+        if (taxiDist == 0)
+        {
+            return 0;
+        }
+        else if (taxiDist == 1)
         {
             return 1f;
         }
-        if (taxiDist == 2) //diagonal movement is a bit more expensive so enemies don't move diagonally when they should go straight
+        else if (taxiDist == 2) //diagonal movement is a bit more expensive so enemies don't move diagonally when they should go straight
         {
             return 1.4f;
         }
         else //shouldn't ever get to this point, costs should only be for adjacent squares
         {
-            return 9999999999;
+            throw new System.Exception("tried to get cost between non-adjacent nodes");
         }
-    }
-
-    //we want open to always be sorted, so just add using this method to make sure it is always sorted
-    private void addOpen(Node node)
-    {
-        open.Add(node);
-        open.Sort();
     }
 
     private Node findNearestNode(Transform loc)

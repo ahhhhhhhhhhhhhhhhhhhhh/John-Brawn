@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Node : MonoBehaviour, System.IComparable<System.Object>
 {
-    public float iconSize = 0.2f;
-
     [HideInInspector]
     public float heuristic;
     [HideInInspector]
@@ -18,18 +16,32 @@ public class Node : MonoBehaviour, System.IComparable<System.Object>
     public int x { get; private set; }
     public int y { get; private set; }
 
+    private Pathfinder pathfinder;
+
     private void Start()
     {
         x = (int)transform.position.x;
         y = (int)transform.position.y;
+
+        pathfinder = transform.parent.gameObject.GetComponent<Pathfinder>();
     }
 
     private void OnDrawGizmos()
     {
-        if (transform.parent.gameObject.GetComponent<Pathfinder>().drawNodes)
+        if (pathfinder.drawNodes)
         {
-            Gizmos.color = Color.grey;
-            Gizmos.DrawSphere(transform.position, iconSize);
+            if (prevNode == null)
+            {
+                Gizmos.color = Color.black;
+            }
+            else
+            {
+                Gizmos.color = Color.green;
+                Gizmos.DrawLine(transform.position, prevNode.gameObject.transform.position);
+
+                Gizmos.color = Color.grey;
+            }
+            Gizmos.DrawSphere(transform.position, pathfinder.nodeIconSize);
         }
     }
 

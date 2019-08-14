@@ -5,10 +5,11 @@ using UnityEngine;
 public class GridController : MonoBehaviour
 {
     [Header("Map Stuff")]
-    public GameObject[] tiles; //IMPORTANT: tiles must be in the same order as Tile enum (not including Tile.tower)
+    public GameObject[] tiles; //IMPORTANT: tiles must be in the same order as Tile enum (Tile.tower at the end)
     public ColorToTile[] colorMappings;
     public Texture2D backgroundMap;
     public Texture2D buildingMap;
+    public Transform endpoint;
 
     private int size = 1; //size of gridsquares 
     private int height;
@@ -21,7 +22,7 @@ public class GridController : MonoBehaviour
 
     private void Awake()
     {
-        initLayers(); //its important that height/width of grid is set before other object's start methods
+        initLayers(); //it's important that height/width of grid is set before other object's start methods
     }
 
     // Use this for initialization
@@ -38,6 +39,7 @@ public class GridController : MonoBehaviour
         //sets the world space canvas to the size of the map
         GameObject.Find("GameLayerCanvas").transform.position = new Vector3(height - 0.5f, height / 2f - 0.5f, -10);
 
+        GameObject.Find("Pathfinder").GetComponent<Pathfinder>().endpoint = new Vector2Int((int)endpoint.position.x, (int)endpoint.position.y);
     }
 
     public void initLayers()

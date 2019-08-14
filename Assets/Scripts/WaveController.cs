@@ -106,6 +106,5 @@ public class WaveController : MonoBehaviour {
 
         GameObject enemy = Instantiate(enemyType, spawnpoint, new Quaternion(0, 0, 0, 0));
         enemy.transform.parent = enemies;
-        enemy.GetComponent<Zombie>().setEndpoint(endpoint);
     }
 }
