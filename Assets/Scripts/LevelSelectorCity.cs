@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 public class LevelSelectorCity : MonoBehaviour {
 
-    public enum State {
+    public enum State
+    {
         Locked,
         Open,
         Completed

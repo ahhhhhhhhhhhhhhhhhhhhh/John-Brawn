@@ -13,6 +13,7 @@ public class PopupCityInspector : MonoBehaviour {
         level_selector = GameObject.Find("Level Selector").GetComponent<LevelSelector>();
         renderProperties();
         Button startButton = transform.Find("Play Button").gameObject.GetComponent<Button>();
+
         if (city.state == LevelSelectorCity.State.Open)
         {
             startButton.onClick.AddListener(new UnityEngine.Events.UnityAction(start_game));
@@ -44,5 +45,4 @@ public class PopupCityInspector : MonoBehaviour {
         prop_text.text = properties;
         title.text = city.cityName;
     }
-	
 }

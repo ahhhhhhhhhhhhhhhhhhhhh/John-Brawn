@@ -7,6 +7,7 @@ public class LevelControl : MonoBehaviour {
     [Header("Unity Setup")]
     public WaveController waveControl;
     public GridController gridControl;
+    public Pathfinder pathfinder;
 
     public void loadLevel(LevelInfo level)
     {
@@ -16,5 +17,8 @@ public class LevelControl : MonoBehaviour {
         gridControl.deleteGrid();
         gridControl.backgroundMap = level.backgroundMap;
         gridControl.buildingMap = level.buildingMap;
+        gridControl.initLayers();
+
+        pathfinder.endpoint = level.endpoint;
     }
 }
