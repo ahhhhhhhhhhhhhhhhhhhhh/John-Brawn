@@ -30927,6 +30927,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1750427273}
+  - component: {fileID: 1750427274}
   m_Layer: 0
   m_Name: Enemies
   m_TagString: Untagged
@@ -30947,6 +30948,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1750427274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1750427272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d01446bfc47d2ef40b642ab0bc907aba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1754666477
 GameObject:
   m_ObjectHideFlags: 0
@@ -37346,6 +37358,7 @@ MonoBehaviour:
   cursor: {fileID: 174619123}
   towerInfoPanel: {fileID: 611581781}
   pathfinder: {fileID: 1532757163}
+  enemies: {fileID: 1750427274}
 --- !u!114 &2067086269
 MonoBehaviour:
   m_ObjectHideFlags: 0

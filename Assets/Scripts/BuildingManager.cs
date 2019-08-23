@@ -19,6 +19,7 @@ public class BuildingManager : MonoBehaviour {
     public SelectCursor cursor;
     public GameObject towerInfoPanel;
     public Pathfinder pathfinder;
+    public Enemies enemies;
 
     // Use this for initialization
     void Start ()
@@ -66,7 +67,8 @@ public class BuildingManager : MonoBehaviour {
         try
         { //sometimes the mouse is out of bounds of the tilemap
             Tile tile = grid.get((int)roundedPos.x, (int)roundedPos.y);
-            return (tile == 0);
+            List<GameObject> enemiesInSquare = enemies.getEnemies((int)roundedPos.x, (int)roundedPos.y); //can place a tower on top of enemies
+            return (tile == 0) && enemiesInSquare.Count == 0;
         }
         catch
         { //so if the mouse is out of the map you definitely can't build there
