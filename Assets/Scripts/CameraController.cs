@@ -25,11 +25,9 @@ public class CameraController : MonoBehaviour {
     {
         //camera size adjustment
         float cameraSize = camera.orthographicSize;
-        cameraSize -= Input.mouseScrollDelta.y * scrollSpeed;
-
+        cameraSize -= Input.mouseScrollDelta.y * scrollSpeed * Time.deltaTime;
         cameraSize = Mathf.Min(maxSize, cameraSize);
         cameraSize = Mathf.Max(minSize, cameraSize);
-
         camera.orthographicSize = cameraSize;
 
         //calculating camera position bounds 

@@ -8657,7 +8657,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minSize: 2
   movementSpeed: 10
-  scrollSpeed: 0.5
+  scrollSpeed: 50
   grid: {fileID: 2067086269}
 --- !u!20 &519420031
 Camera:
