@@ -346,7 +346,7 @@ Prefab:
     - target: {fileID: 114168928600460702, guid: 3a542941d156dc047923009fe6c6e079,
         type: 2}
       propertyPath: cityName
-      value: Small Vilage
+      value: Small Village
       objectReference: {fileID: 0}
     - target: {fileID: 114168928600460702, guid: 3a542941d156dc047923009fe6c6e079,
         type: 2}

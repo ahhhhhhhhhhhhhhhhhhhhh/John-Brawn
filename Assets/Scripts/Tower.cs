@@ -7,7 +7,7 @@ public class Tower : MonoBehaviour {
 
     [Header("Tower Properties")]
     public string type;
-    public TowerInfo[] properties; //each set of properties in array coresponds to upgrade level
+    public TowerInfo[] properties; //each set of properties in array corresponds to upgrade level
     private int level = 0;
     private float fireTimer = 0f;
 

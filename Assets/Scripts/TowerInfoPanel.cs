@@ -12,6 +12,7 @@ public class TowerInfoPanel : MonoBehaviour {
     public Text fireRateText;
     public Text rangeText;
     public GameObject upgradeButton;
+    public LevelControl levelControl;
 
     public BuildingManager buildManager;
 
@@ -60,8 +61,16 @@ public class TowerInfoPanel : MonoBehaviour {
         }
         else
         {
-            upgradeButton.GetComponent<Image>().enabled = true;
-            upgradeButton.transform.GetChild(0).GetComponent<Text>().text = "Upgrade";
+            TowerInfo next = selectedTower.properties[selectedTower.getLevel() + 1];
+            if (levelControl.getMoney() >= next.cost)
+            {
+                upgradeButton.GetComponent<Image>().enabled = true;
+            }
+            else
+            {
+                upgradeButton.GetComponent<Image>().enabled = false;
+            }
+            upgradeButton.transform.GetChild(0).GetComponent<Text>().text = "Upgrade ($" + next.cost + ")";
         }
     }
 

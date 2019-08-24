@@ -20,6 +20,7 @@ public class BuildingManager : MonoBehaviour {
     public GameObject towerInfoPanel;
     public Pathfinder pathfinder;
     public Enemies enemies;
+    public LevelControl levelControl;
 
     // Use this for initialization
     void Start ()
@@ -59,6 +60,9 @@ public class BuildingManager : MonoBehaviour {
         grid.placeTower((int)roundedPos.x, (int)roundedPos.y);
         Instantiate(towerToBuild, roundedPos, new Quaternion(0, 0, 0, 0));
 
+        int cost = towerToBuild.GetComponent<Tower>().getProperties().cost;
+        levelControl.subtractMoney(cost);
+
         updatePaths();
     }
 
@@ -68,7 +72,11 @@ public class BuildingManager : MonoBehaviour {
         { //sometimes the mouse is out of bounds of the tilemap
             Tile tile = grid.get((int)roundedPos.x, (int)roundedPos.y);
             List<GameObject> enemiesInSquare = enemies.getEnemies((int)roundedPos.x, (int)roundedPos.y); //can place a tower on top of enemies
-            return (tile == 0) && enemiesInSquare.Count == 0;
+            if (tile == 0 && enemiesInSquare.Count == 0) {
+                int cost = towerToBuild.GetComponent<Tower>().getProperties().cost;
+                return (cost <= levelControl.getMoney());
+            }
+            return false;
         }
         catch
         { //so if the mouse is out of the map you definitely can't build there
@@ -116,8 +124,16 @@ public class BuildingManager : MonoBehaviour {
 
     public void upgradeSelectedTower()
     {
-        selectedTower.GetComponent<Tower>().upgrade();
-        towerInfoPanel.GetComponent<TowerInfoPanel>().loadTowerInfo();
+        Tower tower = selectedTower.GetComponent<Tower>();
+        TowerInfo next = tower.properties[tower.getLevel() + 1];
+        int cost = next.cost;
+
+        if (levelControl.getMoney() >= cost)
+        {
+            selectedTower.GetComponent<Tower>().upgrade();
+            towerInfoPanel.GetComponent<TowerInfoPanel>().loadTowerInfo();
+            levelControl.subtractMoney(cost);
+        }
     }
 
     public void sellSelectedTower()

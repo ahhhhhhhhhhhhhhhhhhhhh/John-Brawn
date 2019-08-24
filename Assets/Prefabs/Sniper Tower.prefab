@@ -171,13 +171,17 @@ MonoBehaviour:
   - range: 10
     damage: 200
     fireRate: 0.5
+    cost: 1200
   - range: 12
     damage: 300
     fireRate: 0.75
+    cost: 900
   turret: {fileID: 4676992758455842}
   firePoint: {fileID: 4695126666772384}
   bulletPrefab: {fileID: 1347351286853186, guid: ba69ee56be5bda14b8edc32fc0d0c36e,
     type: 2}
+  turretSprites: []
+  baseSprites: []
 --- !u!212 &212025213114444430
 SpriteRenderer:
   m_ObjectHideFlags: 1
