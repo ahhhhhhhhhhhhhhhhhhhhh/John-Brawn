@@ -12,7 +12,7 @@ public class Zombie : MonoBehaviour {
     private float health;
 
     private Pathfinder pathfinder;
-    private Transform target;
+    private Vector3 target;
 
     [Header("Unity Setup Stuff")]
     public Image healthBar;
@@ -51,7 +51,7 @@ public class Zombie : MonoBehaviour {
 
         faceTarget();
 
-        if (Vector3.Distance(target.position, transform.position) < 0.1)
+        if (Vector3.Distance(target, transform.position) < 0.1)
         {
             if (checkEndpoint())
             {
@@ -61,7 +61,7 @@ public class Zombie : MonoBehaviour {
             repath();
         }
 
-        transform.position = Vector3.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
 	}
 
     public void hit(float damage)
@@ -71,7 +71,18 @@ public class Zombie : MonoBehaviour {
 
     public void repath()
     {
-        target = pathfinder.getNextNode(transform);
+        target = pathfinder.getNextNode(transform).position;
+
+        float shiftScale = 0.25f;
+        Vector3 shiftedTarget = new Vector3(target.x + Random.Range(-shiftScale, shiftScale), target.y + Random.Range(-shiftScale, shiftScale));
+
+        target = shiftedTarget;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.magenta;
+        Gizmos.DrawLine(transform.position, target);
     }
 
     //checks if zombie has reached endpoint
@@ -84,7 +95,7 @@ public class Zombie : MonoBehaviour {
     //changes zombie sprite so it faces target
     private void faceTarget()
     {
-        Vector3 diff = target.position - transform.position;
+        Vector3 diff = target - transform.position;
         if (Mathf.Abs(diff.x) > Mathf.Abs(diff.y))
         {
             if (diff.x > 0)
