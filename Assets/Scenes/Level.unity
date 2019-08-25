@@ -10419,13 +10419,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d99c2fba3129fa844b79c027fb9b4523, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  typeText: {fileID: 247834648}
-  levelText: {fileID: 1673397687}
-  damageText: {fileID: 61175485}
-  fireRateText: {fileID: 1494255357}
-  rangeText: {fileID: 1971032885}
   upgradeButton: {fileID: 444257237}
-  levelControl: {fileID: 2067086270}
+  moneyManager: {fileID: 2067086272}
   buildManager: {fileID: 2067086268}
 --- !u!1 &611718391
 GameObject:
@@ -26284,7 +26279,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa6ba656c42d7c04a837a6d1243d48c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  drawNodes: 1
+  drawNodes: 0
   nodeIconSize: 0.25
   grid: {fileID: 2067086269}
   nodePrefab: {fileID: 1987621367821898, guid: 5ae29bf782524a440922330229f61df2, type: 2}
@@ -36937,6 +36932,7 @@ GameObject:
   - component: {fileID: 2067086268}
   - component: {fileID: 2067086269}
   - component: {fileID: 2067086271}
+  - component: {fileID: 2067086272}
   m_Layer: 0
   m_Name: Level Control
   m_TagString: Untagged
@@ -37408,7 +37404,7 @@ MonoBehaviour:
   towerInfoPanel: {fileID: 611581781}
   pathfinder: {fileID: 1532757163}
   enemies: {fileID: 1750427274}
-  levelControl: {fileID: 2067086270}
+  moneyManager: {fileID: 2067086272}
 --- !u!114 &2067086269
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37436,7 +37432,6 @@ MonoBehaviour:
     tile: 3
   backgroundMap: {fileID: 2800000, guid: 30f2874f8e9ea4d4596186b80af101f9, type: 3}
   buildingMap: {fileID: 2800000, guid: 5bdcad4af7877134e8fbf0b9d20b7e61, type: 3}
-  endpoint: {fileID: 0}
 --- !u!114 &2067086270
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37451,7 +37446,7 @@ MonoBehaviour:
   waveControl: {fileID: 2067086266}
   gridControl: {fileID: 2067086269}
   pathfinder: {fileID: 1532757163}
-  moneyDisplay: {fileID: 1271925352}
+  moneyManager: {fileID: 2067086272}
 --- !u!114 &2067086271
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37464,6 +37459,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panel: {fileID: 641722565}
+--- !u!114 &2067086272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2067086265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85fec82c8205c504caef87419f48bc97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moneyDisplay: {fileID: 1271925352}
 --- !u!1 &2075070096
 GameObject:
   m_ObjectHideFlags: 0

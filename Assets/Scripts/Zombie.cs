@@ -8,7 +8,7 @@ public class Zombie : MonoBehaviour {
     [Header("Zombie Attributes")]
     public float speed = 2f;
     public float maxHealth = 100f;
-    public int moneyReward = 75;
+    public int reward = 75;
     private float health;
 
     private Pathfinder pathfinder;
@@ -19,7 +19,7 @@ public class Zombie : MonoBehaviour {
     public GameObject deathEffect;
     public Sprite[] sprites; //up, right, down, left
 
-    private LevelControl levelControl;
+    private MoneyManager moneyManager;
 
     private SpriteRenderer spriteRenderer;
 
@@ -33,7 +33,7 @@ public class Zombie : MonoBehaviour {
         pathfinder = GameObject.Find("Pathfinder").GetComponent<Pathfinder>();
         repath();
 
-        levelControl = GameObject.Find("Level Control").GetComponent<LevelControl>();
+        moneyManager = GameObject.Find("Level Control").GetComponent<MoneyManager>();
 	}
 	
 	// Update is called once per frame
@@ -43,7 +43,7 @@ public class Zombie : MonoBehaviour {
         {
             Destroy(gameObject);
             Instantiate(deathEffect, transform.position, transform.rotation);
-            levelControl.addMoney(moneyReward);
+            moneyManager.add(reward);
             return;
         }
 

@@ -20,7 +20,7 @@ public class BuildingManager : MonoBehaviour {
     public GameObject towerInfoPanel;
     public Pathfinder pathfinder;
     public Enemies enemies;
-    public LevelControl levelControl;
+    public MoneyManager moneyManager;
 
     // Use this for initialization
     void Start ()
@@ -39,7 +39,8 @@ public class BuildingManager : MonoBehaviour {
 		if (buildingMode && Input.GetMouseButtonDown(0))
         {
             Vector3 roundedPos = cursor.getRoundedPos();
-            if (canBuildTower(roundedPos))
+            int cost = towerToBuild.GetComponent<Tower>().getProperties().cost;
+            if (canBuildTower(roundedPos) && cost <= moneyManager.money)
             {
                 BuildTower(roundedPos);
                 if (!(Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)))
@@ -61,7 +62,7 @@ public class BuildingManager : MonoBehaviour {
         Instantiate(towerToBuild, roundedPos, new Quaternion(0, 0, 0, 0));
 
         int cost = towerToBuild.GetComponent<Tower>().getProperties().cost;
-        levelControl.subtractMoney(cost);
+        moneyManager.subtract(cost);
 
         updatePaths();
     }
@@ -71,12 +72,9 @@ public class BuildingManager : MonoBehaviour {
         try
         { //sometimes the mouse is out of bounds of the tilemap
             Tile tile = grid.get((int)roundedPos.x, (int)roundedPos.y);
-            List<GameObject> enemiesInSquare = enemies.getEnemies((int)roundedPos.x, (int)roundedPos.y); //can place a tower on top of enemies
-            if (tile == 0 && enemiesInSquare.Count == 0) {
-                int cost = towerToBuild.GetComponent<Tower>().getProperties().cost;
-                return (cost <= levelControl.getMoney());
-            }
-            return false;
+            List<GameObject> enemiesInSquare = enemies.getEnemies((int)roundedPos.x, (int)roundedPos.y); //can't place a tower on top of enemies
+
+            return tile == 0 && enemiesInSquare.Count == 0;
         }
         catch
         { //so if the mouse is out of the map you definitely can't build there
@@ -128,11 +126,11 @@ public class BuildingManager : MonoBehaviour {
         TowerInfo next = tower.properties[tower.getLevel() + 1];
         int cost = next.cost;
 
-        if (levelControl.getMoney() >= cost)
+        if (moneyManager.money >= cost)
         {
             selectedTower.GetComponent<Tower>().upgrade();
             towerInfoPanel.GetComponent<TowerInfoPanel>().loadTowerInfo();
-            levelControl.subtractMoney(cost);
+            moneyManager.subtract(cost);
         }
     }
 

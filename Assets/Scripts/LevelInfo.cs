@@ -7,5 +7,6 @@ public class LevelInfo {
     public Vector2Int endpoint;
     public WaveInfo[] waves;
     public WaveController.Direction[] spawningDirections;
+    public int startingMoney;
     //other level data
 }

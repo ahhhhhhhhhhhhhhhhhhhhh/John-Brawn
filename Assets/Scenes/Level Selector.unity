@@ -418,6 +418,11 @@ Prefab:
       propertyPath: levelInfo.waves.Array.data[1].numZombies
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 114168928600460702, guid: 3a542941d156dc047923009fe6c6e079,
+        type: 2}
+      propertyPath: levelInfo.startingMoney
+      value: 5000
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a542941d156dc047923009fe6c6e079, type: 2}
   m_IsPrefabAsset: 0

@@ -9,7 +9,6 @@ public class GridController : MonoBehaviour
     public ColorToTile[] colorMappings;
     public Texture2D backgroundMap;
     public Texture2D buildingMap;
-    public Transform endpoint;
 
     private int size = 1; //size of gridsquares 
     private int height;

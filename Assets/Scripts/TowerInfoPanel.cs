@@ -6,17 +6,27 @@ using UnityEngine.UI;
 public class TowerInfoPanel : MonoBehaviour {
 
     [Header("Unity Setup")]
-    public Text typeText;
-    public Text levelText;
-    public Text damageText;
-    public Text fireRateText;
-    public Text rangeText;
     public GameObject upgradeButton;
-    public LevelControl levelControl;
+    public MoneyManager moneyManager;
 
     public BuildingManager buildManager;
 
     private Tower selectedTower;
+
+    private Text typeText;
+    private Text levelText;
+    private Text damageText;
+    private Text fireRateText;
+    private Text rangeText;
+
+    private void Start()
+    {
+        typeText = transform.Find("Type Text").GetComponent<Text>();
+        levelText = typeText.gameObject.transform.Find("Level Text").GetComponent<Text>();
+        damageText = transform.Find("Damage Text").GetComponent<Text>();
+        fireRateText = transform.Find("Fire Rate Text").GetComponent<Text>();
+        rangeText = transform.Find("Range Text").GetComponent<Text>();
+    }
 
     // Update is called once per frame
     void Update ()
@@ -62,7 +72,7 @@ public class TowerInfoPanel : MonoBehaviour {
         else
         {
             TowerInfo next = selectedTower.properties[selectedTower.getLevel() + 1];
-            if (levelControl.getMoney() >= next.cost)
+            if (moneyManager.money >= next.cost)
             {
                 upgradeButton.GetComponent<Image>().enabled = true;
             }
