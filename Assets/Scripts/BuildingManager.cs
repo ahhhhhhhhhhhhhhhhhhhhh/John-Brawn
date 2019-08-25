@@ -10,6 +10,8 @@ public class BuildingManager : MonoBehaviour {
     private GameObject towerToBuild;
     private GameObject selectedTower;
 
+    public float sellReturn; //percent value returned when towers are sold
+
     [Header("Tower Types")]
     public GameObject basicTowerPrefab;
     public GameObject fastTowerPrefab;
@@ -136,6 +138,8 @@ public class BuildingManager : MonoBehaviour {
 
     public void sellSelectedTower()
     {
+        moneyManager.add((int)(selectedTower.GetComponent<Tower>().getMoneyInvested() * sellReturn));
+
         grid.removeTower((int)selectedTower.transform.position.x, (int)selectedTower.transform.position.y);
         selectedTower.GetComponent<Tower>().sell();
         closeInfoPanel();
@@ -148,6 +152,6 @@ public class BuildingManager : MonoBehaviour {
         System.Diagnostics.Stopwatch watch = new System.Diagnostics.Stopwatch();
         watch.Start();
         pathfinder.OnGridChange();
-        Debug.Log("Total repath calculation: " + (watch.ElapsedMilliseconds) + " ms");
+        //Debug.Log("Total repath calculation: " + (watch.ElapsedMilliseconds) + " ms");
     }
 }

@@ -19,8 +19,6 @@ public class WaveController : MonoBehaviour {
     public WaveInfo[] waves;
     public Direction[] spawningDirections;
 
-    public Transform endpoint;
-
     private float timer;
     private int waveNum = 0;
 

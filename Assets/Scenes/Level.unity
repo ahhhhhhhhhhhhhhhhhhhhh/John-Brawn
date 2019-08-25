@@ -10420,6 +10420,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgradeButton: {fileID: 444257237}
+  sellButton: {fileID: 892366880}
   moneyManager: {fileID: 2067086272}
   buildManager: {fileID: 2067086268}
 --- !u!1 &611718391
@@ -36963,7 +36964,6 @@ MonoBehaviour:
     spawnDelay: 0.01
     numZombies: 100
   spawningDirections: 01000000
-  endpoint: {fileID: 0}
   enemies: {fileID: 1750427273}
   zombiePrefab: {fileID: 1813021853874394, guid: 17d96b3af7b41a04e87c2dac7f0d1260,
     type: 2}
@@ -37395,6 +37395,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buildingMode: 0
+  sellReturn: 0.5
   basicTowerPrefab: {fileID: 1533718904859334, guid: 87eac8cdfdd03e04b8aa841400e1a9cd,
     type: 2}
   fastTowerPrefab: {fileID: 1327167988884042, guid: 03da9827d46be054eb7df45c38d6e76c,

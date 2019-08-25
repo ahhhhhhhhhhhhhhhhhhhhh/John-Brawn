@@ -140,4 +140,17 @@ public class Tower : MonoBehaviour {
             buildManager.selectTower(gameObject);
         }
     }
+
+    //returns total amount of money spent on the tower (initial cost + upgrades)
+    public int getMoneyInvested()
+    {
+        int invested = 0;
+
+        for (int i = 0; i <= level; i++)
+        {
+            invested += properties[i].cost;
+        }
+
+        return invested;
+    }
 }

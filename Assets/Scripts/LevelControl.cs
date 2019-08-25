@@ -23,7 +23,6 @@ public class LevelControl : MonoBehaviour {
 
         pathfinder.endpoint = level.endpoint;
 
-        Debug.Log(level.startingMoney);
         moneyManager.add(level.startingMoney);
     }
 }

@@ -7,6 +7,7 @@ public class TowerInfoPanel : MonoBehaviour {
 
     [Header("Unity Setup")]
     public GameObject upgradeButton;
+    public GameObject sellButton;
     public MoneyManager moneyManager;
 
     public BuildingManager buildManager;
@@ -63,6 +64,9 @@ public class TowerInfoPanel : MonoBehaviour {
         damageText.text = "Damage: " + info.damage;
         fireRateText.text = "Fire Rate: " + info.fireRate + "/sec";
         rangeText.text = "Range: " + info.range.ToString();
+
+        Text sellButtonText = sellButton.transform.GetChild(0).GetComponent<Text>();
+        sellButtonText.text = "Sell ($" + (int)(selectedTower.getMoneyInvested() * buildManager.sellReturn) + ")";
 
         if (selectedTower.getLevel() >= selectedTower.properties.Length - 1) //means tower is max level
         {
