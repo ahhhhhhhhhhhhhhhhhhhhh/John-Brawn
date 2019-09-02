@@ -92,6 +92,8 @@ public class TowerInfoPanel : MonoBehaviour {
 
     public void showUpgrades()
     {
+        loadTowerInfo();
+
         if (selectedTower.getLevel() < selectedTower.properties.Length - 1)
         {
             TowerInfo current = selectedTower.getProperties();
