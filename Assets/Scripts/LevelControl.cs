@@ -9,7 +9,7 @@ public class LevelControl : MonoBehaviour {
     public WaveController waveControl;
     public GridController gridControl;
     public Pathfinder pathfinder;
-    public MoneyManager moneyManager;
+    public PlayerData player;
 
     public void loadLevel(LevelInfo level)
     {
@@ -23,6 +23,7 @@ public class LevelControl : MonoBehaviour {
 
         pathfinder.endpoint = level.endpoint;
 
-        moneyManager.add(level.startingMoney);
+        player.addMoney(level.startingMoney);
+        player.addLives(level.startingLives);
     }
 }

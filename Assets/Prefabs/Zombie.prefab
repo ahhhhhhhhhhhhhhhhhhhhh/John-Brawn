@@ -153,9 +153,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1.5
-  maxHealth: 10000
-  repathFrequency: 100
-  drawPath: 1
+  maxHealth: 100
+  reward: 75
   healthBar: {fileID: 114647679230640104}
   deathEffect: {fileID: 1512636244732216, guid: 8ce4861c24b0c8443afc4fa170b8d75e,
     type: 2}

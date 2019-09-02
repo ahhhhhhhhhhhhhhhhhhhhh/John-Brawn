@@ -6,7 +6,7 @@ public class Devmode : MonoBehaviour {
 
     public GameObject panel;
 
-    private MoneyManager money;
+    private PlayerData player;
     private WaveController waveControl;
     private BuildingManager buildManager;
 
@@ -15,7 +15,7 @@ public class Devmode : MonoBehaviour {
     {
         panel.gameObject.SetActive(false);
 
-        money = gameObject.GetComponent<MoneyManager>();
+        player = gameObject.GetComponent<PlayerData>();
         waveControl = gameObject.GetComponent<WaveController>();
         buildManager = gameObject.GetComponent<BuildingManager>();
     }
@@ -48,6 +48,6 @@ public class Devmode : MonoBehaviour {
 
     public void addMoney(int added)
     {
-        money.add(added);
+        player.addMoney(added);
     }
 }

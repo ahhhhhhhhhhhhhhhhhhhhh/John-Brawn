@@ -8,5 +8,6 @@ public class LevelInfo {
     public WaveInfo[] waves;
     public WaveController.Direction[] spawningDirections;
     public int startingMoney;
+    public int startingLives;
     //other level data
 }

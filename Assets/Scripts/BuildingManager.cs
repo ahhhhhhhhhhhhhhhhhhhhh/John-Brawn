@@ -22,7 +22,7 @@ public class BuildingManager : MonoBehaviour {
     public GameObject towerInfoPanel;
     public Pathfinder pathfinder;
     public Enemies enemies;
-    public MoneyManager moneyManager;
+    public PlayerData player;
 
     // Use this for initialization
     void Start ()
@@ -42,7 +42,7 @@ public class BuildingManager : MonoBehaviour {
         {
             Vector3 roundedPos = cursor.getRoundedPos();
             int cost = towerToBuild.GetComponent<Tower>().getProperties().cost;
-            if (canBuildTower(roundedPos) && cost <= moneyManager.money)
+            if (canBuildTower(roundedPos) && cost <= player.money)
             {
                 BuildTower(roundedPos);
                 if (!(Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)))
@@ -64,7 +64,7 @@ public class BuildingManager : MonoBehaviour {
         Instantiate(towerToBuild, roundedPos, new Quaternion(0, 0, 0, 0));
 
         int cost = towerToBuild.GetComponent<Tower>().getProperties().cost;
-        moneyManager.subtract(cost);
+        player.subtractMoney(cost);
 
         updatePaths();
     }
@@ -128,17 +128,17 @@ public class BuildingManager : MonoBehaviour {
         TowerInfo next = tower.properties[tower.getLevel() + 1];
         int cost = next.cost;
 
-        if (moneyManager.money >= cost)
+        if (player.money >= cost)
         {
             selectedTower.GetComponent<Tower>().upgrade();
             towerInfoPanel.GetComponent<TowerInfoPanel>().loadTowerInfo();
-            moneyManager.subtract(cost);
+            player.subtractMoney(cost);
         }
     }
 
     public void sellSelectedTower()
     {
-        moneyManager.add((int)(selectedTower.GetComponent<Tower>().getMoneyInvested() * sellReturn));
+        player.addMoney((int)(selectedTower.GetComponent<Tower>().getMoneyInvested() * sellReturn));
 
         grid.removeTower((int)selectedTower.transform.position.x, (int)selectedTower.transform.position.y);
         selectedTower.GetComponent<Tower>().sell();

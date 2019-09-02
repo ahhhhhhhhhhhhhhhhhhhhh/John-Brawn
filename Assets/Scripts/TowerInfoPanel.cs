@@ -8,7 +8,7 @@ public class TowerInfoPanel : MonoBehaviour {
     [Header("Unity Setup")]
     public GameObject upgradeButton;
     public GameObject sellButton;
-    public MoneyManager moneyManager;
+    public PlayerData player;
 
     public BuildingManager buildManager;
 
@@ -75,14 +75,16 @@ public class TowerInfoPanel : MonoBehaviour {
         }
         else
         {
+            upgradeButton.GetComponent<Image>().enabled = true;
+
             TowerInfo next = selectedTower.properties[selectedTower.getLevel() + 1];
-            if (moneyManager.money >= next.cost)
+            if (player.money >= next.cost)
             {
-                upgradeButton.GetComponent<Image>().enabled = true;
+                upgradeButton.GetComponent<Image>().color = Color.white;
             }
             else
             {
-                upgradeButton.GetComponent<Image>().enabled = false;
+                upgradeButton.GetComponent<Image>().color = Color.red;
             }
             upgradeButton.transform.GetChild(0).GetComponent<Text>().text = "Upgrade ($" + next.cost + ")";
         }
