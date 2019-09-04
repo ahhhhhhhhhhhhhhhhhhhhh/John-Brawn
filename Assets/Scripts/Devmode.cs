@@ -50,4 +50,9 @@ public class Devmode : MonoBehaviour {
     {
         player.addMoney(added);
     }
+
+    public void addLives(int added)
+    {
+        player.addLives(added);
+    }
 }
