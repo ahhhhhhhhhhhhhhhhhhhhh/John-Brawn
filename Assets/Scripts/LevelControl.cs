@@ -6,13 +6,14 @@ using UnityEngine.UI;
 public class LevelControl : MonoBehaviour {
 
     [Header("Unity Setup")]
-    public WaveController waveControl;
-    public GridController gridControl;
     public Pathfinder pathfinder;
-    public PlayerData player;
 
     public void loadLevel(LevelInfo level)
     {
+        WaveController waveControl = GetComponent<WaveController>();
+        GridController gridControl = GetComponent<GridController>();
+        PlayerData player = GetComponent<PlayerData>();
+
         waveControl.waves = level.waves;
         waveControl.spawningDirections = level.spawningDirections;
 
@@ -21,9 +22,9 @@ public class LevelControl : MonoBehaviour {
         gridControl.buildingMap = level.buildingMap;
         gridControl.initLayers();
 
-        pathfinder.endpoint = level.endpoint;
-
         player.addMoney(level.startingMoney);
         player.addLives(level.startingLives);
+
+        pathfinder.endpoint = level.endpoint;
     }
 }

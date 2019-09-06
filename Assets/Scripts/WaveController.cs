@@ -13,8 +13,6 @@ public class WaveController : MonoBehaviour {
         Left
     }
 
-    public bool on = true; //way to turn wave spawning off for testing purposes
-
     [Header("Wave Properties")]
     public WaveInfo[] waves;
     public Direction[] spawningDirections;
@@ -25,8 +23,10 @@ public class WaveController : MonoBehaviour {
     [Header("Unity Setup Stuff (don't change)")]
     public Transform enemies; //parent of all enemies
     public GameObject zombiePrefab;
+    public GameObject bigZombiePrefab;
+    private GameObject[] zombieTypes;
 
-    public GridController grid;
+    private GridController grid;
 
     public Text waveCountdown;
 
@@ -34,12 +34,16 @@ public class WaveController : MonoBehaviour {
     void Start ()
     {
         timer = waves[0].delay;
+
+        zombieTypes = new GameObject[] { zombiePrefab, bigZombiePrefab };
+
+        grid = GetComponent<GridController>();
     }
 	
 	// Update is called once per frame
 	void Update ()
     {
-        if (timer <= 0 && on && waveNum < waves.Length)
+        if (timer <= 0 && waveNum < waves.Length)
         {
             StartCoroutine(SpawnWave());
             waveNum++;
@@ -61,13 +65,24 @@ public class WaveController : MonoBehaviour {
     //spawns next wave on enemies from wave pattern
     IEnumerator SpawnWave() 
     {
-        int numToSpawn = waves[waveNum].numZombies;
         float spawnDelay = waves[waveNum].spawnDelay;
 
-        for (int i = 0; i < numToSpawn; i++)
+        int[] toSpawn = new int[] { waves[waveNum].numZombies, waves[waveNum].numBigZombies };
+        System.Random rand = new System.Random();
+
+        int totalEnemies = Sum(toSpawn);
+        for (int i = 0; i < totalEnemies; i++)
         {
             Direction direction = spawningDirections[Random.Range(0, spawningDirections.Length)];
-            SpawnEnemy(direction, zombiePrefab);
+
+            int randIndex = rand.Next(toSpawn.Length);
+            while (toSpawn[randIndex] == 0)
+            {
+                randIndex = rand.Next(toSpawn.Length);
+            }
+
+            SpawnEnemy(direction, zombieTypes[randIndex]);
+            toSpawn[randIndex]--;
 
             yield return new WaitForSeconds(spawnDelay);
         }
@@ -79,6 +94,7 @@ public class WaveController : MonoBehaviour {
         Vector3 v2 = new Vector3(); //placeholder value
 
         float buffer = 0.5f; //distance from edge of grid that zombies spawn
+
         if (direction == Direction.Up)
         {
             v1 = new Vector3(-1 * buffer, grid.getHeight() - 0.5f + buffer);
@@ -104,5 +120,16 @@ public class WaveController : MonoBehaviour {
 
         GameObject enemy = Instantiate(enemyType, spawnpoint, new Quaternion(0, 0, 0, 0));
         enemy.transform.parent = enemies;
+    }
+
+    //just a small helper variable for spawnwave
+    private int Sum(int[] arr)
+    {
+        int sum = 0;
+        foreach (int n in arr)
+        {
+            sum += n;
+        }
+        return sum;
     }
 }

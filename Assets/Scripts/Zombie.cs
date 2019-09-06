@@ -97,28 +97,32 @@ public class Zombie : MonoBehaviour {
     private void faceTarget()
     {
         Vector3 diff = target - transform.position;
+        int index = -1;
         if (Mathf.Abs(diff.x) > Mathf.Abs(diff.y))
         {
             if (diff.x > 0)
             {
-                spriteRenderer.sprite = sprites[1]; //right
+                index = 1; //right
             }
             else
             {
-                spriteRenderer.sprite = sprites[3]; //left
+                index = 3; //left
             }
         }
         else
         {
             if (diff.y > 0)
             {
-                spriteRenderer.sprite = sprites[0]; //up
+                index = 0; //up
             }
             else
             {
-                spriteRenderer.sprite = sprites[2]; //down
-
+                index = 2; //down
             }
+        }
+        if (sprites[index] != null)
+        {
+            spriteRenderer.sprite = sprites[index];
         }
     }
 }

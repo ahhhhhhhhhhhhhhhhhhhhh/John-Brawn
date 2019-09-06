@@ -6,5 +6,6 @@ public class WaveInfo {
     public float spawnDelay = 0.1f; //time between each spawn within a wave
 
     public int numZombies;
+    public int numBigZombies;
     //other zombie types
 }
