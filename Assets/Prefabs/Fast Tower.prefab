@@ -83,7 +83,7 @@ Transform:
   m_GameObject: {fileID: 1327167988884042}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3.2, y: 3.2, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 0}
   m_Children:
   - {fileID: 4947820373507334}
   - {fileID: 4411372712028708}
@@ -111,7 +111,7 @@ Transform:
   m_GameObject: {fileID: 1530902652188112}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3.2, y: 3.2, z: 1}
   m_Children: []
   m_Father: {fileID: 4152060264342410}
   m_RootOrder: 1
@@ -123,7 +123,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1936344598842164}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.07, z: 0}
+  m_LocalPosition: {x: 0, y: 0.22, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4351151702033426}
@@ -185,9 +185,9 @@ MonoBehaviour:
   bulletPrefab: {fileID: 1347351286853186, guid: ba69ee56be5bda14b8edc32fc0d0c36e,
     type: 2}
   turretSprites:
-  - {fileID: 21300000, guid: 70c5b7247f5f61f458233698309b8540, type: 3}
-  - {fileID: 21300000, guid: d76321439d7157049a83d52d5383347e, type: 3}
-  - {fileID: 21300000, guid: 9b270402a296ccf4abb2e05b6c259847, type: 3}
+  - {fileID: 21300000, guid: d0e7bd301cef94244b5cae1df0b6a9b7, type: 3}
+  - {fileID: 21300000, guid: 9951fbe47da1497498153af11c645afd, type: 3}
+  - {fileID: 21300000, guid: bfa9ed6278eafb44cbf1f67f03703980, type: 3}
   baseSprites: []
 --- !u!212 &212823132552646500
 SpriteRenderer:
@@ -270,12 +270,12 @@ SpriteRenderer:
   m_SortingLayerID: -1334705503
   m_SortingLayer: 1
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 70c5b7247f5f61f458233698309b8540, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d0e7bd301cef94244b5cae1df0b6a9b7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 4, y: 4}
+  m_Size: {x: 1.44, y: 1.44}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
