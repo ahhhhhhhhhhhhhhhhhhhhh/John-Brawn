@@ -8,6 +8,7 @@ public class PlayerData : MonoBehaviour {
     [Header("Unity Setup")]
     public Text moneyDisplay;
     public Text livesDisplay;
+    public GameObject gameOverMenu;
 
     public int money { get; private set; }
     public int lives { get; private set; }
@@ -16,6 +17,11 @@ public class PlayerData : MonoBehaviour {
     {
         moneyDisplay.text = "$" + money;
         livesDisplay.text = lives + " lives";
+
+        if (lives <= 0)
+        {
+            gameOverMenu.SetActive(true);
+        }
     }
 
     public void addMoney(int gain)

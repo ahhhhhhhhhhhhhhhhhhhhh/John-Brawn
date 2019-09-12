@@ -7,7 +7,10 @@ public class GridController : MonoBehaviour
     [Header("Map Stuff")]
     public GameObject[] tiles; //IMPORTANT: tiles must be in the same order as Tile enum (Tile.tower at the end)
     public ColorToTile[] colorMappings;
+
+    [HideInInspector()]
     public Texture2D backgroundMap;
+    [HideInInspector()]
     public Texture2D buildingMap;
 
     private int size = 1; //size of gridsquares 

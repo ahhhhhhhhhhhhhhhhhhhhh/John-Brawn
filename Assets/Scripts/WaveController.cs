@@ -13,14 +13,15 @@ public class WaveController : MonoBehaviour {
         Left
     }
 
-    [Header("Wave Properties")]
+    [HideInInspector()]
     public WaveInfo[] waves;
+    [HideInInspector()]
     public Direction[] spawningDirections;
 
     private float timer;
     private int waveNum = 0;
 
-    [Header("Unity Setup Stuff (don't change)")]
+    [Header("Unity Setup Stuff")]
     public Transform enemies; //parent of all enemies
     public GameObject zombiePrefab;
     public GameObject bigZombiePrefab;

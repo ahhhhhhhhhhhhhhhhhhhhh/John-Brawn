@@ -17,16 +17,20 @@ public class BuildingManager : MonoBehaviour {
     public GameObject fastTowerPrefab;
 
     [Header("Unity Setup Stuff")]
-    public GridController grid;
     public SelectCursor cursor;
     public GameObject towerInfoPanel;
     public Pathfinder pathfinder;
     public Enemies enemies;
-    public PlayerData player;
+
+    private GridController grid;
+    private PlayerData player;
 
     // Use this for initialization
     void Start ()
     {
+        grid = GetComponent<GridController>();
+        player = GetComponent<PlayerData>();
+
         closeInfoPanel();
 	}
 	

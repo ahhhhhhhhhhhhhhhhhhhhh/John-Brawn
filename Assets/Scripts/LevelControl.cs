@@ -8,6 +8,9 @@ public class LevelControl : MonoBehaviour {
     [Header("Unity Setup")]
     public Pathfinder pathfinder;
 
+    [HideInInspector()]
+    public bool loadedLevel = false;
+
     public void loadLevel(LevelInfo level)
     {
         WaveController waveControl = GetComponent<WaveController>();
@@ -26,5 +29,7 @@ public class LevelControl : MonoBehaviour {
         player.addLives(level.startingLives);
 
         pathfinder.endpoint = level.endpoint;
+
+        loadedLevel = true;
     }
 }
