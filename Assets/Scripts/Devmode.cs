@@ -7,8 +7,8 @@ public class Devmode : MonoBehaviour {
     public GameObject panel;
 
     private PlayerData player;
-    private WaveController waveControl;
-    private BuildingManager buildManager;
+    //private WaveController waveControl;
+    //private BuildingManager buildManager;
 
 	// Use this for initialization
 	void Start ()
@@ -16,8 +16,8 @@ public class Devmode : MonoBehaviour {
         panel.gameObject.SetActive(false);
 
         player = gameObject.GetComponent<PlayerData>();
-        waveControl = gameObject.GetComponent<WaveController>();
-        buildManager = gameObject.GetComponent<BuildingManager>();
+        //waveControl = gameObject.GetComponent<WaveController>();
+        //buildManager = gameObject.GetComponent<BuildingManager>();
     }
 	
 	// Update is called once per frame

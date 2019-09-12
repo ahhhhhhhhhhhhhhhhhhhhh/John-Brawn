@@ -133,4 +133,11 @@ public class WaveController : MonoBehaviour {
         }
         return sum;
     }
+
+
+    //returns true if all waves have been spawned
+    public bool Done()
+    {
+        return waveNum >= waves.Length;
+    }
 }

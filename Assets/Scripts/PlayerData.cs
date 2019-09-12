@@ -9,9 +9,12 @@ public class PlayerData : MonoBehaviour {
     public Text moneyDisplay;
     public Text livesDisplay;
     public GameObject gameOverMenu;
+    public GameObject winMenu;
+    public GameObject Enemies;
 
     public int money { get; private set; }
     public int lives { get; private set; }
+    private int zombiesKilled;
 
     private void Update()
     {
@@ -21,6 +24,12 @@ public class PlayerData : MonoBehaviour {
         if (lives <= 0)
         {
             gameOverMenu.SetActive(true);
+        }
+
+        if (Enemies.transform.childCount == 0 && GetComponent<WaveController>().Done())
+        {
+            winMenu.transform.Find("Zombies Killed Text").GetComponent<Text>().text = "You Killed " + zombiesKilled + " Zombies. Nice!";
+            winMenu.SetActive(true);
         }
     }
 
@@ -42,5 +51,10 @@ public class PlayerData : MonoBehaviour {
     public void subtractLives(int lost)
     {
         lives -= lost;
+    }
+
+    public void zombieKilled()
+    {
+        zombiesKilled++;
     }
 }

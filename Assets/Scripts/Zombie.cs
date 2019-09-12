@@ -42,9 +42,10 @@ public class Zombie : MonoBehaviour {
     {
         if (health <= 0)
         {
-            Destroy(gameObject);
-            Instantiate(deathEffect, transform.position, transform.rotation);
+            player.zombieKilled();
             player.addMoney(reward);
+            Instantiate(deathEffect, transform.position, transform.rotation);
+            Destroy(gameObject);       
             return;
         }
 
@@ -56,8 +57,8 @@ public class Zombie : MonoBehaviour {
         {
             if (checkEndpoint())
             {
-                Destroy(gameObject);
                 player.subtractLives(livesCost);
+                Destroy(gameObject);
                 return;
             }
             repath();
