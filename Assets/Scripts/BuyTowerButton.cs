@@ -31,10 +31,12 @@ public class BuyTowerButton : MonoBehaviour {
         if (player.money < tower.properties[0].cost)
         {
             GetComponent<Image>().color = Color.red;
+            GetComponent<Button>().enabled = false;
         }
         else
         {
             GetComponent<Image>().color = Color.white;
+            GetComponent<Button>().enabled = true;
         }
     }
 

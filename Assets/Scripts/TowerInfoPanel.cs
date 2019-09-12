@@ -71,11 +71,13 @@ public class TowerInfoPanel : MonoBehaviour {
         if (selectedTower.getLevel() >= selectedTower.properties.Length - 1) //means tower is max level
         {
             upgradeButton.GetComponent<Image>().enabled = false;
+            upgradeButton.GetComponent<Button>().enabled = false;
             upgradeButton.transform.GetChild(0).GetComponent<Text>().text = "Max Level";
         }
         else
         {
             upgradeButton.GetComponent<Image>().enabled = true;
+            upgradeButton.GetComponent<Button>().enabled = true;
 
             TowerInfo next = selectedTower.properties[selectedTower.getLevel() + 1];
             if (player.money >= next.cost)
@@ -86,6 +88,7 @@ public class TowerInfoPanel : MonoBehaviour {
             {
                 upgradeButton.GetComponent<Image>().color = Color.red;
             }
+
             upgradeButton.transform.GetChild(0).GetComponent<Text>().text = "Upgrade ($" + next.cost + ")";
         }
     }
