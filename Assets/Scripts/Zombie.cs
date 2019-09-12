@@ -9,6 +9,7 @@ public class Zombie : MonoBehaviour {
     public float speed = 2f;
     public float maxHealth = 100f;
     public int reward = 75;
+    public int livesCost; //number of lives lost when zombie reaches endpoint
     private float health;
 
     private Pathfinder pathfinder;
@@ -56,7 +57,7 @@ public class Zombie : MonoBehaviour {
             if (checkEndpoint())
             {
                 Destroy(gameObject);
-                player.loseLife();
+                player.subtractLives(livesCost);
                 return;
             }
             repath();

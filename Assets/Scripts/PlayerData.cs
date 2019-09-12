@@ -28,13 +28,13 @@ public class PlayerData : MonoBehaviour {
         money -= cost;
     }
 
-    public void loseLife()
-    {
-        lives--;
-    }
-
     public void addLives(int gain)
     {
         lives += gain;
+    }
+
+    public void subtractLives(int lost)
+    {
+        lives -= lost;
     }
 }
