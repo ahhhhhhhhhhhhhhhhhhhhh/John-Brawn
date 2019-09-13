@@ -40077,7 +40077,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pathfinder: {fileID: 1532757163}
-  loadedLevel: 0
+  loadedLevel:
+    backgroundMap: {fileID: 0}
+    buildingMap: {fileID: 0}
+    endpoint: {x: 0, y: 0}
+    waves: []
+    spawningDirections: 
+    startingMoney: 0
+    startingLives: 0
 --- !u!114 &2067086271
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40105,7 +40112,7 @@ MonoBehaviour:
   livesDisplay: {fileID: 783751401}
   gameOverMenu: {fileID: 589182913}
   winMenu: {fileID: 1991585364}
-  Enemies: {fileID: 1750427272}
+  enemies: {fileID: 1750427272}
 --- !u!114 &2067086273
 MonoBehaviour:
   m_ObjectHideFlags: 0

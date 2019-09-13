@@ -7,9 +7,21 @@ public class LevelSelector : MonoBehaviour {
 
     private LevelInfo levelToLoad;
 
-    void OnEnable()
+    //prevents object from being duplicated everytime the scene loads
+    private static LevelSelector nonDuplicateInstance;
+    void Awake()
     {
-        Object.DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(this);
+
+        if (nonDuplicateInstance == null)
+        {
+            nonDuplicateInstance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 

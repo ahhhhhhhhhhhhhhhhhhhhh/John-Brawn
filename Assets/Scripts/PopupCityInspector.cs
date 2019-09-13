@@ -6,12 +6,17 @@ using UnityEngine.UI;
 public class PopupCityInspector : MonoBehaviour {
 
     public LevelSelectorCity city;
+
     private LevelSelector level_selector;
+    private PlayerData playerData;
 
 	void Start ()
     {
         level_selector = GameObject.Find("Level Selector").GetComponent<LevelSelector>();
+        playerData = GameObject.Find("Player Data").GetComponent<PlayerData>();
+
         renderProperties();
+
         Button startButton = transform.Find("Play Button").gameObject.GetComponent<Button>();
 
         if (city.state == LevelSelectorCity.State.Open)
@@ -29,6 +34,7 @@ public class PopupCityInspector : MonoBehaviour {
 
     void start_game()
     {
+        playerData.setCity(city);
         level_selector.loadLevel(city.levelInfo);
     }
 

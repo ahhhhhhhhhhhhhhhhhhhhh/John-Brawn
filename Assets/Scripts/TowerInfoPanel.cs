@@ -8,7 +8,7 @@ public class TowerInfoPanel : MonoBehaviour {
     [Header("Unity Setup")]
     public GameObject upgradeButton;
     public GameObject sellButton;
-    public PlayerData player;
+    public LevelData player;
 
     public BuildingManager buildManager;
 

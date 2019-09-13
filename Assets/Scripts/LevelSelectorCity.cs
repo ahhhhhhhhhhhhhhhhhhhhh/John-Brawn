@@ -14,8 +14,8 @@ public class LevelSelectorCity : MonoBehaviour {
 
     [Header("City Properties")]
     public string cityName;
-    public int reward;
-    public int reputation;
+    public int reward; //reputation gained by beating level
+    public int reputation; //reputation required to attempt level
     public State state;
     public LevelInfo levelInfo;
 

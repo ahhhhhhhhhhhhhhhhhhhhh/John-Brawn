@@ -23,13 +23,13 @@ public class BuildingManager : MonoBehaviour {
     public Enemies enemies;
 
     private GridController grid;
-    private PlayerData player;
+    private LevelData player;
 
     // Use this for initialization
     void Start ()
     {
         grid = GetComponent<GridController>();
-        player = GetComponent<PlayerData>();
+        player = GetComponent<LevelData>();
 
         closeInfoPanel();
 	}

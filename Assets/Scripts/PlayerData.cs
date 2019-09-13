@@ -1,60 +1,58 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerData : MonoBehaviour {
 
-    [Header("Unity Setup")]
-    public Text moneyDisplay;
-    public Text livesDisplay;
-    public GameObject gameOverMenu;
-    public GameObject winMenu;
-    public GameObject Enemies;
+    public int score { get; private set; }
+    public int reputation { get; private set; }
 
-    public int money { get; private set; }
-    public int lives { get; private set; }
-    private int zombiesKilled;
+    private GameObject statsPanel;
 
-    private void Update()
+    private LevelData levelData;
+    private LevelSelectorCity city;
+
+    //prevents object from being duplicated everytime the scene loads
+    private static PlayerData nonDuplicateInstance;
+    void Awake()
     {
-        moneyDisplay.text = "$" + money;
-        livesDisplay.text = lives + " lives";
+        DontDestroyOnLoad(this);
 
-        if (lives <= 0)
+        if (nonDuplicateInstance == null)
         {
-            gameOverMenu.SetActive(true);
+            nonDuplicateInstance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
         }
 
-        if (Enemies.transform.childCount == 0 && GetComponent<WaveController>().Done())
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name == "Level")
         {
-            winMenu.transform.Find("Zombies Killed Text").GetComponent<Text>().text = "You Killed " + zombiesKilled + " Zombies. Nice!";
-            winMenu.SetActive(true);
+            levelData = GameObject.Find("Level Control").GetComponent<LevelData>();
+        }
+        if (scene.name == "Level Selector")
+        {
+            statsPanel = GameObject.Find("Stats Panel");
         }
     }
 
-    public void addMoney(int gain)
+    //pass in true if player wins level, pass false if player loses
+    public void LogData(bool win)
     {
-        money += gain;
+        score += levelData.money;
+        reputation += city.reward;
     }
 
-    public void subtractMoney(int cost)
+    public void setCity(LevelSelectorCity city)
     {
-        money -= cost;
-    }
-
-    public void addLives(int gain)
-    {
-        lives += gain;
-    }
-
-    public void subtractLives(int lost)
-    {
-        lives -= lost;
-    }
-
-    public void zombieKilled()
-    {
-        zombiesKilled++;
+        this.city = city;
     }
 }

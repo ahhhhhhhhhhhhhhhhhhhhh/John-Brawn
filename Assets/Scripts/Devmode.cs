@@ -6,7 +6,7 @@ public class Devmode : MonoBehaviour {
 
     public GameObject panel;
 
-    private PlayerData player;
+    private LevelData player;
     //private WaveController waveControl;
     //private BuildingManager buildManager;
 
@@ -15,7 +15,7 @@ public class Devmode : MonoBehaviour {
     {
         panel.gameObject.SetActive(false);
 
-        player = gameObject.GetComponent<PlayerData>();
+        player = gameObject.GetComponent<LevelData>();
         //waveControl = gameObject.GetComponent<WaveController>();
         //buildManager = gameObject.GetComponent<BuildingManager>();
     }
