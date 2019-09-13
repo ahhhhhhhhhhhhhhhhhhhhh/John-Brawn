@@ -9,8 +9,6 @@ public class PlayerData : MonoBehaviour {
     public int score { get; private set; }
     public int reputation { get; private set; }
 
-    private GameObject statsPanel;
-
     private LevelData levelData;
     private LevelSelectorCity city;
 
@@ -38,17 +36,16 @@ public class PlayerData : MonoBehaviour {
         {
             levelData = GameObject.Find("Level Control").GetComponent<LevelData>();
         }
-        if (scene.name == "Level Selector")
-        {
-            statsPanel = GameObject.Find("Stats Panel");
-        }
     }
 
     //pass in true if player wins level, pass false if player loses
     public void LogData(bool win)
     {
-        score += levelData.money;
-        reputation += city.reward;
+        if (win)
+        {
+            score += levelData.money;
+            reputation += city.reward;
+        }
     }
 
     public void setCity(LevelSelectorCity city)

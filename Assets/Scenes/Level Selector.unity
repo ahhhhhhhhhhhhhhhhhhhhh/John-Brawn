@@ -610,7 +610,7 @@ Prefab:
     - target: {fileID: 114168928600460702, guid: 3a542941d156dc047923009fe6c6e079,
         type: 2}
       propertyPath: reward
-      value: 100
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 114168928600460702, guid: 3a542941d156dc047923009fe6c6e079,
         type: 2}
@@ -974,7 +974,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37d98b9b2cc0a3a418721ef081a8c8f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerData: {fileID: 1932299022}
 --- !u!1 &1241375563
 GameObject:
   m_ObjectHideFlags: 0
@@ -1359,7 +1358,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0289878841040a4080f551b3d3c8c14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statsPanel: {fileID: 1044873076}
 --- !u!1 &1977606810
 GameObject:
   m_ObjectHideFlags: 0
