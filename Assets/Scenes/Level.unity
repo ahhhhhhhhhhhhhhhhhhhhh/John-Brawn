@@ -8410,7 +8410,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2067086273}
+      - m_Target: {fileID: 2067086272}
         m_MethodName: addMoney
         m_Mode: 3
         m_Arguments:
@@ -13492,7 +13492,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2067086273}
+      - m_Target: {fileID: 2067086272}
         m_MethodName: addMoney
         m_Mode: 3
         m_Arguments:
@@ -26104,7 +26104,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2067086273}
+      - m_Target: {fileID: 2067086272}
         m_MethodName: addLives
         m_Mode: 3
         m_Arguments:
@@ -28537,7 +28537,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2067086273}
+      - m_Target: {fileID: 2067086272}
         m_MethodName: addLives
         m_Mode: 3
         m_Arguments:
@@ -31031,7 +31031,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2067086273}
+      - m_Target: {fileID: 2067086272}
         m_MethodName: addMoney
         m_Mode: 3
         m_Arguments:
@@ -36988,7 +36988,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2067086273}
+      - m_Target: {fileID: 2067086272}
         m_MethodName: addLives
         m_Mode: 3
         m_Arguments:

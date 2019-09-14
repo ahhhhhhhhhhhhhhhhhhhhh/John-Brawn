@@ -83,11 +83,17 @@ public class PlayerData : MonoBehaviour {
             zombiesKilled += levelData.zombiesKilled;
             reputationProgress += city.reward;
 
-            while (reputation < reputationLevels.Length - 1 && reputationProgress >= reputationXP[reputation])
-            {
-                reputationProgress -= reputationXP[reputation];
-                reputation++;
-            }
+            checkLevelUp();
+        }
+    }
+
+    //checks if reputation progress is high enough to level up
+    private void checkLevelUp()
+    {
+        while (reputation < reputationLevels.Length - 1 && reputationProgress >= reputationXP[reputation])
+        {
+            reputationProgress -= reputationXP[reputation];
+            reputation++;
         }
     }
 
@@ -126,5 +132,13 @@ public class PlayerData : MonoBehaviour {
 
         scoreText.text = "Score: " + score;
         zombiesKilledText.text = "Zombies Killed: " + zombiesKilled;
+    }
+
+    //for devmode
+    public void addRepuationProgress(float added)
+    {
+        reputationProgress += added;
+        checkLevelUp();
+        updateReputationPanel();
     }
 }

@@ -6,18 +6,10 @@ public class Devmode : MonoBehaviour {
 
     public GameObject panel;
 
-    private LevelData player;
-    //private WaveController waveControl;
-    //private BuildingManager buildManager;
-
 	// Use this for initialization
 	void Start ()
     {
         panel.gameObject.SetActive(false);
-
-        player = gameObject.GetComponent<LevelData>();
-        //waveControl = gameObject.GetComponent<WaveController>();
-        //buildManager = gameObject.GetComponent<BuildingManager>();
     }
 	
 	// Update is called once per frame
@@ -44,15 +36,5 @@ public class Devmode : MonoBehaviour {
     public void Hide()
     {
         panel.gameObject.SetActive(false);
-    }
-
-    public void addMoney(int added)
-    {
-        player.addMoney(added);
-    }
-
-    public void addLives(int added)
-    {
-        player.addLives(added);
     }
 }
