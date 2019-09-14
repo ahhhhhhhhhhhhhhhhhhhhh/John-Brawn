@@ -20,7 +20,7 @@ public class GridController : MonoBehaviour
     private Tile[,] background; //map background, only visual. Does not affect tower placement
     private Tile[,] buildingLayer; //represents game grid of towers, buildings, hazards. Affects tower placement
 
-    private new Camera camera;
+    private Camera camera;
 
     private void Awake()
     {

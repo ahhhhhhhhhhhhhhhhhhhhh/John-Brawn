@@ -8,9 +8,36 @@ public class PlayerData : MonoBehaviour {
 
     public int score { get; private set; }
     public int reputation { get; private set; }
+    public int zombiesKilled { get; private set; }
+    private float reputationProgress; //progress to next reputation level
+
+    private readonly float[] reputationXP =
+    {
+        100,
+        125,
+        175,
+        250,
+        400,
+        750,
+        1500,
+    };
+    public readonly string[] reputationLevels =
+    {
+        "Unheard-Of",
+        "Inexperienced",
+        "Village Defender",
+        "Small Town Rescuer",
+        "Respected Contracter",
+        "Major City Defender",
+        "World Famous Hero",
+        "Legendary Zombie Slayer"
+    };
 
     private LevelData levelData;
     private LevelSelectorCity city;
+
+    private GameObject statsPanel;
+    private GameObject reputationPanel;
 
     //prevents object from being duplicated everytime the scene loads
     private static PlayerData nonDuplicateInstance;
@@ -25,6 +52,7 @@ public class PlayerData : MonoBehaviour {
         else
         {
             Destroy(gameObject);
+            return;
         }
 
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -36,6 +64,14 @@ public class PlayerData : MonoBehaviour {
         {
             levelData = GameObject.Find("Level Control").GetComponent<LevelData>();
         }
+        else if (scene.name == "Level Selector")
+        {
+            statsPanel = GameObject.Find("Stats Panel");
+            reputationPanel = GameObject.Find("Reputation Panel");
+
+            updateStatsPanel();
+            updateReputationPanel();
+        }
     }
 
     //pass in true if player wins level, pass false if player loses
@@ -44,12 +80,51 @@ public class PlayerData : MonoBehaviour {
         if (win)
         {
             score += levelData.money;
-            reputation += city.reward;
+            zombiesKilled += levelData.zombiesKilled;
+            reputationProgress += city.reward;
+
+            while (reputation < reputationLevels.Length - 1 && reputationProgress >= reputationXP[reputation])
+            {
+                reputationProgress -= reputationXP[reputation];
+                reputation++;
+            }
         }
     }
 
     public void setCity(LevelSelectorCity city)
     {
         this.city = city;
+    }
+
+    private void updateReputationPanel()
+    {
+        Text reputationText = reputationPanel.transform.Find("Reputation Text").GetComponent<Text>();
+        Text nextText = reputationPanel.transform.Find("Next Text").GetComponent<Text>();
+        Text XpText = reputationPanel.transform.Find("XP Text").GetComponent<Text>();
+        Image progressBar = reputationPanel.transform.Find("Progress Bar Background").GetChild(0).GetComponent<Image>();
+
+        reputationText.text = "Reputation: " + reputationLevels[reputation];
+        if (reputation < reputationLevels.Length - 1)
+        {
+            nextText.text = "Next: " + reputationLevels[reputation + 1];
+            XpText.text = reputationProgress + " / " + reputationXP[reputation];
+            progressBar.transform.localScale = new Vector3(reputationProgress / reputationXP[reputation], 1, 1);
+        }
+        else
+        {
+            nextText.text = "";
+            XpText.text = "";
+            progressBar.transform.localScale = new Vector3(1, 1, 1);
+        }
+        
+    }
+
+    private void updateStatsPanel()
+    {
+        Text scoreText = statsPanel.transform.Find("Score Text").GetComponent<Text>();
+        Text zombiesKilledText = statsPanel.transform.Find("Zombies Killed Text").GetComponent<Text>();
+
+        scoreText.text = "Score: " + score;
+        zombiesKilledText.text = "Zombies Killed: " + zombiesKilled;
     }
 }

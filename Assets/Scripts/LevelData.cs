@@ -14,7 +14,7 @@ public class LevelData : MonoBehaviour {
 
     public int money { get; private set; }
     public int lives { get; private set; }
-    private int zombiesKilled;
+    public int zombiesKilled { get; private set; }
 
     private void Update()
     {
