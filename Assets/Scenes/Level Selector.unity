@@ -473,6 +473,30 @@ Prefab:
       propertyPath: reputationReward
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114168928600460702, guid: 3a542941d156dc047923009fe6c6e079,
+        type: 2}
+      propertyPath: images.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: 1566eba0889d8544aabab00891ce8066,
+        type: 3}
+    - target: {fileID: 114168928600460702, guid: 3a542941d156dc047923009fe6c6e079,
+        type: 2}
+      propertyPath: images.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: 20d8a68bffce9434da908cd78098f1bf,
+        type: 3}
+    - target: {fileID: 114168928600460702, guid: 3a542941d156dc047923009fe6c6e079,
+        type: 2}
+      propertyPath: images.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: c8734d052a23c724a81efd0b7c87fcfd,
+        type: 3}
+    - target: {fileID: 114966345919374762, guid: 3a542941d156dc047923009fe6c6e079,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 1566eba0889d8544aabab00891ce8066,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a542941d156dc047923009fe6c6e079, type: 2}
   m_IsPrefabAsset: 0
@@ -732,6 +756,30 @@ Prefab:
       propertyPath: reputationReward
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114168928600460702, guid: 3a542941d156dc047923009fe6c6e079,
+        type: 2}
+      propertyPath: images.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: 20d8a68bffce9434da908cd78098f1bf,
+        type: 3}
+    - target: {fileID: 114168928600460702, guid: 3a542941d156dc047923009fe6c6e079,
+        type: 2}
+      propertyPath: images.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: 1566eba0889d8544aabab00891ce8066,
+        type: 3}
+    - target: {fileID: 114168928600460702, guid: 3a542941d156dc047923009fe6c6e079,
+        type: 2}
+      propertyPath: images.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: c8734d052a23c724a81efd0b7c87fcfd,
+        type: 3}
+    - target: {fileID: 114966345919374762, guid: 3a542941d156dc047923009fe6c6e079,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 1566eba0889d8544aabab00891ce8066,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a542941d156dc047923009fe6c6e079, type: 2}
   m_IsPrefabAsset: 0
@@ -1254,6 +1302,30 @@ Prefab:
       propertyPath: levelInfo.waves.Array.data[0].spawnDelay
       value: 0.01
       objectReference: {fileID: 0}
+    - target: {fileID: 114168928600460702, guid: 3a542941d156dc047923009fe6c6e079,
+        type: 2}
+      propertyPath: images.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: 1566eba0889d8544aabab00891ce8066,
+        type: 3}
+    - target: {fileID: 114168928600460702, guid: 3a542941d156dc047923009fe6c6e079,
+        type: 2}
+      propertyPath: images.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: 20d8a68bffce9434da908cd78098f1bf,
+        type: 3}
+    - target: {fileID: 114168928600460702, guid: 3a542941d156dc047923009fe6c6e079,
+        type: 2}
+      propertyPath: images.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: c8734d052a23c724a81efd0b7c87fcfd,
+        type: 3}
+    - target: {fileID: 114966345919374762, guid: 3a542941d156dc047923009fe6c6e079,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 1566eba0889d8544aabab00891ce8066,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a542941d156dc047923009fe6c6e079, type: 2}
   m_IsPrefabAsset: 0
