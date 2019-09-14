@@ -26,14 +26,22 @@ public class LevelSelectorCity : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
     {
-        name = cityName;
-        setState(state);
         GetComponent<Button>().onClick.AddListener(new UnityEngine.Events.UnityAction(display_properties));
+
+        PlayerData playerData = GameObject.Find("Player Data").GetComponent<PlayerData>();
+        if (playerData.reputation >= reputation)
+        {
+            setState(State.Open);
+        }
+        else
+        {
+            setState(State.Locked);
+        }
 	}
 	
-    public void setState(State new_state)
+    public void setState(State newState)
     {
-        state = new_state;
+        state = newState;
         GetComponent<Image>().sprite = images[(int)state];
     }
 

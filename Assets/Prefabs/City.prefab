@@ -41,11 +41,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: deaad7d20092d344a91e7e5afe02a5d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  city_name: City Name
-  price: 10000
+  cityName: 
+  reward: 0
   reputation: 3
   state: 0
-  num_waves: 0
+  levelInfo:
+    backgroundMap: {fileID: 0}
+    buildingMap: {fileID: 0}
+    endpoint: {x: 0, y: 0}
+    waves: []
+    spawningDirections: 
+    startingMoney: 0
+    startingLives: 0
   images:
   - {fileID: 21300000, guid: 4ccdf5bc4ad42354994e206be86730df, type: 3}
   - {fileID: 21300000, guid: 15bfac8e2f82f7d4299665d70b52e20b, type: 3}
@@ -143,5 +150,5 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -264, y: -62}
-  m_SizeDelta: {x: 80, y: 80}
+  m_SizeDelta: {x: 40, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}

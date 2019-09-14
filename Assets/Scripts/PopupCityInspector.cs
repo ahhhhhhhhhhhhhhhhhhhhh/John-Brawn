@@ -22,10 +22,14 @@ public class PopupCityInspector : MonoBehaviour {
         if (city.state == LevelSelectorCity.State.Open)
         {
             startButton.onClick.AddListener(new UnityEngine.Events.UnityAction(start_game));
+            startButton.transform.GetChild(0).GetComponent<Text>().text = "Play";
+            startButton.GetComponent<Image>().color = Color.green;
         }
         else
         {
             startButton.interactable = false;
+            startButton.transform.GetChild(0).GetComponent<Text>().text = "Locked";
+            startButton.GetComponent<Image>().color = Color.grey;
         }
 
         GameObject quitButton = transform.Find("Quit Button").gameObject;
@@ -47,7 +51,7 @@ public class PopupCityInspector : MonoBehaviour {
     {
         Text prop_text = transform.Find("Info").GetComponent<Text>();
         Text title = transform.Find("Title").GetComponent<Text>();
-        string properties = "Payroll: " + city.reward + "\nLength: " + city.levelInfo.waves.Length + " waves\nReputation: Level " + city.reputation;
+        string properties = "Reward: " + city.reward + "\nLength: " + city.levelInfo.waves.Length + " waves\nReputation: Level " + city.reputation;
         prop_text.text = properties;
         title.text = city.cityName;
     }
