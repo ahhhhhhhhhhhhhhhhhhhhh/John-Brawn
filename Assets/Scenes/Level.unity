@@ -17844,10 +17844,10 @@ RectTransform:
   m_Father: {fileID: 669277747}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -421.7, y: -10.799988}
-  m_SizeDelta: {x: -843.4, y: -153.7}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 154.29999, y: -10.799988}
+  m_SizeDelta: {x: 308.59998, y: 494.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &829823051
 MonoBehaviour:
@@ -34569,10 +34569,10 @@ RectTransform:
   m_Father: {fileID: 669277747}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 511, y: -287}
-  m_SizeDelta: {x: 107.3, y: 58.1}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -65, y: 37}
+  m_SizeDelta: {x: 107.29999, y: 58.100006}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1775409075
 MonoBehaviour:
@@ -36548,6 +36548,14 @@ MonoBehaviour:
       spawnDelay: 0.01
       numZombies: 10
       numBigZombies: 0
+    - delay: 5
+      spawnDelay: 0.01
+      numZombies: 25
+      numBigZombies: 1
+    - delay: 10
+      spawnDelay: 0.01
+      numZombies: 50
+      numBigZombies: 5
     spawningDirections: 01000000
     startingMoney: 2500
     startingLives: 20
