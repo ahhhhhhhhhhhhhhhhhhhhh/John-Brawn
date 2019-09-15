@@ -33,6 +33,8 @@ public class TowerInfoPanel : MonoBehaviour {
     void Update ()
     {
         HideIfClickedOutside(gameObject);
+
+        updateButtonColor(); //needs to happen every frame because money increases unpredictably
 	}
 
     //https://answers.unity.com/questions/947856/how-to-detect-click-outside-ui-panel.html
@@ -80,16 +82,9 @@ public class TowerInfoPanel : MonoBehaviour {
             upgradeButton.GetComponent<Button>().enabled = true;
 
             TowerInfo next = selectedTower.properties[selectedTower.getLevel() + 1];
-            if (player.money >= next.cost)
-            {
-                upgradeButton.GetComponent<Image>().color = Color.white;
-            }
-            else
-            {
-                upgradeButton.GetComponent<Image>().color = Color.red;
-            }
-
             upgradeButton.transform.GetChild(0).GetComponent<Text>().text = "Upgrade ($" + next.cost + ")";
+
+            updateButtonColor();
         }
     }
 
@@ -113,6 +108,22 @@ public class TowerInfoPanel : MonoBehaviour {
             if (next.range - current.range > 0)
             {
                 rangeText.text += " + " + (next.range - current.range);
+            }
+        }
+    }
+
+    private void updateButtonColor()
+    {
+        if (!(selectedTower.getLevel() >= selectedTower.properties.Length - 1))  //tower is not yet max level
+        { 
+            TowerInfo next = selectedTower.properties[selectedTower.getLevel() + 1];
+            if (player.money >= next.cost)
+            {
+                upgradeButton.GetComponent<Image>().color = Color.white;
+            }
+            else
+            {
+                upgradeButton.GetComponent<Image>().color = Color.red;
             }
         }
     }
