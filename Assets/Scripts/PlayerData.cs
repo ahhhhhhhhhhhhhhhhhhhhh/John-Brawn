@@ -112,7 +112,7 @@ public class PlayerData : MonoBehaviour {
         reputationText.text = "\"" + reputationLevels[reputation] + "\"";
         if (reputation < reputationLevels.Length - 1)
         {
-            nextText.text = "Next: " + reputationLevels[reputation + 1];
+            nextText.text = "\"" + reputationLevels[reputation + 1] + "\"";
             XpText.text = reputationProgress + " / " + reputationXP[reputation];
             progressBar.transform.localScale = new Vector3(reputationProgress / reputationXP[reputation], 1, 1);
         }
@@ -121,6 +121,8 @@ public class PlayerData : MonoBehaviour {
             nextText.text = "";
             XpText.text = "";
             progressBar.transform.localScale = new Vector3(1, 1, 1);
+
+            reputationPanel.transform.Find("Next Title").GetComponent<Text>().text = "";
         }
         
     }
