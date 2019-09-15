@@ -130,7 +130,7 @@ public class Pathfinder : MonoBehaviour {
 
                 try //may be negative or off the grid
                 {
-                    if (grid.get(testX, testY) == (Tile)0)
+                    if (grid.isWalkable(testX, testY))
                     {
                         neighbors.Add(nodes[testX, testY]);
                     }
