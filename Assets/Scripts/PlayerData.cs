@@ -11,7 +11,7 @@ public class PlayerData : MonoBehaviour {
     public int zombiesKilled { get; private set; }
     private float reputationProgress; //progress to next reputation level
 
-    private readonly float[] reputationXP =
+    public static readonly float[] reputationXP =
     {
         100,
         125,
@@ -21,7 +21,7 @@ public class PlayerData : MonoBehaviour {
         750,
         1500,
     };
-    public readonly string[] reputationLevels =
+    public static readonly string[] reputationLevels =
     {
         "Unheard-Of",
         "Inexperienced",

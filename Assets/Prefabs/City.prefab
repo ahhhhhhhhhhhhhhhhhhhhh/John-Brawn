@@ -54,10 +54,10 @@ MonoBehaviour:
     startingMoney: 0
     startingLives: 0
   images:
-  - {fileID: 21300000, guid: 4ccdf5bc4ad42354994e206be86730df, type: 3}
-  - {fileID: 21300000, guid: 15bfac8e2f82f7d4299665d70b52e20b, type: 3}
-  - {fileID: 21300000, guid: 94de04e8695ac3f41af8fed5ddf70657, type: 3}
-  PopupPrefab: {fileID: 1701521796340640, guid: 2ce285bc18f167b4a97fb0048813f2d6,
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  PopupPrefab: {fileID: 1814103126850846, guid: 2ce285bc18f167b4a97fb0048813f2d6,
     type: 2}
 --- !u!114 &114292928097723322
 MonoBehaviour:
