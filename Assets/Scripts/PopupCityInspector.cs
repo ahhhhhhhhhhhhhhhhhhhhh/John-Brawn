@@ -56,6 +56,8 @@ public class PopupCityInspector : MonoBehaviour {
 
         rewardText.text = "Defending this city will increase your reputation by " + city.reward;
         requirmentText.text = "This city will only hire you if you are " + PlayerData.reputationLevels[city.reputation] + " or better";
-        wavesText.text = "The contract is for " + city.levelInfo.waves.Length + " days";
+
+        string days = city.levelInfo.waves.Length > 1 ? " days" : " day";
+        wavesText.text = "The contract is for " + city.levelInfo.waves.Length + days;
     }
 }
