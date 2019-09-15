@@ -27,7 +27,7 @@ public class PlayerData : MonoBehaviour {
         "Inexperienced",
         "Village Defender",
         "Small Town Rescuer",
-        "Respected Contracter",
+        "Respected Contractor",
         "Major City Defender",
         "World Famous Hero",
         "Legendary Zombie Slayer"
@@ -109,7 +109,7 @@ public class PlayerData : MonoBehaviour {
         Text XpText = reputationPanel.transform.Find("XP Text").GetComponent<Text>();
         Image progressBar = reputationPanel.transform.Find("Progress Bar Background").GetChild(0).GetComponent<Image>();
 
-        reputationText.text = "Reputation: " + reputationLevels[reputation];
+        reputationText.text = "\"" + reputationLevels[reputation] + "\"";
         if (reputation < reputationLevels.Length - 1)
         {
             nextText.text = "Next: " + reputationLevels[reputation + 1];
@@ -127,8 +127,8 @@ public class PlayerData : MonoBehaviour {
 
     private void updateStatsPanel()
     {
-        Text scoreText = statsPanel.transform.Find("Score Text").GetComponent<Text>();
-        Text zombiesKilledText = statsPanel.transform.Find("Zombies Killed Text").GetComponent<Text>();
+        Text scoreText = statsPanel.transform.Find("Score Panel").transform.Find("Score Text").GetComponent<Text>();
+        Text zombiesKilledText = statsPanel.transform.Find("Zombie Panel").transform.Find("Zombie Text").GetComponent<Text>();
 
         scoreText.text = "Score: " + score;
         zombiesKilledText.text = "Zombies Killed: " + zombiesKilled;
