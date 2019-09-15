@@ -6,7 +6,8 @@ public class GridController : MonoBehaviour
 {
     [Header("Map Stuff")]
     public GameObject[] tiles; //IMPORTANT: tiles must be in the same order as Tile enum (Tile.tower at the end)
-    private readonly List<Tile> impassableTiles = new List<Tile> { Tile.Water, Tile.Mountain, Tile.House }; //tiles that zombies can't walk across
+    private readonly List<Tile> impassableTiles = new List<Tile> {
+        Tile.Tower, Tile.Water, Tile.Mountain, Tile.House }; //tiles that zombies can't walk across
     public ColorToTile[] colorMappings;
 
     [HideInInspector()]
