@@ -9,13 +9,13 @@ public class LevelControl : MonoBehaviour {
     public Pathfinder pathfinder;
 
     [HideInInspector()]
-    public bool loadedLevel = false;
+    public LevelInfo loadedLevel;
 
     public void loadLevel(LevelInfo level)
     {
         WaveController waveControl = GetComponent<WaveController>();
         GridController gridControl = GetComponent<GridController>();
-        PlayerData player = GetComponent<PlayerData>();
+        LevelData player = GetComponent<LevelData>();
 
         waveControl.waves = level.waves;
         waveControl.spawningDirections = level.spawningDirections;
@@ -30,6 +30,6 @@ public class LevelControl : MonoBehaviour {
 
         pathfinder.endpoint = level.endpoint;
 
-        loadedLevel = true;
+        loadedLevel = level;
     }
 }

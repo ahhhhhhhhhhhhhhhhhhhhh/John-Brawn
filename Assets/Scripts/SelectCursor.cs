@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SelectCursor : MonoBehaviour {
 
-    public new Camera camera;
+    public Camera camera;
     public BuildingManager buildManager;
 
     private Transform rangeCircle;

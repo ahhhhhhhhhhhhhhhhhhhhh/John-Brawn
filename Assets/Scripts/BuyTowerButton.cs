@@ -8,14 +8,14 @@ public class BuyTowerButton : MonoBehaviour {
     public GameObject towerPrefab; //tower this button will buy
     private Tower tower;
 
-    private PlayerData player;
+    private LevelData player;
     private BuildingManager buildManager;
 
 	// Use this for initialization
 	void Start ()
     {
         GameObject levelControl = GameObject.Find("Level Control");
-        player = levelControl.GetComponent<PlayerData>();
+        player = levelControl.GetComponent<LevelData>();
         buildManager = levelControl.GetComponent<BuildingManager>();
 
         tower = towerPrefab.GetComponent<Tower>();

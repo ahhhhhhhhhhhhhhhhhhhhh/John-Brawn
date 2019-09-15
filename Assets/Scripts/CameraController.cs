@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour {
 
-    private new Camera camera;
+    private Camera camera;
 
     private float maxSize; //max size is set automatically by gridcontroller
     public float minSize;

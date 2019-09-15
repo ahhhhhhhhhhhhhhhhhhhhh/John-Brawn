@@ -12,7 +12,7 @@ public class DefaultLevelLoader : MonoBehaviour {
 
 	private void Start ()
     {
-        if (!levelControl.loadedLevel)
+        if (levelControl.loadedLevel.backgroundMap == null)
         {
             levelControl.GetComponent<LevelControl>().loadLevel(defaultLevel);
         }

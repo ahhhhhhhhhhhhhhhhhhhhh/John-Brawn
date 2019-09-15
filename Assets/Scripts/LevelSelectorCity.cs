@@ -14,8 +14,8 @@ public class LevelSelectorCity : MonoBehaviour {
 
     [Header("City Properties")]
     public string cityName;
-    public int reward;
-    public int reputation;
+    public int reward; //reputation gained by beating level
+    public int reputation; //reputation required to attempt level
     public State state;
     public LevelInfo levelInfo;
 
@@ -26,14 +26,22 @@ public class LevelSelectorCity : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
     {
-        name = cityName;
-        setState(state);
         GetComponent<Button>().onClick.AddListener(new UnityEngine.Events.UnityAction(display_properties));
+
+        PlayerData playerData = GameObject.Find("Player Data").GetComponent<PlayerData>();
+        if (playerData.reputation >= reputation)
+        {
+            setState(State.Open);
+        }
+        else
+        {
+            setState(State.Locked);
+        }
 	}
 	
-    public void setState(State new_state)
+    public void setState(State newState)
     {
-        state = new_state;
+        state = newState;
         GetComponent<Image>().sprite = images[(int)state];
     }
 

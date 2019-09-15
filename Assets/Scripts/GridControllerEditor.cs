@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
+#if UNITY_EDITOR 
+
 [CustomEditor(typeof(GridController))]
-public class GridControllerEditor : Editor {
+public class GridControllerEditor : Editor
+{
     public override void OnInspectorGUI()
     {
         DrawDefaultInspector();
@@ -23,3 +26,5 @@ public class GridControllerEditor : Editor {
         }
     }
 }
+
+#endif

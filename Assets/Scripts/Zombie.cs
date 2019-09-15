@@ -20,7 +20,7 @@ public class Zombie : MonoBehaviour {
     public GameObject deathEffect;
     public Sprite[] sprites; //up, right, down, left
 
-    private PlayerData player;
+    private LevelData player;
 
     private SpriteRenderer spriteRenderer;
 
@@ -34,7 +34,7 @@ public class Zombie : MonoBehaviour {
         pathfinder = GameObject.Find("Pathfinder").GetComponent<Pathfinder>();
         repath();
 
-        player = GameObject.Find("Level Control").GetComponent<PlayerData>();
+        player = GameObject.Find("Level Control").GetComponent<LevelData>();
 	}
 	
 	// Update is called once per frame
