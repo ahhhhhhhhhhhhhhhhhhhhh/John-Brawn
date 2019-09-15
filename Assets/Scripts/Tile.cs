@@ -7,5 +7,8 @@ public enum Tile {
     Grass,
     Sand,
     Concrete,
-    House
+    Water,
+    House,
+    Swamp,
+    Mountain
 }
