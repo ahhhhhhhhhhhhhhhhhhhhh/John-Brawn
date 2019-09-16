@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class PopupCityInspector : MonoBehaviour {
 
+    [HideInInspector()]
     public LevelSelectorCity city;
 
     private LevelSelector levelSelector;
@@ -25,11 +26,18 @@ public class PopupCityInspector : MonoBehaviour {
             startButton.transform.GetChild(0).GetComponent<Text>().text = "Play";
             startButton.GetComponent<Image>().color = Color.green;
         }
-        else
+        else if (city.state == LevelSelectorCity.State.Locked)
         {
             startButton.interactable = false;
             startButton.transform.GetChild(0).GetComponent<Text>().text = "Locked";
             startButton.GetComponent<Image>().color = Color.grey;
+        }
+        else if (city.state == LevelSelectorCity.State.Completed)
+        {
+            startButton.interactable = false;
+            startButton.transform.GetChild(0).GetComponent<Text>().text = "Complete";
+            startButton.GetComponent<Image>().color = Color.yellow;
+            transform.Find("Completed Panel").gameObject.SetActive(true);
         }
     }
 

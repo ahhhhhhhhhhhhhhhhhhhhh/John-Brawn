@@ -26,16 +26,19 @@ public class LevelSelectorCity : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
     {
-        GetComponent<Button>().onClick.AddListener(new UnityEngine.Events.UnityAction(display_properties));
+        GetComponent<Button>().onClick.AddListener(new UnityEngine.Events.UnityAction(displayProperties));
 
-        PlayerData playerData = GameObject.Find("Player Data").GetComponent<PlayerData>();
-        if (playerData.reputation >= reputation)
+        if (state != State.Completed)
         {
-            setState(State.Open);
-        }
-        else
-        {
-            setState(State.Locked);
+            PlayerData playerData = GameObject.Find("Player Data").GetComponent<PlayerData>();
+            if (playerData.reputation >= reputation)
+            {
+                setState(State.Open);
+            }
+            else
+            {
+                setState(State.Locked);
+            }
         }
 	}
 	
@@ -45,7 +48,7 @@ public class LevelSelectorCity : MonoBehaviour {
         GetComponent<Image>().sprite = images[(int)state];
     }
 
-    public void display_properties()
+    public void displayProperties()
     {
         GameObject popup = Instantiate(PopupPrefab);
         popup.transform.position = transform.position;

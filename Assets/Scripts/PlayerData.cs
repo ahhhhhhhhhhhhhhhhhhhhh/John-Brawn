@@ -7,10 +7,10 @@ using UnityEngine.UI;
 public class PlayerData : MonoBehaviour {
 
     public int score { get; private set; }
-    public int reputation { get; private set; }
     public int zombiesKilled { get; private set; }
-    private float reputationProgress; //progress to next reputation level
 
+    public int reputation { get; private set; }
+    private float reputationProgress; //progress to next reputation level
     public static readonly float[] reputationXP =
     {
         100,
@@ -26,15 +26,18 @@ public class PlayerData : MonoBehaviour {
         "Unheard-Of",
         "Inexperienced",
         "Village Defender",
-        "Small Town Rescuer",
+        "Small Town Savoir",
         "Respected Contractor",
         "Major City Defender",
         "World Famous Hero",
-        "Legendary Zombie Slayer"
+        "Eternal Legend"
     };
 
     private LevelData levelData;
     private LevelSelectorCity city;
+    private List<string> completedCities;
+    private string currentCityName;
+    private bool won;
 
     private GameObject statsPanel;
     private GameObject reputationPanel;
@@ -56,6 +59,8 @@ public class PlayerData : MonoBehaviour {
         }
 
         SceneManager.sceneLoaded += OnSceneLoaded;
+
+        completedCities = new List<string>();
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -71,6 +76,18 @@ public class PlayerData : MonoBehaviour {
 
             updateStatsPanel();
             updateReputationPanel();
+
+            if (won)
+            {
+                completedCities.Add(currentCityName);
+            }
+
+            //necessary because cities are deleted when scene is exited and so don't remember their state
+            foreach (string cityName in completedCities)
+            {
+                LevelSelectorCity completedCity = getCity(cityName);
+                completedCity.setState(LevelSelectorCity.State.Completed); 
+            }
         }
     }
 
@@ -79,12 +96,32 @@ public class PlayerData : MonoBehaviour {
     {
         if (win)
         {
+            won = true;
+
             score += levelData.money;
             zombiesKilled += levelData.zombiesKilled;
             reputationProgress += city.reward;
 
             checkLevelUp();
         }
+    }
+
+    //returns city of given name. necessary because city reference gets wiped when going to level scene
+    private LevelSelectorCity getCity(string name)
+    {
+        if (SceneManager.GetActiveScene().name == "Level Selector")
+        {
+            Transform citiesParent = GameObject.Find("Cities").transform;
+            for (int i = 0; i < citiesParent.childCount; i++)
+            {
+                LevelSelectorCity city = citiesParent.GetChild(i).GetComponent<LevelSelectorCity>();
+                if (city.cityName == name)
+                {
+                    return city;
+                }
+            }
+        }
+        return null;
     }
 
     //checks if reputation progress is high enough to level up
@@ -100,6 +137,8 @@ public class PlayerData : MonoBehaviour {
     public void setCity(LevelSelectorCity city)
     {
         this.city = city;
+        currentCityName = city.cityName;
+        won = false;
     }
 
     private void updateReputationPanel()
