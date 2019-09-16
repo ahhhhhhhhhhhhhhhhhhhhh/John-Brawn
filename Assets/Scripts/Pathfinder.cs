@@ -180,7 +180,7 @@ public class Pathfinder : MonoBehaviour {
             {
                 Node test = nodes[0, i];
                 float dist = Vector3.Distance(loc.position, test.gameObject.transform.position);
-                if (dist < minDist)
+                if (dist < minDist && grid.isWalkable(0, i))
                 {
                     minDist = dist;
                     nearest = test;
@@ -193,7 +193,7 @@ public class Pathfinder : MonoBehaviour {
             {
                 Node test = nodes[nodes.GetLength(0) - 1, i];
                 float dist = Vector3.Distance(loc.position, test.gameObject.transform.position);
-                if (dist < minDist)
+                if (dist < minDist && grid.isWalkable(nodes.GetLength(0) - 1, i))
                 {
                     minDist = dist;
                     nearest = test;
@@ -206,7 +206,7 @@ public class Pathfinder : MonoBehaviour {
             {
                 Node test = nodes[i, 0];
                 float dist = Vector3.Distance(loc.position, test.gameObject.transform.position);
-                if (dist < minDist)
+                if (dist < minDist && grid.isWalkable(i, 0))
                 {
                     minDist = dist;
                     nearest = test;
@@ -219,7 +219,7 @@ public class Pathfinder : MonoBehaviour {
             {
                 Node test = nodes[i, nodes.GetLength(1) - 1];
                 float dist = Vector3.Distance(loc.position, test.gameObject.transform.position);
-                if (dist < minDist)
+                if (dist < minDist && grid.isWalkable(i, nodes.GetLength(1) - 1))
                 {
                     minDist = dist;
                     nearest = test;

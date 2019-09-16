@@ -180,6 +180,10 @@ MonoBehaviour:
     damage: 80
     fireRate: 2
     cost: 150
+  - range: 5
+    damage: 100
+    fireRate: 2.5
+    cost: 200
   turret: {fileID: 4266778646331296}
   firePoint: {fileID: 4522159533258922}
   bulletPrefab: {fileID: 1347351286853186, guid: ba69ee56be5bda14b8edc32fc0d0c36e,
