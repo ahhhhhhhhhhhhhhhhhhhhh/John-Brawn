@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Linq;
 
 public class LevelSelector : MonoBehaviour {
 
@@ -23,6 +24,23 @@ public class LevelSelector : MonoBehaviour {
         }
 
         SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void Start()
+    {
+        loadCityPrefabs();
+    }
+
+    void loadCityPrefabs() {
+        GameObject[] cities = Resources.LoadAll<GameObject>("Cities");
+        Transform cityparent = GameObject.Find("Canvas").transform.Find("Cities");
+
+        foreach (GameObject city in cities)
+        {
+            Vector3 location = city.transform.position;
+            GameObject instantiatedCity = Instantiate(city, location, Quaternion.identity);
+            instantiatedCity.transform.parent = cityparent;
+        }
     }
 
     public void loadLevel(LevelInfo levelInfo)
